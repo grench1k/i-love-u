@@ -2,152 +2,227 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Эта строчка заставляет сайт идеально сжиматься под экраны любых телефонов -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>С Днем Рождения, Любимая!</title>
     <style>
-        /* Общие настройки страницы */
+        /* Настройки для правильного отображения на смартфонах */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%);
             color: #4a4a4a;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Главный контейнер */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
+        /* Эффект падающих сердечек на фоне */
+        .falling-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Главный мобильный контейнер */
+        .mobile-container {
+            width: 100%;
+            max-width: 450px; /* Ограничение под ширину смартфона */
             padding: 20px;
+            z-index: 2;
         }
 
-        /* Главная открытка */
-        .card {
-            background-color: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-top: 40px;
-            margin-bottom: 40px;
+        /* Карточка с контентом */
+        .love-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 25px 20px;
+            box-shadow: 0 8px 24px rgba(255, 77, 109, 0.15);
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
-        /* Анимация пульсирующего сердечка */
-        .heart {
-            font-size: 50px;
-            color: #ff4d6d;
-            animation: pulse 1.5s infinite;
-            margin-bottom: 10px;
+        /* Большое пульсирующее сердце */
+        .main-heart {
+            font-size: 55px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: pulse 1.4s infinite ease-in-out;
         }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            50% { transform: scale(1.18); }
             100% { transform: scale(1); }
         }
 
+        /* Удобные крупные шрифты для телефона */
         h1 {
             color: #ff4d6d;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+            font-weight: 700;
         }
 
         p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin: 0 0 15px 0;
         }
 
-        /* Стили для ваших фотографий */
-        .photo-placeholder {
+        /* Адаптивный блок для фото */
+        .photo-box {
             width: 100%;
-            height: 250px;
-            background-color: #f0f0f0;
-            border-radius: 15px;
+            height: 280px; /* Высота под вертикальное фото с телефона */
+            background-color: #fff0f3;
+            border-radius: 18px;
+            margin: 20px 0;
+            border: 2px dashed #ff4d6d;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #888;
+            color: #ff758f;
             font-style: italic;
-            margin: 20px 0;
-            border: 2px dashed #ffb3c6;
+            font-size: 0.95rem;
+            padding: 15px;
             background-size: cover;
             background-position: center;
         }
 
-        /* Интерактивная кнопка-сюрприз */
-        .btn-surprise {
+        /* Крупная кнопка, по которой удобно попадать пальцем */
+        .action-button {
+            width: 100%;
             background-color: #ff4d6d;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 16px 20px;
             font-size: 1.1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 6px 16px rgba(255, 77, 109, 0.3);
+            transition: transform 0.1s ease;
+            margin-top: 10px;
         }
 
-        .btn-surprise:hover {
+        .action-button:active {
+            transform: scale(0.96); /* Эффект нажатия на экране телефона */
             background-color: #ff758f;
-            transform: translateY(-3px);
         }
 
-        /* Скрытый блок с главным подарком */
-        #secret-gift {
+        /* Блок с сюрпризом */
+        .surprise-box {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 20px;
+            padding: 20px 15px;
             background-color: #fff0f3;
-            border-radius: 15px;
+            border-radius: 18px;
             border: 2px solid #ff4d6d;
-            animation: fadeIn 1s ease;
+            animation: slideUp 0.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .surprise-box h3 {
+            color: #ff4d6d;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="card">
-            <div class="heart">❤️</div>
-            <!-- ЗАГОЛОВОК: Напишите здесь имя девушки -->
+    <!-- Контейнер для эффекта падающих сердечек -->
+    <div class="falling-hearts" id="heartsContainer"></div>
+
+    <div class="mobile-container">
+        <div class="love-card">
+            <div class="main-heart">❤️</div>
+            
+            <!-- ИМЯ ДЕВУШКИ: Замените текст ниже -->
             <h1>С Днем Рождения, Любимая!</h1>
             
-            <!-- ТЕКСТ ПОЗДРАВЛЕНИЯ: Напишите тут свои слова -->
-            <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день. Спасибо тебе за твою улыбку, твою доброту и за то, что ты есть!</p>
+            <!-- ТЕКСТ ПОЗДРАВЛЕНИЯ: Замените на свои слова -->
+            <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день. Спасибо тебе за твою улыбку и за то, что ты есть!</p>
             
-            <p>Этот скромный сайт я создал своими руками специально для тебя, чтобы напомнить: ты — мое самое главное сокровище. Пусть все твои мечты сбываются!</p>
+            <p>Этот сайт я создал специально для тебя, чтобы ты улыбнулась. Пусть этот день принесет тебе столько же радости, сколько ты даришь мне каждый день! ✨</p>
 
-            <!-- ФОТОГРАФИЯ: Сюда можно будет вставить ваше общее фото -->
-            <div class="photo-placeholder">
-                Твоя любимая фотография (или ваше общее фото)
+            <!-- БЛОК ДЛЯ ВАШЕГО ФОТО -->
+            <div class="photo-box">
+                Здесь будет ваше красивое совместное фото или её портрет
             </div>
 
-            <!-- КНОПКА СЮРПРИЗА -->
-            <button class="btn-surprise" onclick="showGift()">Нажми, чтобы открыть сюрприз ✨</button>
+            <!-- МОБИЛЬНАЯ КНОПКА -->
+            <button class="action-button" onclick="openSurprise()">Нажми для сюрприза ✨</button>
 
-            <!-- СКРЫТЫЙ ПОДАРОК -->
-            <div id="secret-gift">
-                <h3>🎁 Твой главный подарок:</h3>
-                <!-- Напишите здесь, какой подарок её ждет (например, поход в ресторан, билеты или признание) -->
-                <p>Сегодня вечером я заберу тебя, и мы отправимся на наше самое романтичное свидание! Готовься к 19:00, люблю тебя! 😘</p>
+            <!-- БЛОК СЮРПРИЗА -->
+            <div id="surpriseBlock" class="surprise-box">
+                <h3>🎁 Твой подарок:</h3>
+                <p>Сегодня вечером тебя ждет самый романтичный сюрприз! Будь готова к 19:00, я заеду за тобой. Люблю тебя сильнее всех! 😘</p>
             </div>
         </div>
     </div>
 
-    <!-- Логика работы кнопки -->
     <script>
-        function showGift() {
-            var giftBlock = document.getElementById("secret-gift");
-            giftBlock.style.display = "block";
-            giftBlock.scrollIntoView({ behavior: 'smooth' });
+        // Функция открытия сюрприза и плавной прокрутки вниз
+        function openSurprise() {
+            const surprise = document.getElementById("surpriseBlock");
+            surprise.style.display = "block";
+            setTimeout(() => {
+                surprise.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 100);
         }
+
+        // Автоматическое создание падающих сердечек на фоне
+        function createHeart() {
+            const container = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-20px';
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            heart.style.pointerEvents = 'none';
+            
+            // Настройка анимации падения
+            const duration = Math.random() * 3 + 3;
+            heart.style.transition = `transform ${duration}s linear, opacity ${duration}s linear`;
+            
+            container.appendChild(heart);
+
+            // Запуск анимации движения вниз
+            setTimeout(() => {
+                heart.style.transform = `translateY(105vh) rotate(${Math.random() * 360}deg)`;
+            }, 50);
+
+            // Удаление сердечка после падения
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Создавать новое сердечко каждые 400 миллисекунд
+        setInterval(createHeart, 400);
     </script>
 
 </body>
