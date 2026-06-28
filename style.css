@@ -3,17 +3,17 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 🌈 АНИМАЦИЯ ФОНА */
 body {
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #fff;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
+    justify-content: center; /* Центрируем контент по вертикали */
+    overflow: hidden; /* Запрещаем любую прокрутку на экране */
     position: relative;
     background: linear-gradient(45deg, #ff758f, #ff7e5f, #feb47b, #ff758f);
     background-size: 400% 400%;
@@ -38,26 +38,26 @@ body {
 
 .mobile-container {
     width: 100%;
-    max-width: 430px;
-    padding: 25px 20px;
+    max-width: 380px; /* Сделали контейнер чуть компактнее */
+    padding: 15px;
     z-index: 2;
 }
 
-/* ✨ СТЕКЛЯННЫЙ СТИЛЬ КАРТОЧКИ */
+/* Компактная стеклянная карточка */
 .love-card {
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 30px;
-    padding: 30px 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 24px;
+    padding: 20px 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
 
 .main-heart {
-    font-size: 55px;
-    margin-bottom: 10px;
+    font-size: 40px;
+    margin-bottom: 5px;
     display: inline-block;
     animation: pulse3d 1.2s infinite ease-in-out;
 }
@@ -68,34 +68,36 @@ body {
 }
 
 h1 {
-    font-size: 1.8rem;
-    margin: 0 0 15px 0;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    font-size: 1.4rem;
+    margin: 0 0 8px 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 p {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin: 0 0 15px 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
 }
 
+/* Компактный блок для фото */
 .photo-box {
     width: 100%;
-    height: 260px;
+    height: 180px; /* Уменьшили высоту, чтобы точно всё влезло */
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    margin: 20px 0;
+    border-radius: 15px;
+    margin: 10px 0;
     border: 2px dashed rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     font-style: italic;
+    font-size: 0.9rem;
 }
 
 .click-hint {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     animation: pulseText 1.5s infinite ease-in-out;
 }
 
@@ -105,119 +107,111 @@ p {
 }
 
 /* ==========================================
-   🐱 СТИЛИ СМОТРЯЩЕГО КОТИКА
+   🐱 СТИЛИ КОТИКА
    ========================================== */
 .cat-wrapper {
     width: 100%;
-    height: 130px;
+    height: 95px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 .css-cat {
     position: relative;
-    width: 130px;
-    height: 100px;
+    width: 110px;
+    height: 85px;
 }
 
-/* Голова кота */
 .cat-head {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 130px;
-    height: 100px;
+    width: 110px;
+    height: 85px;
     background: #ffffff;
     border-radius: 50% 50% 45% 45%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Ушки кота */
 .ear {
     position: absolute;
-    top: -12px;
+    top: -10px;
     width: 0;
     height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 40px solid #ffffff;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 32px solid #ffffff;
     transform-origin: bottom center;
 }
-.ear.left { left: 12px; transform: rotate(-12deg); animation: twitchL 4s infinite; }
-.ear.right { right: 12px; transform: rotate(12deg); animation: twitchR 4.5s infinite; }
+.ear.left { left: 10px; transform: rotate(-12deg); animation: twitchL 4s infinite; }
+.ear.right { right: 10px; transform: rotate(12deg); animation: twitchR 4.5s infinite; }
 
 .ear::after {
-    content: ''; position: absolute; top: 12px; left: -12px;
+    content: ''; position: absolute; top: 10px; left: -10px;
     width: 0; height: 0;
-    border-left: 12px solid transparent; border-right: 12px solid transparent;
-    border-bottom: 24px solid #ffb3c6;
+    border-left: 10px solid transparent; border-right: 10px solid transparent;
+    border-bottom: 20px solid #ffb3c6;
 }
 
 @keyframes twitchL { 0%, 90%, 100% { transform: rotate(-12deg); } 93% { transform: rotate(-22deg); } }
 @keyframes twitchR { 0%, 85%, 100% { transform: rotate(12deg); } 88% { transform: rotate(22deg); } }
 
-/* Глазки (смотрят вперед) */
 .eye {
     position: absolute;
-    top: 35px;
-    width: 18px;
-    height: 18px;
+    top: 30px;
+    width: 14px;
+    height: 14px;
     background: #4a4a4a;
     border-radius: 50%;
 }
-.eye.left { left: 30px; }
-.eye.right { right: 30px; }
+.eye.left { left: 25px; }
+.eye.right { right: 25px; }
 .eye::after {
-    content: ''; position: absolute; top: 3px; left: 3px;
-    width: 5px; height: 5px; background: #fff; border-radius: 50%;
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 4px; height: 4px; background: #fff; border-radius: 50%;
 }
 
-/* Розовый носик */
 .nose {
     position: absolute;
-    top: 55px;
-    left: 59px;
-    width: 12px;
-    height: 8px;
+    top: 46px;
+    left: 50px;
+    width: 10px;
+    height: 6px;
     background: #ff758f;
     border-radius: 50%;
 }
 
-/* Усы кота */
 .mustache {
     position: absolute;
-    top: 58px;
-    width: 30px;
+    top: 48px;
+    width: 25px;
     height: 2px;
     background: #e0e0e0;
 }
-.mustache.left { left: -8px; transform: rotate(4deg); }
-.mustache.right { right: -8px; transform: rotate(-4deg); }
+.mustache.left { left: -6px; transform: rotate(4deg); }
+.mustache.right { right: -6px; transform: rotate(-4deg); }
 
-/* Милые щечки */
 .blush {
     position: absolute;
-    top: 55px;
-    width: 18px;
-    height: 10px;
+    top: 46px;
+    width: 14px;
+    height: 8px;
     background: rgba(255, 182, 193, 0.6);
     border-radius: 50%;
 }
-.blush.left { left: 18px; }
-.blush.right { right: 18px; }
+.blush.left { left: 14px; }
+.blush.right { right: 14px; }
 
-/* 🎬 АНИМАЦИЯ ПРЫЖКА КОТА ПРИ КЛИКЕ */
 .css-cat.jump-active {
     animation: catJumpAnim 0.6s ease-in-out forwards;
 }
 
-/* При прыжке кот зажмуривает глаза */
 .css-cat.jump-active .eye {
-    height: 4px;
-    top: 42px;
+    height: 3px;
+    top: 35px;
     border-radius: 0;
     background: transparent;
     border-bottom: 3px solid #4a4a4a;
@@ -226,8 +220,8 @@ p {
 
 @keyframes catJumpAnim {
     0% { transform: scale(1) translateY(0); }
-    30% { transform: scale(0.9, 0.8) translateY(10px); }
-    50% { transform: scale(1.1, 1.2) translateY(-40px); }
-    70% { transform: scale(1) translateY(5px); }
+    30% { transform: scale(0.9, 0.8) translateY(8px); }
+    50% { transform: scale(1.05, 1.1) translateY(-35px); }
+    70% { transform: scale(1) translateY(4px); }
     100% { transform: scale(1) translateY(0); }
 }

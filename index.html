@@ -3,32 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>С Днем Рождения, Любимая!</title>
-    <!-- Подключаем внешний файл стилей -->
+    <title>С Днем Рождения!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Эффект падающих сердечек -->
     <div class="falling-hearts" id="heartsContainer"></div>
 
     <div class="mobile-container">
         <div class="love-card">
             <div class="main-heart">❤️</div>
             
-            <h1>С Днем Рождения, Любимая!</h1>
+            <h1>Заголовок-пример</h1>
             
-            <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день.</p>
-            
-            <p>Этот секретный сайт я создал своими руками специально для тебя. Загляни внутрь! 👇</p>
+            <p>Короткий текст поздравления для вашей девушки.</p>
 
             <div class="photo-box">
-                Здесь будет ваше красивое совместное фото
+                Фото пример
             </div>
 
             <div class="click-hint">Нажми на котика ✨</div>
             
-            <!-- Интерактивный котик вместо кнопки -->
             <div class="cat-wrapper" onclick="catJumpAndRedirect()">
                 <div class="css-cat" id="myCat">
                     <div class="ear left"></div>
@@ -49,20 +44,14 @@
     </div>
 
     <script>
-        // Функция прыжка кота и перехода на новую страницу
         function catJumpAndRedirect() {
             const cat = document.getElementById("myCat");
-            
-            // Запускаем анимацию прыжка и зажмуривания из CSS
             cat.classList.add("jump-active");
-            
-            // Ровно через 600 миллисекунд (когда прыжок завершится) перенаправляем на page2.html
             setTimeout(() => {
                 window.location.href = "page2.html";
             }, 600);
         }
 
-        // Логика фоновых сердечек
         function createHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
@@ -72,7 +61,7 @@
             heart.style.position = 'absolute';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.top = '-20px';
-            heart.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            heart.style.fontSize = (Math.random() * 14 + 10) + 'px';
             heart.style.opacity = Math.random() * 0.4 + 0.3;
             heart.style.pointerEvents = 'none';
             
@@ -88,7 +77,7 @@
 
             setTimeout(() => { heart.remove(); }, duration * 1000);
         }
-        setInterval(createHeart, 450);
+        setInterval(createHeart, 500);
     </script>
 
 </body>
