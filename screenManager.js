@@ -1,5 +1,8 @@
 // МЕНЕДЖЕР СМЕНЫ ЭКРАНОВ
-function triggerCatMagic() {
+function triggerCatMagic(event) {
+    // Останавливаем передачу клика на задний фон, чтобы не плодить лишние эмодзи под котиком
+    if (event) event.stopPropagation();
+
     const cat = document.getElementById("luxuryCat");
     if (cat.classList.contains("jump-premium")) return;
     
@@ -10,7 +13,7 @@ function triggerCatMagic() {
     setTimeout(() => {
         const container = document.getElementById("dynamicContent");
         
-        // Вставляем структуру ВТОРОГО ЭКРАНА прямо в этот файл
+        // Вставляем структуру ВТОРОГО ЭКРАНА
         container.innerHTML = `
             <!-- ДВА КОТИКА ИЗ style2.css -->
             <div class="cats-love-scene">
@@ -51,6 +54,6 @@ function triggerCatMagic() {
             setTimeout(() => {
                 row.classList.add('visible');
             }, index * 400); // Интервал появления строк (0.4 секунды)
-        }
+        });
     }, 650);
 }
