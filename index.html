@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>С Днем Рождения, Любимая!</title>
+    <!-- Подключаем внешний файл стилей -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,70 +12,57 @@
     <!-- Эффект падающих сердечек -->
     <div class="falling-hearts" id="heartsContainer"></div>
 
-    <!-- 🐱 Окно с CSS котиком -->
-    <div class="cat-overlay" id="catOverlay">
-        <div class="css-cat">
-            <div class="ear left"></div>
-            <div class="ear right"></div>
-            <div class="cat-head">
-                <div class="eye left"></div>
-                <div class="eye right"></div>
-                <div class="blush left"></div>
-                <div class="blush right"></div>
-                <div class="nose"></div>
-                <div class="mustache-container left">
-                    <div class="whisker"></div>
-                    <div class="whisker"></div>
-                </div>
-                <div class="mustache-container right">
-                    <div class="whisker"></div>
-                    <div class="whisker"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="mobile-container">
         <div class="love-card">
             <div class="main-heart">❤️</div>
             
             <h1>С Днем Рождения, Любимая!</h1>
             
-            <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день. Спасибо тебе за твою улыбку и за то, что ты есть!</p>
+            <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день.</p>
             
-            <p>Этот сайт я создал специально для тебя, чтобы ты улыбнулась. Пусть этот день принесет тебе столько же радости, сколько ты даришь мне каждый день! ✨</p>
+            <p>Этот секретный сайт я создал своими руками специально для тебя. Загляни внутрь! 👇</p>
 
             <div class="photo-box">
-                Здесь будет ваше красивое совместное фото или её портрет
+                Здесь будет ваше красивое совместное фото
             </div>
 
-            <!-- Кнопка вызывает встроенную функцию -->
-            <button class="action-button" onclick="catSurprise()">Нажми для сюрприза ✨</button>
+            <div class="click-hint">Нажми на котика ✨</div>
+            
+            <!-- Интерактивный котик вместо кнопки -->
+            <div class="cat-wrapper" onclick="catJumpAndRedirect()">
+                <div class="css-cat" id="myCat">
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
+                    <div class="cat-head">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                        <div class="blush left"></div>
+                        <div class="blush right"></div>
+                        <div class="nose"></div>
+                        <div class="mustache left"></div>
+                        <div class="mustache right"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- ВСЕ СКРИПТЫ ВНУТРИ ОДНОГО ФАЙЛА ДЛЯ НАДЕЖНОСТИ -->
     <script>
-        // Функция для выпрыгивания кота и перехода
-        function catSurprise() {
-            const overlay = document.getElementById("catOverlay");
-            const cat = document.querySelector(".css-cat");
+        // Функция прыжка кота и перехода на новую страницу
+        function catJumpAndRedirect() {
+            const cat = document.getElementById("myCat");
             
-            // Показываем окно
-            overlay.classList.add("active");
+            // Запускаем анимацию прыжка и зажмуривания из CSS
+            cat.classList.add("jump-active");
             
-            // Включаем радостную анимацию кота
-            setTimeout(() => {
-                cat.classList.add("happy-cat");
-            }, 50);
-            
-            // Через 2.5 секунды переходим на вторую страницу
+            // Ровно через 600 миллисекунд (когда прыжок завершится) перенаправляем на page2.html
             setTimeout(() => {
                 window.location.href = "page2.html";
-            }, 2500);
+            }, 600);
         }
 
-        // Функция падающих сердечек
+        // Логика фоновых сердечек
         function createHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
@@ -100,8 +88,6 @@
 
             setTimeout(() => { heart.remove(); }, duration * 1000);
         }
-        
-        // Запуск сердечек
         setInterval(createHeart, 450);
     </script>
 
