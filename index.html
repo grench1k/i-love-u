@@ -38,7 +38,9 @@
         <div class="premium-card" id="mainCard" onclick="spawnParticles(event)">
             <div class="card-glow-border"></div>
             
-            <!-- ЭКРАН 1: СТАРТОВЫЙ -->
+            <!-- ==========================================
+                 📱 ЭКРАН 1: СТАРТОВЫЙ
+                 ========================================== -->
             <div id="screen1">
                 <div class="badge-container">
                     <span class="heart-badge">❤️ Only for You</span>
@@ -59,6 +61,7 @@
                             <div class="cat-eye right"><div class="pupil"></div></div>
                             <div class="cat-blush left"></div><div class="cat-blush right"></div>
                             <div class="cat-nose"></div>
+                            <!-- Возвращены усики для котика на первой странице -->
                             <div class="cat-whiskers left"><span></span><span></span></div>
                             <div class="cat-whiskers right"><span></span><span></span></div>
                         </div>
@@ -66,9 +69,11 @@
                 </div>
             </div>
 
-            <!-- ЭКРАН 2: ПРИЗНАНИЕ -->
+            <!-- ==========================================
+                 📱 ЭКРАН 2: ПРИЗНАНИЕ
+                 ========================================== -->
             <div id="screen2">
-                <!-- 🐱❤️🐱 ВЛЮБЛЕННЫЕ ПОЛОСАТЫЕ КОТИКИ -->
+                <!-- 🐱❤️🐱 ВЛЮБЛЕННЫЕ ПОЛОСАТЫЕ КОТИКИ С УСИКАМИ -->
                 <div class="cats-love-scene">
                     <div class="cats-heart">❤️</div>
                     <div class="cats-couple">
@@ -76,11 +81,12 @@
                         <div class="love-cat cat-left">
                             <div class="l-ear left"></div><div class="l-ear right"></div>
                             <div class="l-head">
-                                <!-- Полоски на лбу и щечках -->
                                 <div class="stripes top-stripe"></div>
                                 <div class="stripes side-stripe s-left"></div>
                                 <div class="l-eye"></div>
                                 <div class="l-blush"></div>
+                                <!-- Усики для левого котика -->
+                                <div class="l-whiskers lw-left"><span></span><span></span></div>
                             </div>
                         </div>
                         <!-- Правый котик -->
@@ -91,6 +97,8 @@
                                 <div class="stripes side-stripe s-right"></div>
                                 <div class="l-eye"></div>
                                 <div class="l-blush"></div>
+                                <!-- Усики для правого котика -->
+                                <div class="l-whiskers lw-right"><span></span><span></span></div>
                             </div>
                         </div>
                     </div>
@@ -107,7 +115,6 @@
     </div>
 
     <script>
-        // Старт музыки при первом тапе
         function initAudioOnFirstTouch() {
             const music = document.getElementById("bgMusic");
             if (music) {
@@ -120,41 +127,27 @@
         document.body.addEventListener('click', initAudioOnFirstTouch);
         document.body.addEventListener('touchstart', initAudioOnFirstTouch);
 
-        // Переключение экранов + НАДЁЖНЫЙ форсированный пуск музыки
         function triggerCatMagic(event) {
             if (event) event.stopPropagation();
-
             const cat = document.getElementById("luxuryCat");
             const music = document.getElementById("bgMusic");
             if (cat.classList.contains("jump-premium")) return;
             
             cat.classList.add("jump-premium");
-            
-            // Заставляем плеер принудительно играть при прыжке котика
-            if (music) {
-                music.play().catch(err => console.log("Принудительный старт трека:", err));
-            }
+            if (music) { music.play().catch(err => {}); }
             
             setTimeout(() => {
-                const s1 = document.getElementById('screen1');
-                const s2 = document.getElementById('screen2');
-
-                s1.style.display = 'none';
-                s2.classList.add('active');
-
-                // Ещё раз толкаем аудиопоток на втором экране для Safari/Chrome
+                document.getElementById('screen1').style.display = 'none';
+                document.getElementById('screen2').classList.add('active');
                 if (music) { music.play().catch(err => {}); }
 
                 const rows = document.querySelectorAll('.fade-in-row');
                 rows.forEach((row, index) => {
-                    setTimeout(() => {
-                        row.classList.add('visible');
-                    }, index * 400);
+                    setTimeout(() => { row.classList.add('visible'); }, index * 400);
                 });
             }, 650);
         }
 
-        // Фоновые сердца
         function createAmbientHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
@@ -172,7 +165,6 @@
         }
         setInterval(createAmbientHeart, 700);
 
-        // Взрыв эмодзи
         function spawnParticles(e) {
             if (e.target.closest('.cat-touch-zone')) return;
             const count = 10; const shapes = ['❤️', '💖', '✨', '💕'];
@@ -188,7 +180,6 @@
             }
         }
 
-        // Параллакс
         document.addEventListener('mousemove', function(e) {
             const moveX = (window.innerWidth / 2 - e.clientX) * 0.03;
             const moveY = (window.innerHeight / 2 - e.clientY) * 0.03;

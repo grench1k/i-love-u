@@ -31,7 +31,7 @@ h2 {
 .highlight-text { font-weight: 700; color: #ff758f; display: block; margin-top: 14px; font-size: 0.95rem; text-shadow: 0 0 12px rgba(255, 117, 143, 0.5); }
 
 /* ========================================================
-   🐱❤️🐱 КОТИКИ С ТИГРОВЫМИ ПОЛОСКАМИ И НОСИКАМИ
+   🐱❤️🐱 КОТИКИ С ТИГРОВЫМИ ПОЛОСКАМИ, НОСИКАМИ И УСИКАМИ
    ======================================================== */
 
 .cats-love-scene {
@@ -43,37 +43,42 @@ h2 {
 .cat-left { margin-right: -10px; z-index: 2; animation: leanLeftPremium 3s infinite ease-in-out alternate; }
 .cat-right { margin-left: -10px; z-index: 1; animation: leanRightPremium 3s infinite ease-in-out alternate-reverse; }
 
-.l-head { position: absolute; bottom: 0; width: 75px; height: 60px; border-radius: 50% 50% 44% 44%; box-shadow: 0 6px 15px rgba(0,0,0,0.25); overflow: hidden; /* Срезаем вылезающие полоски */ }
+.l-head { position: absolute; bottom: 0; width: 75px; height: 60px; border-radius: 50% 50% 44% 44%; box-shadow: 0 6px 15px rgba(0,0,0,0.25); overflow: hidden; }
 .cat-left .l-head { background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 75%, #e1e1e8 100%); border: 1px solid rgba(255, 255, 255, 0.5); }
 .cat-right .l-head { background: radial-gradient(circle at 60% 30%, #e1e1e8 0%, #c8c8d3 75%, #b5b5c3 100%); border: 1px solid rgba(200, 200, 210, 0.3); }
 
-/* 🐾 РИСУЕМ ПОЛОСКИ С ПОМОЩЬЮ CSS */
-.stripes {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.12); /* Мягкие тёмные полоски */
-    border-radius: 50px;
-}
-/* Полоски на лбу */
-.top-stripe {
-    top: 0; left: 34px; width: 6px; height: 14px;
-    box-shadow: -10px 0 0 rgba(0,0,0,0.08), 10px 0 0 rgba(0,0,0,0.08); /* Тройная полоска */
-}
-/* Меняем цвет полосок у серого кота на более заметный */
+/* ТИГРОВЫЕ ПОЛОСКИ */
+.stripes { position: absolute; background: rgba(0, 0, 0, 0.12); border-radius: 50px; }
+.top-stripe { top: 0; left: 34px; width: 6px; height: 14px; box-shadow: -10px 0 0 rgba(0,0,0,0.08), 10px 0 0 rgba(0,0,0,0.08); }
 .cat-right .stripes { background: rgba(0, 0, 0, 0.2); }
 .cat-right .top-stripe { box-shadow: -10px 0 0 rgba(0,0,0,0.15), 10px 0 0 rgba(0,0,0,0.15); }
-
-/* Боковые полоски на шерсти (на щечках сзади) */
 .side-stripe { width: 18px; height: 4px; }
-.s-left {
-    top: 25px; left: -4px; transform: rotate(15deg);
-    box-shadow: 0 10px 0 rgba(0,0,0,0.1), 0 20px 0 rgba(0,0,0,0.08);
-}
-.s-right {
-    top: 25px; right: -4px; transform: rotate(-15deg);
-    box-shadow: 0 10px 0 rgba(0,0,0,0.15), 0 20px 0 rgba(0,0,0,0.12);
-}
+.s-left { top: 25px; left: -4px; transform: rotate(15deg); box-shadow: 0 10px 0 rgba(0,0,0,0.1), 0 20px 0 rgba(0,0,0,0.08); }
+.s-right { top: 25px; right: -4px; transform: rotate(-15deg); box-shadow: 0 10px 0 rgba(0,0,0,0.15), 0 20px 0 rgba(0,0,0,0.12); }
 
-/* Остальные детали мордочки */
+/* 🌟 НОВИНКА: АККУРАТНЫЕ ТОНКИЕ УСИКИ ДЛЯ ПАРОЧКИ КОТИКОВ */
+.l-whiskers {
+    position: absolute;
+    top: 36px;
+    width: 15px;
+    height: 10px;
+}
+/* Усы направлены наружу от места поцелуя */
+.lw-left { left: -2px; } 
+.lw-right { right: -2px; }
+.l-whiskers span {
+    display: block;
+    width: 15px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.12); /* Мягкие усы */
+    margin-bottom: 3px;
+}
+.cat-right .l-whiskers span { background: rgba(0, 0, 0, 0.18); } /* Чуть темнее на серой шерсти */
+.lw-left span { transform: rotate(4deg); }
+.lw-right span { transform: rotate(-4deg); }
+
+
+/* Остальные элементы лица котиков */
 .l-ear { position: absolute; top: -10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; transform-origin: bottom center; }
 .cat-left .l-ear { border-bottom: 22px solid #ffffff; } .cat-right .l-ear { border-bottom: 22px solid #e1e1e8; }
 .l-ear.left { left: 8px; transform: rotate(-12deg); } .l-ear.right { right: 8px; transform: rotate(12deg); }
@@ -86,7 +91,7 @@ h2 {
 .l-head::before { content: ''; position: absolute; top: 33px; width: 6px; height: 4px; background: #ff5d8f; border-radius: 50%; z-index: 5; }
 .cat-left .l-head::before { right: 11px; } .cat-right .l-head::before { left: 11px; }  
 
-.l-blush { position: absolute; top: 30px; width: 12px; height: 6px; background: rgba(255, 77, 109, 0.35); border-radius: 50%; filter: blur(0.5px); }
+.l-blush { position: absolute; top: 30px; width: 12px; height: 6px; background: rgba(255, 77, 109, 0.25); border-radius: 50%; filter: blur(0.5px); }
 .cat-left .l-blush { right: 18px; } .cat-right .l-blush { left: 18px; }
 
 .cats-heart { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); font-size: 1.4rem; z-index: 5; animation: heartGlowFloat 1.4s infinite ease-in-out alternate; }
