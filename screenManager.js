@@ -1,4 +1,4 @@
-// МЕНЕДЖЕР СМЕНЫ ЭКРАНОВ
+// МЕНЕДЖЕР СМЕНЫ ЭКРАНОВ (ЭКРАН 2: Текст поцелуя)
 function triggerCatMagic(event) {
     if (event) event.stopPropagation();
 
@@ -11,8 +11,9 @@ function triggerCatMagic(event) {
     setTimeout(() => {
         const container = document.getElementById("dynamicContent");
         
-        // Вставляем структуру ВТОРОГО ЭКРАНА (Текст поцелуя + кнопка перехода на карту)
+        // Вставляем структуру ВТОРОГО ЭКРАНА (Котики + Текст поцелуя + Кнопка)
         container.innerHTML = `
+            <!-- 🐱❤️🐱 ФИКСИРОВАННЫЙ БЛОК КОТИКОВ -->
             <div class="cats-love-scene">
                 <div class="cats-heart">❤️</div>
                 <div class="cats-couple">
@@ -27,22 +28,24 @@ function triggerCatMagic(event) {
                 </div>
             </div>
             
-            <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
-            
-            <p class="surprise-text fade-in-row">
-                Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!
-            </p>
-            
-            <p class="surprise-text fade-in-row">
-                И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD
-            </p>
-            
-            <p class="surprise-text fade-in-row">
-                Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.
-            </p>
-            
-            <!-- КНОПКА ДЛЯ ПЕРЕХОДА НА КАРТУ ДАТ -->
-            <button class="next-scene-btn fade-in-row" onclick="showLoveMap(event)">Посмотреть нашу историю ✨</button>
+            <!-- Интерактивная зона для динамического изменения только нижней части -->
+            <div id="storyStepsZone">
+                <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
+                
+                <p class="surprise-text fade-in-row">
+                    Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!
+                </p>
+                
+                <p class="surprise-text fade-in-row">
+                    И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD
+                </p>
+                
+                <p class="surprise-text fade-in-row">
+                    Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.
+                </p>
+                
+                <button class="next-scene-btn fade-in-row" onclick="showLoveMap(event)">Посмотреть нашу историю ✨</button>
+            </div>
         `;
 
         if (music) {
@@ -58,27 +61,28 @@ function triggerCatMagic(event) {
     }, 650);
 }
 
-// 🔥 ФУНКЦИЯ ДЛЯ ОТРИСОВКИ КАРТЫ НАШЕГО СЧАСТЬЯ (ЭКРАН 3)
+// 🔥 ФУНКЦИЯ ДЛЯ ОТРИСОВКИ КАРТЫ (ЭКРАН 3: Котики остаются на месте!)
 function showLoveMap(event) {
     if (event) event.stopPropagation();
     
-    const container = document.getElementById("dynamicContent");
+    // Меняем контент ТОЛЬКО внутри зоны текста, котиков сверху не трогаем
+    const stepsZone = document.getElementById("storyStepsZone");
+    if (!stepsZone) return;
     
-    // Запускаем красивое плавное исчезновение текущего текста
-    container.style.opacity = "0";
-    container.style.transform = "scale(0.95)";
-    container.style.transition = "all 0.4s ease";
+    // Плавное исчезновение старого текста поцелуя
+    stepsZone.style.opacity = "0";
+    stepsZone.style.transform = "scale(0.95)";
+    stepsZone.style.transition = "all 0.4s ease";
     
     setTimeout(() => {
-        // Меняем контент на вертикальную интерактивную шкалу времени (Timeline)
-        container.innerHTML = `
-            <div class="badge-container">
+        // Вставляем вертикальную дорожку прямо под котиков
+        stepsZone.innerHTML = `
+            <div class="badge-container" style="margin-top: 5px;">
                 <span class="heart-badge">✨ Наша история</span>
             </div>
             
-            <h2 style="margin-bottom: 20px;">Карта нашего счастья</h2>
+            <h2 style="margin-bottom: 15px; font-size: 1.25rem;">Карта нашего счастья</h2>
             
-            <!-- Вертикальная дорожка -->
             <div class="timeline-container">
                 <div class="timeline-line"></div>
                 
@@ -109,7 +113,7 @@ function showLoveMap(event) {
                     </div>
                 </div>
                 
-                <!-- Точка 4 (Финальная) -->
+                <!-- Точка 4 -->
                 <div class="timeline-item map-fade">
                     <div class="timeline-dot">🎂</div>
                     <div class="timeline-content highlight-content">
@@ -120,16 +124,15 @@ function showLoveMap(event) {
             </div>
         `;
         
-        // Возвращаем видимость блоку
-        container.style.opacity = "1";
-        container.style.transform = "scale(1)";
+        // Возвращаем видимость и запускаем анимацию выплывания дат
+        stepsZone.style.opacity = "1";
+        stepsZone.style.transform = "scale(1)";
         
-        // Поочередно проявляем пункты карты
-        const items = container.querySelectorAll('.map-fade');
+        const items = stepsZone.querySelectorAll('.map-fade');
         items.forEach((item, index) => {
             setTimeout(() => {
                 item.classList.add('visible');
-            }, index * 300); // Каждая дата плавно выплывает через 0.3 секунды
+            }, index * 250); // Интервал выплывания точек карты
         });
         
     }, 400);
