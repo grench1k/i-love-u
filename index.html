@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>С Днем Рождения, Любимая!</title>
+    <title>Для моей любимой ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Задний неоновый свет для создания глубины сцены -->
+    <!-- Глубокие романтичные неоновые сферы -->
     <div class="blur-glow glow-1"></div>
     <div class="blur-glow glow-2"></div>
 
-    <!-- Контейнер для плавно парящих сердец -->
+    <!-- Объемные парящие сердца -->
     <div class="floating-ambient-hearts" id="heartsContainer"></div>
 
     <div class="mobile-container">
@@ -20,28 +20,33 @@
             <div class="card-glow-border"></div>
             
             <div class="badge-container">
-                <span class="heart-badge">❤️ For You</span>
+                <span class="heart-badge">❤️ Only for You</span>
             </div>
             
-            <h1>С Днем Рождения!</h1>
+            <h1>Моей любимой</h1>
             
-            <p class="subtitle">Этот интерактивный подарок создан специально для тебя. Прикоснись к хранителю тайн внизу...</p>
+            <p class="subtitle">Ты — лучшее, что случилось со мной. Каждое мгновение с тобой наполнено счастьем. Прикоснись к котику... ✨</p>
 
-            <!-- Глянцевый интерактивный блок под будущее фото -->
+            <!-- Глянцевая романтичная рамка под фото -->
             <div class="glass-photo-frame">
                 <div class="frame-content">
-                    <span class="photo-icon">✨</span>
-                    <span class="photo-text">Твое лучшее фото</span>
+                    <span class="photo-icon">💖</span>
+                    <span class="photo-text">Наше любимое фото</span>
                 </div>
             </div>
 
-            <div class="interaction-hint">Оживи котика касанием</div>
+            <!-- Красивая интерактивная неоновая надпись, с которой играет кот -->
+            <div class="love-neon-text">I love you</div>
             
-            <!-- Интерактивная зона кота с эффектом обратной связи -->
+            <!-- Интерактивная зона кота -->
             <div class="cat-touch-zone" onclick="triggerCatMagic()">
                 <div class="css-luxury-cat" id="luxuryCat">
                     <div class="cat-ear left"></div>
                     <div class="cat-ear right"></div>
+                    
+                    <!-- Кошачья лапка, которая играет с надписью -->
+                    <div class="cat-paw"></div>
+                    
                     <div class="cat-head-base">
                         <div class="cat-eye left"><div class="pupil"></div></div>
                         <div class="cat-eye right"><div class="pupil"></div></div>
@@ -62,34 +67,36 @@
             const cat = document.getElementById("luxuryCat");
             if (cat.classList.contains("jump-premium")) return;
             
-            // Запуск продвинутой 3D анимации прыжка
+            // Включаем 3D-прыжок
             cat.classList.add("jump-premium");
             
-            // Переход на вторую страницу ровно в пик прыжка
+            // Переход на вторую страницу на пике полета котика
             setTimeout(() => {
                 window.location.href = "page2.html";
             }, 650);
         }
 
-        // Создание мягко парящих, реалистичных сердец на фоне
+        // Логика мягких парящих сердец
         function createAmbientHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
             
             const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
+            // Чередуем разные оттенки сердечек для красоты
+            const heartIcons = ['❤️', '💖', '💝', '💕'];
+            heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
             heart.className = 'ambient-heart';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
-            heart.style.opacity = Math.random() * 0.3 + 0.2;
+            heart.style.fontSize = (Math.random() * 14 + 12) + 'px';
+            heart.style.opacity = Math.random() * 0.35 + 0.2;
             
-            const duration = Math.random() * 5 + 5;
+            const duration = Math.random() * 5 + 6;
             heart.style.animation = `floatUpAndFade ${duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
             
             container.appendChild(heart);
             setTimeout(() => { heart.remove(); }, duration * 1000);
         }
-        setInterval(createAmbientHeart, 600);
+        setInterval(createAmbientHeart, 700);
     </script>
 
 </body>
