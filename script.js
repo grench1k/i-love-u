@@ -36,13 +36,16 @@ function triggerScreen3(event) {
     container.style.transition = "all 0.5s ease";
     
     setTimeout(() => {
+        // Вставляем структуру ЭКРАНА 3 с отредактированной красивой подписью
         container.innerHTML = `
             <div class="badge-container">
                 <span class="heart-badge">✨ Твой 3D Подарок</span>
             </div>
             
             <h2 style="margin-bottom: 5px; font-size: 1.3rem;">Покрути её пальчиком...</h2>
-            <p class="subtitle" style="margin-bottom: 25px;">Я оживил эту открытку специально для тебя</p>
+            
+            <!-- 👇 КРАСИВЫЙ И ПРАВИЛЬНЫЙ ВАРИАНТ ТЕКСТА -->
+            <p class="subtitle" style="margin-bottom: 25px; font-size: 0.88rem; line-height: 1.4; padding: 0 10px;">Я оживил её здесь, в интернете, чтобы мы никогда её не потеряли и она всегда была с нами...</p>
 
             <div class="scene-3d">
                 <div class="card-3d" id="postcard3d">
@@ -73,13 +76,13 @@ function init3DCardRotation() {
     // Смартфоны (Touch)
     card.addEventListener('touchstart', (e) => {
         isDragging = true;
-        startX = e.touches[0].clientX;
+        startX = e.touches.clientX;
         card.style.transition = 'none';
     });
 
     card.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
-        const deltaX = e.touches[0].clientX - startX;
+        const deltaX = e.touches.clientX - startX;
         let rotation = currentRotation + (deltaX * 0.8); 
         card.style.transform = `rotateY(${rotation}deg)`;
     });
@@ -87,7 +90,7 @@ function init3DCardRotation() {
     card.addEventListener('touchend', (e) => {
         if (!isDragging) return;
         isDragging = false;
-        currentRotation = currentRotation + (e.changedTouches[0].clientX - startX) * 0.8;
+        currentRotation = currentRotation + (e.changedTouches.clientX - startX) * 0.8;
         card.style.transition = 'transform 0.3s ease-out';
     });
 
