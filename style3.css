@@ -169,3 +169,26 @@
     border: none !important;
     z-index: 19 !important;
 }
+
+/* --- ИСПРАВЛЕНИЕ ОТОБРАЖЕНИЯ НА ТЕЛОФОНАХ --- */
+@media (max-width: 768px) {
+    /* Находим контейнер 3D-открытки и принудительно возвращаем его в обычный режим */
+    .card, .card-3d, .open-card { 
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        /* Отключаем тяжелые 3D трансформации, которые скрывают блок на мобилках */
+        transform: none !important; 
+        transform-style: flat !important;
+        perspective: none !important;
+        margin: 0 auto !important;
+        width: 85% !important; /* Корректная ширина под экран мобильного */
+        max-width: 340px !important;
+    }
+
+    /* Если у твоей открытки есть внутренняя обложка, которая открывается как книжка */
+    .card-inside, .card-front {
+        transform: none !important;
+        position: relative !important;
+    }
+}
