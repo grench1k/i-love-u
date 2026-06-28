@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Романтическое приключение</title>
-    <!-- Подключаем оба файла стилей -->
-    <link rel="stylesheet" href="cat.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Наш музыкальный плеер -->
     <audio id="bgMusic" src="music.mp3" loop playsinline></audio>
 
     <!-- ЭКРАН 1 -->
     <div class="page" id="page1">
-        <h1 class="love-text">i love you</h1>
+        <div class="love-text">i love you</div>
         
         <div class="cat-container" id="cat1" onclick="triggerFall()" ontouchstart="triggerFall()">
             <div class="cat-body-wrapper">
@@ -48,13 +45,15 @@
                 <div class="ear left"></div><div class="ear right"></div>
                 <div class="head">
                     <div class="eyes">
-                        <div class="eye"><div class="pupil intense"></div></div>
-                        <div class="eye"><div class="pupil intense"></div></div>
+                        <div class="eye"><div class="pupil"></div></div>
+                        <div class="eye"><div class="pupil"></div></div>
                     </div>
                     <div class="nose"></div>
+                    <div class="cheeks"></div>
                 </div>
                 <div class="body">
-                    <div class="tail hunting"></div>
+                    <div class="paws"><div class="paw"></div><div class="paw"></div></div>
+                    <div class="tail"></div>
                 </div>
             </div>
         </div>
@@ -66,7 +65,7 @@
     <div class="page" id="page3">
         <div class="final-card" id="finalCard">
             <h2>Поймал и утащил! 🐾</h2>
-            <p>Теперь это сердечко (и моё тоже) принадлежит только тебе.</p>
+            <p>Теперь это сердечко принадлежит тебе.</p>
             <div class="heart-beating">❤</div>
         </div>
     </div>

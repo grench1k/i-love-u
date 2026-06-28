@@ -1,6 +1,3 @@
-/* ==========================================================
-   НАСТРОЙКИ ЭКРАНОВ И РОМАНТИЧЕСКИЕ АНИМАЦИИ (ФАЙЛ 2)
-   ========================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,11 +9,11 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #ffe5ec;
 }
 
-/* Сетка страниц */
+/* Идеальное мобильное центрирование экранов */
 .page {
     position: absolute;
     width: 100%;
@@ -35,10 +32,9 @@ body, html {
 #page2 { background: linear-gradient(135deg, #ffb3c6 0%, #ff8fa3 100%); transform: translateY(100%); }
 #page3 { background: linear-gradient(135deg, #ff8fa3 0%, #ff4d6d 100%); transform: translateY(100%); }
 
-/* Падающие фоновые сердечки */
 .bg-heart {
     position: absolute;
-    color: rgba(255, 77, 109, 0.25);
+    color: rgba(255, 77, 109, 0.2);
     font-size: 20px;
     pointer-events: none;
     animation: floatUp 5s linear infinite;
@@ -51,123 +47,301 @@ body, html {
 }
 
 /* ==========================================================
-   МЕХАНИКА ЭКРАНА 1 (ГЛАВНЫЙ ЭКРАН)
+   КОТ — ИСПРАВЛЕННЫЕ ГЕОМЕТРИЧЕСКИЕ ПРОПОРЦИИ
    ========================================================== */
+.cat-container {
+    position: relative;
+    width: 130px;
+    height: 140px;
+    cursor: pointer;
+    z-index: 10;
+    margin-top: 40px; /* Отступ от надписи */
+}
+
 #cat1 {
-    top: 45%;
-    left: calc(50% - 110px);
     animation: catWalkMobile 2.5s ease-in-out infinite alternate;
 }
 
-.love-text {
-    font-size: 3.5rem;
-    color: #ff4d6d;
+.cat-body-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ear {
     position: absolute;
-    top: 25%;
+    width: 30px;
+    height: 44px;
+    background: linear-gradient(to bottom, #3a2214, #4a2c1b);
+    border-radius: 80% 20% 20% 0% / 100% 100% 0% 0%;
+}
+.ear.left { left: 15px; top: -5px; transform: rotate(-22deg); }
+.ear.right { right: 15px; top: -5px; transform: scaleX(-1) rotate(-22deg); }
+.ear::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 30px;
+    background: #ffb3c6;
+    left: 4px;
+    top: 8px;
+    border-radius: 80% 20% 20% 0% / 100% 100% 0% 0%;
+}
+
+.head {
+    position: absolute;
+    top: 18px;
+    left: calc(50% - 55px);
+    width: 110px;
+    height: 82px;
+    background: #4a2c1b;
+    border-radius: 50% 50% 46% 46% / 55% 55% 45% 45%;
+    box-shadow: inset -10px -6px 0 #2a180e, 0 6px 12px rgba(0,0,0,0.12);
+    z-index: 5;
+}
+
+.cheeks {
+    position: absolute;
+    top: 46px;
+    left: calc(50% - 28px);
+    width: 56px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 6;
+}
+.cheeks::before, .cheeks::after {
+    content: '';
+    width: 29px;
+    height: 24px;
+    background: #543320;
+    border-radius: 50%;
+}
+
+.eyes {
+    position: absolute;
+    top: 22px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 6;
+}
+.eye {
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle at 35% 35%, #be845c 0%, #834d29 50%, #462511 100%);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #1a0e08;
+    animation: blinkEye 4.2s infinite;
+}
+.pupil {
+    width: 8px;
+    height: 16px;
+    background: #080808;
+    border-radius: 50%;
+    position: relative;
+}
+.pupil::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 1px;
+}
+@keyframes blinkEye {
+    0%, 93%, 100% { transform: scaleY(1); }
+    96% { transform: scaleY(0.02); }
+}
+
+.nose {
+    position: absolute;
+    top: 48px;
+    left: calc(50% - 5px);
+    width: 10px;
+    height: 6px;
+    background: #ff8fa3;
+    border-radius: 40% 40% 60% 60%;
+    z-index: 7;
+}
+
+.whiskers-left, .whiskers-right {
+    position: absolute;
+    top: 50px;
+    width: 35px;
+    height: 12px;
+    z-index: 6;
+}
+.whiskers-left { left: -15px; }
+.whiskers-right { right: -15px; }
+.whiskers-left div, .whiskers-right div { width: 100%; height: 1px; background: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.whiskers-left div:first-child { transform: rotate(12deg); }
+.whiskers-left div:last-child { transform: rotate(-4deg); }
+.whiskers-right div:first-child { transform: rotate(-12deg); }
+.whiskers-right div:last-child { transform: rotate(4deg); }
+
+.body {
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 42px);
+    width: 84px;
+    height: 72px;
+    background: #4a2c1b;
+    border-radius: 45% 55% 35% 35% / 70% 75% 35% 35%;
+    box-shadow: inset -10px -5px 0 #2a180e;
+    z-index: 3;
+}
+.body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 17px;
+    width: 50px;
+    height: 32px;
+    background: #e6ccb2;
+    border-radius: 10px 10px 50% 50% / 10px 10px 100% 100%;
+}
+
+.paws {
+    position: absolute;
+    bottom: -4px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 12px;
+}
+.paw {
+    width: 16px;
+    height: 20px;
+    background: #f4f1de;
+    border-radius: 35% 35% 50% 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    position: relative;
+}
+.paw::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 6px;
+    background: #ffb3c6;
+    bottom: 2px;
+    left: 4px;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.tail {
+    position: absolute;
+    width: 55px;
+    height: 16px;
+    background: #2a180e;
+    border-radius: 12px;
+    left: -32px;
+    bottom: 24px;
+    transform-origin: right center;
+    animation: tailWag 0.9s ease-in-out infinite alternate;
+}
+@keyframes tailWag {
+    0% { transform: rotate(-35deg); }
+    100% { transform: rotate(15deg); }
+}
+
+/* ==========================================================
+   ИСПРАВЛЕННЫЕ МОБИЛЬНЫЕ АНИМАЦИИ
+   ========================================================== */
+.love-text {
+    font-size: 3.2rem;
+    color: #ff4d6d;
     font-weight: 900;
     text-shadow: 4px 6px 15px rgba(255, 77, 109, 0.2);
     animation: textMoveMobile 2.5s ease-in-out infinite alternate;
     user-select: none;
     text-align: center;
-    width: 100%;
 }
 
 @keyframes catWalkMobile {
-    0% { transform: translateX(-15px); }
-    100% { transform: translateX(35px); }
-}
-
-@keyframes textMoveMobile {
-    0% { transform: translateX(-25px); }
+    0% { transform: translateX(-20px); }
     100% { transform: translateX(20px); }
 }
+@keyframes textMoveMobile {
+    0% { transform: translateX(-15px); }
+    100% { transform: translateX(15px); }
+}
 
-/* Гравитационное падение первого экрана вниз */
 .gravitational-fall {
     animation: fallPhysics 1.2s cubic-bezier(0.5, 0.05, 0.75, 0.35) forwards !important;
 }
-
 @keyframes fallPhysics {
     0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(115vh) rotate(30deg); opacity: 0; }
+    100% { transform: translateY(115vh) rotate(25deg); opacity: 0; }
 }
 
-/* ==========================================================
-   МЕХАНИКА ЭКРАНА 2 (ОХОТА В КУСТАХ)
-   ========================================================== */
+/* ЭКРАН 2 */
 .bush {
     position: absolute;
-    bottom: -30px;
-    width: 120%;
-    height: 180px;
+    bottom: -20px;
+    width: 100%;
+    height: 160px;
     background: #2d6a4f;
-    border-radius: 120px 120px 0 0;
-    box-shadow: inset -15px 0 0 #1b4332, 0 -10px 25px rgba(0,0,0,0.15);
+    border-radius: 100px 100px 0 0;
     z-index: 12;
 }
 
 #cat2 {
-    bottom: 50px;
-    left: calc(50% - 75px);
-    z-index: 9;
-    transform: scale(0.85);
+    position: absolute;
+    bottom: 40px;
     animation: buttWiggle 0.45s ease-in-out infinite alternate;
 }
-
 @keyframes buttWiggle {
-    0% { transform: scale(0.85) translateY(18px) rotate(-5deg); }
-    100% { transform: scale(0.85) translateY(0px) rotate(5deg); }
+    0% { transform: translateY(12px) rotate(-4deg); }
+    100% { transform: translateY(0px) rotate(4deg); }
 }
 
-/* Парящее сердце-цель */
 .target-heart {
     position: absolute;
-    font-size: 55px;
+    font-size: 50px;
     color: #ff4d6d;
     top: 25%;
-    left: calc(50% - 27px);
     z-index: 15;
     animation: heartFloat 2.3s ease-in-out infinite alternate;
 }
-
 @keyframes heartFloat {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-35px) scale(1.15); }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-30px); }
 }
 
-/* Эпичный прыжок и захват сердца */
 .cat-pounce {
     animation: pounceEffect 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
 }
-
-/* В прыжке проявляются розовые подушечки лап */
-.cat-pounce .paw::after { 
-    opacity: 1 !important; 
-}
-
+.cat-pounce .paw::after { opacity: 1 !important; }
 .heart-stolen {
     animation: heartStolenEffect 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
 }
 
 @keyframes pounceEffect {
-    0% { bottom: 50px; left: calc(50% - 75px); z-index: 16; }
-    25% { bottom: 50%; left: calc(50% - 70px); z-index: 16; transform: scale(1.1) rotate(-22deg); }
-    42% { bottom: 80px; left: calc(50% - 50px); z-index: 16; transform: scale(1) rotate(0); }
-    58% { transform: scaleX(-1); bottom: 80px; left: calc(50% - 50px); }
-    100% { left: -200px; bottom: 80px; transform: scaleX(-1); }
+    0% { bottom: 40px; left: calc(50% - 65px); z-index: 16; }
+    25% { bottom: 50%; left: calc(50% - 60px); z-index: 16; transform: scale(1.05) rotate(-20deg); }
+    42% { bottom: 70px; left: calc(50% - 50px); z-index: 16; transform: scale(1) rotate(0); }
+    58% { transform: scaleX(-1); bottom: 70px; left: calc(50% - 50px); }
+    100% { left: -200px; bottom: 70px; transform: scaleX(-1); }
 }
 
 @keyframes heartStolenEffect {
-    0% { top: 25%; left: calc(50% - 27px); }
-    25% { top: 43%; left: calc(50% - 20px); transform: scale(0.55); }
+    0% { top: 25%; left: calc(50% - 25px); }
+    25% { top: 43%; left: calc(50% - 15px); transform: scale(0.55); }
     42% { top: 72%; left: calc(50% - 15px); transform: scale(0.5); }
     58% { top: 72%; left: calc(50% - 55px); transform: scale(0.5); }
     100% { left: -140px; top: 72%; transform: scale(0.5); }
 }
 
-/* ==========================================================
-   МЕХАНИКА ЭКРАНА 3 (ФИНАЛ)
-   ========================================================== */
+/* ЭКРАН 3 */
 .final-card {
     background: white;
     padding: 35px 25px;
@@ -175,29 +349,15 @@ body, html {
     text-align: center;
     box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
     width: 85%;
-    max-width: 400px;
+    max-width: 360px;
     opacity: 0;
     transform: scale(0.6);
     transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
     border: 2px dashed #ffb3c6;
 }
-
-.final-card.reveal {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.final-card h2 { 
-    color: #ff4d6d; 
-    font-size: 1.8rem; 
-    margin-bottom: 12px; 
-}
-
-.final-card p { 
-    color: #4a5568; 
-    font-size: 1rem; 
-    line-height: 1.5; 
-}
+.final-card.reveal { opacity: 1; transform: scale(1); }
+.final-card h2 { color: #ff4d6d; font-size: 1.8rem; margin-bottom: 12px; }
+.final-card p { color: #4a5568; font-size: 1rem; line-height: 1.5; }
 
 .heart-beating {
     font-size: 60px;
@@ -205,13 +365,11 @@ body, html {
     margin-top: 15px;
     animation: beat 0.7s infinite alternate;
 }
-
 @keyframes beat {
     0% { transform: scale(1); }
     100% { transform: scale(1.2); }
 }
 
-/* Подсказки под элементами */
 .hint {
     position: absolute;
     bottom: 30px;
@@ -223,8 +381,4 @@ body, html {
     pointer-events: none;
     text-align: center;
 }
-
-.hint.dark { 
-    color: white; 
-    background: rgba(0,0,0,0.3); 
-}
+.hint.dark { color: white; background: rgba(0,0,0,0.3); }
