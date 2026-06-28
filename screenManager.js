@@ -1,24 +1,18 @@
 // МЕНЕДЖЕР СМЕНЫ ЭКРАНОВ
 function triggerCatMagic(event) {
-    // Блокируем лишние эмодзи под котиком
     if (event) event.stopPropagation();
 
     const cat = document.getElementById("luxuryCat");
     if (cat.classList.contains("jump-premium")) return;
     
-    // Подхватываем наш плеер с главной страницы
     const music = document.getElementById("bgMusic");
-    
-    // Запускаем 3D-прыжок котика
     cat.classList.add("jump-premium");
     
-    // Ровно в пике полета кота меняем содержимое карточки
     setTimeout(() => {
         const container = document.getElementById("dynamicContent");
         
-        // Вставляем структуру ВТОРОГО ЭКРАНА
+        // Вставляем структуру ВТОРОГО ЭКРАНА (Текст поцелуя + кнопка перехода на карту)
         container.innerHTML = `
-            <!-- ДВА КОТИКА ИЗ style2.css -->
             <div class="cats-love-scene">
                 <div class="cats-heart">❤️</div>
                 <div class="cats-couple">
@@ -33,7 +27,6 @@ function triggerCatMagic(event) {
                 </div>
             </div>
             
-            <!-- ТЕКСТ ВОСПОМИНАНИЯ -->
             <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
             
             <p class="surprise-text fade-in-row">
@@ -48,15 +41,14 @@ function triggerCatMagic(event) {
                 Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.
             </p>
             
-            <span class="highlight-text fade-in-row">С днем рождения, моя любимая! 😘</span>
+            <!-- КНОПКА ДЛЯ ПЕРЕХОДА НА КАРТУ ДАТ -->
+            <button class="next-scene-btn fade-in-row" onclick="showLoveMap(event)">Посмотреть нашу историю ✨</button>
         `;
 
-        // 🔥 ЖЕСТКИЙ ПРИКАЗ ДЛЯ ПЛЕЕРА: Продолжать играть без паузы!
         if (music) {
             music.play().catch(err => console.log("Поддержка фонового трека:", err));
         }
 
-        // Запускаем эффект поэтапного появления строчек текста
         const rows = container.querySelectorAll('.fade-in-row');
         rows.forEach((row, index) => {
             setTimeout(() => {
@@ -64,4 +56,81 @@ function triggerCatMagic(event) {
             }, index * 400);
         });
     }, 650);
+}
+
+// 🔥 ФУНКЦИЯ ДЛЯ ОТРИСОВКИ КАРТЫ НАШЕГО СЧАСТЬЯ (ЭКРАН 3)
+function showLoveMap(event) {
+    if (event) event.stopPropagation();
+    
+    const container = document.getElementById("dynamicContent");
+    
+    // Запускаем красивое плавное исчезновение текущего текста
+    container.style.opacity = "0";
+    container.style.transform = "scale(0.95)";
+    container.style.transition = "all 0.4s ease";
+    
+    setTimeout(() => {
+        // Меняем контент на вертикальную интерактивную шкалу времени (Timeline)
+        container.innerHTML = `
+            <div class="badge-container">
+                <span class="heart-badge">✨ Наша история</span>
+            </div>
+            
+            <h2 style="margin-bottom: 20px;">Карта нашего счастья</h2>
+            
+            <!-- Вертикальная дорожка -->
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Точка 1 -->
+                <div class="timeline-item map-fade">
+                    <div class="timeline-dot">💝</div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">День Х.ХХ.ХХХХ</span>
+                        <p class="timeline-desc">День, когда я впервые тебя увидел и понял, что моя жизнь изменилась.</p>
+                    </div>
+                </div>
+                
+                <!-- Точка 2 -->
+                <div class="timeline-item map-fade">
+                    <div class="timeline-dot">🍿</div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">День Х.ХХ.ХХХХ</span>
+                        <p class="timeline-desc">Тот самый упоротый боевик и наш первый робкий поцелуй.</p>
+                    </div>
+                </div>
+                
+                <!-- Точка 3 -->
+                <div class="timeline-item map-fade">
+                    <div class="timeline-dot">✈️</div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">День Х.ХХ.ХХХХ</span>
+                        <p class="timeline-desc">Наша первая совместная поездка / или любая другая важная дата.</p>
+                    </div>
+                </div>
+                
+                <!-- Точка 4 (Финальная) -->
+                <div class="timeline-item map-fade">
+                    <div class="timeline-dot">🎂</div>
+                    <div class="timeline-content highlight-content">
+                        <span class="timeline-date">Сегодняшний день</span>
+                        <p class="timeline-desc" style="font-weight: 600; color: #ff758f;">Твой День Рождения! И я счастлив быть рядом. 😘</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Возвращаем видимость блоку
+        container.style.opacity = "1";
+        container.style.transform = "scale(1)";
+        
+        // Поочередно проявляем пункты карты
+        const items = container.querySelectorAll('.map-fade');
+        items.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, index * 300); // Каждая дата плавно выплывает через 0.3 секунды
+        });
+        
+    }, 400);
 }

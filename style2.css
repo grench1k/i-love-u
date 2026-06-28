@@ -1,87 +1,119 @@
-/* ✨ НАСТРОЙКИ ДИЗАЙНА И ТЕКСТА ВТОРОГО ЭКРАНА */
+/* ==========================================
+   🗺️ СТИЛИ ДЛЯ КАРТЫ НАШЕГО СЧАСТЬЯ (TIMELINE)
+   ========================================== */
 
-/* Анимация проявления строк */
-.fade-in-row {
+/* Стильная кнопка перехода */
+.next-scene-btn {
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+    transition: all 0.2s ease;
+    margin-top: 5px;
+    width: 90%;
+    display: inline-block;
+}
+.next-scene-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 8px rgba(255, 77, 109, 0.2);
+}
+
+/* Контейнер шкалы */
+.timeline-container {
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+    text-align: left; /* Текст дат выравниваем по левому краю */
+}
+
+/* Вертикальная неоновая линия по центру */
+.timeline-line {
+    position: absolute;
+    left: 16px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, #ff0055, #9b00e8, #ff758f);
+    box-shadow: 0 0 8px rgba(255, 0, 85, 0.4);
+}
+
+/* Элемент списка */
+.timeline-item {
+    position: relative;
+    margin-bottom: 14px;
+    padding-left: 40px;
+}
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Анимация плавного появления пунктов карты */
+.map-fade {
     opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(-15px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.fade-in-row.visible {
+.map-fade.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
-/* Заголовок истории */
-h2 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin: 0 0 14px 0;
-    background: linear-gradient(90deg, #ff0055, #ff758f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
+/* Иконка-кругляшок на линии */
+.timeline-dot {
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    width: 26px;
+    height: 26px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Профессиональная настройка абзацев */
-.surprise-text {
-    font-size: 0.88rem;
-    line-height: 1.6; /* Увеличили отступ между строками, чтобы текст «дышал» */
-    color: rgba(255, 255, 255, 0.88);
-    margin: 0 0 12px 0;
-    text-align: center;
-    font-weight: 400;
-    letter-spacing: 0.2px;
+/* Блок с текстом даты */
+.timeline-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Стильное неоновое выделение важных фраз */
-.romantic-accent {
-    color: #ff4d6d;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(255, 77, 109, 0.4);
-}
-.romantic-accent-alt {
-    color: #b57cff;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(181, 124, 255, 0.4);
+/* Особое выделение для сегодняшнего дня рождения */
+.highlight-content {
+    background: rgba(255, 77, 109, 0.1);
+    border: 1px solid rgba(255, 77, 109, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
 }
 
-/* Финальное поздравление */
-.highlight-text {
+/* Сама дата (число) */
+.timeline-date {
+    font-size: 0.75rem;
     font-weight: 700;
     color: #ff758f;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     display: block;
-    margin-top: 14px;
-    font-size: 0.95rem;
-    text-shadow: 0 0 12px rgba(255, 117, 143, 0.5);
-    animation: pulseFinalText 1.5s infinite ease-in-out alternate;
-}
-@keyframes pulseFinalText {
-    from { transform: scale(0.97); }
-    to { transform: scale(1.03); }
+    margin-bottom: 2px;
 }
 
-/* ==========================================
-   🐱❤️🐱 КОТИКИ (ОСТАЮТСЯ ИДЕАЛЬНЫМИ)
-   ========================================== */
-.cats-love-scene { position: relative; width: 100%; height: 70px; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 12px; }
-.cats-couple { display: flex; align-items: flex-end; position: relative; }
-.love-cat { position: relative; width: 52px; height: 42px; }
-.cat-left { margin-right: -4px; animation: leanLeft 3s infinite ease-in-out alternate; }
-.cat-right { margin-left: -4px; animation: leanRight 3s infinite ease-in-out alternate-reverse; }
-.l-head { position: absolute; bottom: 0; width: 52px; height: 42px; border-radius: 50% 50% 42% 42%; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-.cat-left .l-head { background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 80%, #e1e1e8 100%); }
-.cat-right .l-head { background: radial-gradient(circle at 60% 30%, #e1e1e8 0%, #c8c8d3 80%, #b5b5c3 100%); }
-.l-ear { position: absolute; top: -5px; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; transform-origin: bottom center; }
-.cat-left .l-ear { border-bottom: 14px solid #ffffff; } .cat-right .l-ear { border-bottom: 14px solid #e1e1e8; }
-.l-ear.left { left: 5px; transform: rotate(-12deg); } .l-ear.right { right: 5px; transform: rotate(12deg); }
-.l-ear::after { content: ''; position: absolute; top: 4px; left: -5px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid #ffccd5; }
-.l-eye { position: absolute; top: 15px; width: 8px; height: 4px; border-bottom: 2px solid #232329; }
-.cat-left .l-eye { right: 10px; border-radius: 0 0 4px 4px; } .cat-right .l-eye { left: 10px; border-radius: 0 0 4px 4px; }
-.l-blush { position: absolute; top: 20px; width: 8px; height: 4px; background: rgba(255, 77, 109, 0.4); border-radius: 50%; filter: blur(0.5px); }
-.cat-left .l-blush { right: 8px; } .cat-right .l-blush { left: 8px; }
-.cats-heart { position: absolute; top: -14px; font-size: 1.1rem; animation: heartFloat 1.5s infinite ease-in-out alternate; z-index: 5; }
-@keyframes heartFloat { 0% { transform: translateY(0) scale(0.95); } 100% { transform: translateY(-5px) scale(1.15); } }
-@keyframes leanLeft { 0% { transform: rotate(0deg) translateX(0); } 100% { transform: rotate(4deg) translateX(1px); } }
-@keyframes leanRight { 0% { transform: rotate(0deg) translateX(0); } 100% { transform: rotate(-4deg) translateX(-1px); } }
+/* Описание события */
+.timeline-desc {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
