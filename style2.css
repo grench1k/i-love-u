@@ -2,6 +2,7 @@
    ✨ ПРЕМИАЛЬНЫЙ СТИЛЬ ДЛЯ ВТОРОГО ЭКРАНА (ТЕКСТ И КОТИКИ)
    ======================================================== */
 
+/* Компактная стеклянная карточка для второго экрана */
 .premium-surprise-card {
     background: rgba(255, 20, 100, 0.05);
     backdrop-filter: blur(25px);
@@ -13,6 +14,7 @@
     transition: transform 0.1s ease-out;
 }
 
+/* Эффект поочередного проявления строчек текста */
 .fade-in-row {
     opacity: 0;
     transform: translateY(12px);
@@ -24,6 +26,7 @@
     transform: translateY(0);
 }
 
+/* Красивый заголовок истории */
 h2 {
     font-size: 1.35rem;
     font-weight: 800;
@@ -34,6 +37,7 @@ h2 {
     line-height: 1.2;
 }
 
+/* Настройка абзацев воспоминания */
 .surprise-text {
     font-size: 0.88rem;
     line-height: 1.55;
@@ -42,6 +46,7 @@ h2 {
     text-align: center;
 }
 
+/* Подсветка ключевых слов */
 .romantic-accent {
     color: #ff4d6d;
     font-weight: 600;
@@ -53,6 +58,7 @@ h2 {
     text-shadow: 0 0 8px rgba(181, 124, 255, 0.4);
 }
 
+/* Финальное милое поздравление */
 .highlight-text {
     font-weight: 700;
     color: #ff758f;
@@ -64,13 +70,14 @@ h2 {
 
 
 /* ========================================================
-   🐱❤️🐱 ОБНОВЛЕННАЯ ПАРОЧКА КОТИКОВ (ЛАПКИ И ХВОСТИКИ)
+   🐱❤️🐱 ОТРИСОВКА ВЛЮБЛЕННОЙ ПАРОЧКИ КОТИКОВ С НОСИКАМИ
    ======================================================== */
 
+/* Главная сцена для котиков */
 .cats-love-scene {
     position: relative;
     width: 100%;
-    height: 110px; /* Немного увеличили под хвостики */
+    height: 100px; 
     display: flex !important;
     justify-content: center;
     align-items: flex-end;
@@ -79,42 +86,44 @@ h2 {
     z-index: 999;
 }
 
+/* Контейнер пары котиков */
 .cats-couple {
     display: flex !important;
     align-items: flex-end;
     position: relative;
-    width: 150px; 
-    height: 90px;
+    width: 140px; 
+    height: 80px;
 }
 
+/* Базовые настройки для каждого котика */
 .love-cat {
     position: relative;
     width: 75px;  
-    height: 75px;
+    height: 65px;
 }
 
-/* Настройка анимации и слоев */
+/* Левый котик (Белоснежный) */
 .cat-left {
-    margin-right: -8px; 
+    margin-right: -10px; 
     z-index: 2;
     animation: leanLeftPremium 3s infinite ease-in-out alternate;
 }
+
+/* Правый котик (Нежно-серый) */
 .cat-right {
-    margin-left: -8px;
+    margin-left: -10px;
     z-index: 1;
     animation: leanRightPremium 3s infinite ease-in-out alternate-reverse;
 }
 
-/* Объемное тело-голова котиков */
+/* Голова котиков с объемными тенями */
 .l-head {
     position: absolute;
-    bottom: 4px; /* Приподняли для лапок */
-    left: 0;
+    bottom: 0;
     width: 75px;
     height: 60px;
     border-radius: 50% 50% 44% 44%;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    z-index: 3;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 .cat-left .l-head {
     background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 75%, #e1e1e8 100%);
@@ -125,57 +134,7 @@ h2 {
     border: 1px solid rgba(200, 200, 210, 0.3);
 }
 
-/* 🐾 МИЛЫЕ МЯГКИЕ ЛАПКИ */
-.l-head::before, .l-head::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    width: 14px;
-    height: 10px;
-    border-radius: 6px 6px 4px 4px;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.1);
-    z-index: 4;
-}
-/* Лапки левого кота */
-.cat-left .l-head::before { left: 16px; background: #ffffff; }
-.cat-left .l-head::after { left: 34px; background: #ffffff; }
-/* Лапки правого кота */
-.cat-right .l-head::before { right: 34px; background: #e1e1e8; }
-.cat-right .l-head::after { right: 16px; background: #e1e1e8; }
-
-
-/* 🐈 ОБЪЁМНЫЕ АНИМИРОВАННЫЕ ХВОСТИКИ СЗАДИ */
-.cat-left::before {
-    content: ' ';
-    position: absolute;
-    left: -6px;
-    bottom: 6px;
-    width: 12px;
-    height: 35px;
-    border-radius: 10px 0 0 10px;
-    background: #e1e1e8;
-    transform-origin: bottom right;
-    z-index: 1;
-    box-shadow: -2px 4px 8px rgba(0,0,0,0.15);
-    animation: tailWiggleLeft 3s infinite ease-in-out alternate;
-}
-.cat-right::before {
-    content: ' ';
-    position: absolute;
-    right: -6px;
-    bottom: 6px;
-    width: 12px;
-    height: 35px;
-    border-radius: 0 10px 10px 0;
-    background: #b5b5c3;
-    transform-origin: bottom left;
-    z-index: 1;
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.15);
-    animation: tailWiggleRight 3s infinite ease-in-out alternate-reverse;
-}
-
-
-/* Остальные элементы лица котиков */
+/* Ушки котиков */
 .l-ear {
     position: absolute;
     top: -10px;
@@ -184,18 +143,27 @@ h2 {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     transform-origin: bottom center;
-    z-index: 2;
 }
 .cat-left .l-ear { border-bottom: 22px solid #ffffff; }
 .cat-right .l-ear { border-bottom: 22px solid #e1e1e8; }
+
 .l-ear.left { left: 8px; transform: rotate(-12deg); }
 .l-ear.right { right: 8px; transform: rotate(12deg); }
 
+/* Розовое наполнение ушек */
 .l-ear::after {
-    content: ''; position: absolute; top: 6px; left: -7px; width: 0; height: 0;
-    border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 13px solid #ffccd5;
+    content: ''; 
+    position: absolute; 
+    top: 6px; 
+    left: -7px;
+    width: 0; 
+    height: 0;
+    border-left: 7px solid transparent; 
+    border-right: 7px solid transparent;
+    border-bottom: 13px solid #ffccd5;
 }
 
+/* Зажмуренные от любви глазки (милые дуги) */
 .l-eye {
     position: absolute;
     top: 24px;
@@ -207,6 +175,21 @@ h2 {
 .cat-left .l-eye { right: 14px; } 
 .cat-right .l-eye { left: 14px; }  
 
+/* 👃🏼 НОВИНКА: МАЛЕНЬКИЕ АККУРАТНЫЕ РОЗОВЫЕ НОСИКИ */
+.l-head::before {
+    content: '';
+    position: absolute;
+    top: 33px;
+    width: 6px;
+    height: 4px;
+    background: #ff5d8f;
+    border-radius: 50%;
+    z-index: 5;
+}
+.cat-left .l-head::before { right: 11px; } /* Носик левого котика на краю мордашки */
+.cat-right .l-head::before { left: 11px; }  /* Носик правого котика на краю мордашки */
+
+/* Нежный стеснительный румянец на щечках */
 .l-blush {
     position: absolute;
     top: 30px;
@@ -216,13 +199,13 @@ h2 {
     border-radius: 50%;
     filter: blur(0.5px);
 }
-.cat-left .l-blush { right: 10px; }
-.cat-right .l-blush { left: 10px; }
+.cat-left .l-blush { right: 18px; }
+.cat-right .l-blush { left: 18px; }
 
-/* Парящее неоновое сердце */
+/* Парящее неоновое сердце строго над ними */
 .cats-heart {
     position: absolute;
-    top: -10px;
+    top: -5px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.4rem;
@@ -230,32 +213,17 @@ h2 {
     animation: heartGlowFloat 1.4s infinite ease-in-out alternate;
 }
 
-
-/* ========================================================
-   🎬 ВСЕ РОМАНТИЧЕСКИЕ АНИМАЦИИ ВТОРОГО ЭКРАНА
-   ======================================================== */
-
 @keyframes heartGlowFloat {
     0% { transform: translateX(-50%) translateY(0) scale(0.95); filter: drop-shadow(0 0 2px rgba(255,0,85,0.5)); }
     100% { transform: translateX(-50%) translateY(-8px) scale(1.2); filter: drop-shadow(0 0 10px rgba(255,0,85,0.9)); }
 }
 
-/* Физика трения мордочками */
+/* Анимация ласкового трения мордочками */
 @keyframes leanLeftPremium {
     0% { transform: rotate(0deg) translateX(0) translateY(0); }
-    100% { transform: rotate(4deg) translateX(2px) translateY(1px); }
+    100% { transform: rotate(5deg) translateX(3px) translateY(1px); }
 }
 @keyframes leanRightPremium {
     0% { transform: rotate(0deg) translateX(0) translateY(0); }
-    100% { transform: rotate(-4deg) translateX(-2px) translateY(1px); }
-}
-
-/* 🐈 Плавное покачивание хвостиков невпопад */
-@keyframes tailWiggleLeft {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(15deg); }
-}
-@keyframes tailWiggleRight {
-    0% { transform: rotate(5deg); }
-    100% { transform: rotate(-15deg); }
+    100% { transform: rotate(-5deg) translateX(-3px) translateY(1px); }
 }
