@@ -1,5 +1,5 @@
 /* ==========================================================
-   АНАТОМИЧЕСКАЯ ФОРМА ТЕМНО-КОРИЧНЕВОГО КОТА (ФАЙЛ 1)
+   АНАТОМИЧЕСКАЯ ФОРМА ТЕМНО-КОРИЧНЕВОГО КОТА (ЧИСТЫЙ КОД)
    ========================================================== */
 .cat-container {
     position: absolute;
@@ -15,7 +15,7 @@
     height: 100%;
 }
 
-/* Треугольные изящные кошачьи ушки */
+/* Треугольные кошачьи ушки */
 .ear {
     position: absolute;
     width: 32px;
@@ -48,7 +48,7 @@
     box-shadow: inset 2px -2px 0px rgba(74, 44, 27, 0.4);
 }
 
-/* Пропорциональная голова с мягким контуром щек */
+/* Пропорциональная голова */
 .head {
     position: absolute;
     top: 20px;
@@ -82,7 +82,7 @@
     box-shadow: inset -1px -2px 0 #3a2012, 0 2px 4px rgba(0,0,0,0.08);
 }
 
-/* Большие янтарно-карие аниме-глаза */
+/* Янтарно-карие глаза */
 .eyes {
     position: absolute;
     top: 25px;
@@ -178,7 +178,7 @@
 .whiskers-right div:first-child { transform: rotate(-14deg); }
 .whiskers-right div:last-child { transform: rotate(4deg); }
 
-/* Пластичное тело с изгибом спины */
+/* Тело */
 .body {
     position: absolute;
     bottom: -5px;
@@ -202,7 +202,7 @@
     border-radius: 10px 10px 50% 50% / 10px 10px 100% 100%;
 }
 
-/* Белые носочки на лапках */
+/* Белые носочки */
 .paws {
     position: absolute;
     bottom: -4px;
@@ -234,7 +234,7 @@
     transition: opacity 0.2s;
 }
 
-/* Изгибающийся пушистый хвост */
+/* Хвост */
 .tail {
     position: absolute;
     width: 65px;
@@ -244,6 +244,7 @@
     left: -38px;
     bottom: 28px;
     transform-origin: right center;
+    box-shadow: inset 0 -2px 0 #1c0f09;
     animation: tailWag 0.9s ease-in-out infinite alternate;
 }
 
