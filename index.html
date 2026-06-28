@@ -38,82 +38,87 @@
         <div class="premium-card" id="mainCard" onclick="spawnParticles(event)">
             <div class="card-glow-border"></div>
             
-            <!-- ==========================================
-                 📱 ЭКРАН 1: СТАРТОВЫЙ
-                 ========================================== -->
-            <div id="screen1">
-                <div class="badge-container">
-                    <span class="heart-badge">❤️ Only for You</span>
-                </div>
+            <!-- ДИСПЛЕЙ ДЛЯ СМЕНЫ КОНТЕНТА -->
+            <div id="dynamicContent">
                 
-                <h1>Моей любимой</h1>
-                <p class="subtitle">Ты — лучшее, что случилось со мной. Каждое мгновение с тобой наполнено счастьем. Прикоснись к котику... ✨</p>
+                <!-- ==========================================
+                     📱 ЭКРАН 1: СТАРТОВЫЙ
+                     ========================================== -->
+                <div id="screen1">
+                    <div class="badge-container">
+                        <span class="heart-badge">❤️ Only for You</span>
+                    </div>
+                    
+                    <h1>Моей любимой</h1>
+                    <p class="subtitle">Ты — лучшее, что случилось со мной. Каждое мгновение с тобой наполнено счастьем. Прикоснись к котику... ✨</p>
 
-                <div class="glass-photo-frame"></div>
-                <div class="love-neon-text">I love you</div>
-                
-                <div class="cat-touch-zone" onclick="triggerCatMagic(event)">
-                    <div class="css-luxury-cat" id="luxuryCat">
-                        <div class="cat-ear left"></div><div class="cat-ear right"></div>
-                        <div class="cat-paw"></div>
-                        <div class="cat-head-base">
-                            <div class="cat-eye left"><div class="pupil"></div></div>
-                            <div class="cat-eye right"><div class="pupil"></div></div>
-                            <div class="cat-blush left"></div><div class="cat-blush right"></div>
-                            <div class="cat-nose"></div>
-                            <div class="cat-whiskers left"><span></span><span></span></div>
-                            <div class="cat-whiskers right"><span></span><span></span></div>
+                    <div class="glass-photo-frame"></div>
+                    <div class="love-neon-text">I love you</div>
+                    
+                    <div class="cat-touch-zone" onclick="triggerCatMagic(event)">
+                        <div class="css-luxury-cat" id="luxuryCat">
+                            <div class="cat-ear left"></div><div class="cat-ear right"></div>
+                            <div class="cat-paw"></div>
+                            <div class="cat-head-base">
+                                <div class="cat-eye left"><div class="pupil"></div></div>
+                                <div class="cat-eye right"><div class="pupil"></div></div>
+                                <div class="cat-blush left"></div><div class="cat-blush right"></div>
+                                <div class="cat-nose"></div>
+                                <div class="cat-whiskers left"><span></span><span></span></div>
+                                <div class="cat-whiskers right"><span></span><span></span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ==========================================
-                 📱 ЭКРАН 2: ПРИЗНАНИЕ
-                 ========================================== -->
-            <div id="screen2">
-                <!-- 🐱❤️🐱 ВЛЮБЛЕННЫЕ ПОЛОСАТЫЕ КОТИКИ С УСИКАМИ -->
-                <div class="cats-love-scene">
-                    <div class="cats-heart">❤️</div>
-                    <div class="cats-couple">
-                        <!-- Левый котик -->
-                        <div class="love-cat cat-left">
-                            <div class="l-ear left"></div><div class="l-ear right"></div>
-                            <div class="l-head">
-                                <div class="stripes top-stripe"></div>
-                                <div class="stripes side-stripe s-left"></div>
-                                <div class="l-eye"></div>
-                                <div class="l-blush"></div>
+                <!-- ==========================================
+                     📱 ЭКРАН 2: ПРИЗНАНИЕ
+                     ========================================== -->
+                <div id="screen2">
+                    <div class="cats-love-scene">
+                        <div class="cats-heart">❤️</div>
+                        <div class="cats-couple">
+                            <div class="love-cat cat-left">
+                                <div class="l-ear left"></div><div class="l-ear right"></div>
+                                <div class="l-head">
+                                    <div class="stripes top-stripe"></div>
+                                    <div class="stripes side-stripe s-left"></div>
+                                    <div class="l-eye"></div>
+                                    <div class="l-blush"></div>
+                                </div>
+                                <div class="l-whiskers lw-left"><span></span><span></span></div>
                             </div>
-                            <!-- Сместили усики СЮДА (вне блока l-head), теперь они 100% видны! -->
-                            <div class="l-whiskers lw-left"><span></span><span></span></div>
-                        </div>
-                        <!-- Правый котик -->
-                        <div class="love-cat cat-right">
-                            <div class="l-ear left"></div><div class="l-ear right"></div>
-                            <div class="l-head">
-                                <div class="stripes top-stripe"></div>
-                                <div class="stripes side-stripe s-right"></div>
-                                <div class="l-eye"></div>
-                                <div class="l-blush"></div>
+                            <div class="love-cat cat-right">
+                                <div class="l-ear left"></div><div class="l-ear right"></div>
+                                <div class="l-head">
+                                    <div class="stripes top-stripe"></div>
+                                    <div class="stripes side-stripe s-right"></div>
+                                    <div class="l-eye"></div>
+                                    <div class="l-blush"></div>
+                                </div>
+                                <div class="l-whiskers lw-right"><span></span><span></span></div>
                             </div>
-                            <!-- Сместили усики СЮДА (вне блока l-head), теперь они 100% видны! -->
-                            <div class="l-whiskers lw-right"><span></span><span></span></div>
                         </div>
                     </div>
+                    
+                    <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
+                    <p class="surprise-text fade-in-row">Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!</p>
+                    <p class="surprise-text fade-in-row">И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD</p>
+                    <p class="surprise-text fade-in-row">Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.</p>
+                    <span class="highlight-text fade-in-row">С днем рождения, моя любимая! 😘</span>
+                    
+                    <!-- Кнопка перехода на 3D-открытку -->
+                    <button class="next-scene-btn fade-in-row" onclick="triggerScreen3(event)" style="margin-top: 20px;">Открыть подарок 🎁</button>
                 </div>
-                
-                <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
-                <p class="surprise-text fade-in-row">Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!</p>
-                <p class="surprise-text fade-in-row">И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD</p>
-                <p class="surprise-text fade-in-row">Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.</p>
-                <span class="highlight-text fade-in-row">С днем рождения, моя любимая! 😘</span>
-            </div>
 
+            </div>
         </div>
     </div>
 
+    <!-- ПОДКЛЮЧАЕМ ВНЕШНИЙ СКРИПТ -->
+    <script src="script.js"></script>
     <script>
+        // Код запуска музыки (его важно держать в html, чтобы браузер не блокировал поток)
         function initAudioOnFirstTouch() {
             const music = document.getElementById("bgMusic");
             if (music) {
@@ -126,27 +131,7 @@
         document.body.addEventListener('click', initAudioOnFirstTouch);
         document.body.addEventListener('touchstart', initAudioOnFirstTouch);
 
-        function triggerCatMagic(event) {
-            if (event) event.stopPropagation();
-            const cat = document.getElementById("luxuryCat");
-            const music = document.getElementById("bgMusic");
-            if (cat.classList.contains("jump-premium")) return;
-            
-            cat.classList.add("jump-premium");
-            if (music) { music.play().catch(err => {}); }
-            
-            setTimeout(() => {
-                document.getElementById('screen1').style.display = 'none';
-                document.getElementById('screen2').classList.add('active');
-                if (music) { music.play().catch(err => {}); }
-
-                const rows = document.querySelectorAll('.fade-in-row');
-                rows.forEach((row, index) => {
-                    setTimeout(() => { row.classList.add('visible'); }, index * 400);
-                });
-            }, 650);
-        }
-
+        // Парящие фоновые сердца
         function createAmbientHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
@@ -164,8 +149,9 @@
         }
         setInterval(createAmbientHeart, 700);
 
+        // Взрыв эмодзи
         function spawnParticles(e) {
-            if (e.target.closest('.cat-touch-zone')) return;
+            if (e.target.closest('.cat-touch-zone') || e.target.closest('.next-scene-btn')) return;
             const count = 10; const shapes = ['❤️', '💖', '✨', '💕'];
             for(let i = 0; i < count; i++) {
                 const p = document.createElement('div'); p.className = 'click-particle';
@@ -179,6 +165,7 @@
             }
         }
 
+        // Параллакс карточки
         document.addEventListener('mousemove', function(e) {
             const moveX = (window.innerWidth / 2 - e.clientX) * 0.03;
             const moveY = (window.innerHeight / 2 - e.clientY) * 0.03;

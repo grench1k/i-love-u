@@ -30,6 +30,27 @@ h2 {
 .romantic-accent-alt { color: #b57cff; font-weight: 600; text-shadow: 0 0 8px rgba(181, 124, 255, 0.4); }
 .highlight-text { font-weight: 700; color: #ff758f; display: block; margin-top: 14px; font-size: 0.95rem; text-shadow: 0 0 12px rgba(255, 117, 143, 0.5); }
 
+/* Стильная неоновая кнопка перехода между экранами */
+.next-scene-btn {
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+    transition: all 0.2s ease;
+    margin-top: 5px;
+    width: 90%;
+    display: inline-block;
+}
+.next-scene-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 8px rgba(255, 77, 109, 0.2);
+}
+
 /* ========================================================
    🐱❤️🐱 КОТИКИ С ТИГРОВЫМИ ПОЛОСКАМИ, НОСИКАМИ И УСИКАМИ
    ======================================================== */
@@ -56,35 +77,13 @@ h2 {
 .s-left { top: 25px; left: -4px; transform: rotate(15deg); box-shadow: 0 10px 0 rgba(0,0,0,0.1), 0 20px 0 rgba(0,0,0,0.08); }
 .s-right { top: 25px; right: -4px; transform: rotate(-15deg); box-shadow: 0 10px 0 rgba(0,0,0,0.15), 0 20px 0 rgba(0,0,0,0.12); }
 
-/* 🌟 ИСПРАВЛЕННЫЕ УСИКИ: Вынесены поверх маски и имеют чёткую видимость */
-.l-whiskers {
-    position: absolute;
-    top: 35px;
-    width: 22px;
-    height: 12px;
-    z-index: 99; /* Выталкиваем усы на самый передний план */
-    pointer-events: none;
-}
-/* Раздвигаем их по бокам от соприкасающихся мордашек */
-.lw-left { left: -8px; } 
-.lw-right { right: -8px; }
-
-.l-whiskers span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: #4a4a4a !important; /* Четкий темный цвет усов */
-    margin-bottom: 4px;
-    border-radius: 50px;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
-}
-/* Для белого котика делаем усы чуть мягче, для серого — потемнее */
+/* УСИКИ: Вынесены поверх маски для чёткой видимости */
+.l-whiskers { position: absolute; top: 35px; width: 22px; height: 12px; z-index: 99; pointer-events: none; }
+.lw-left { left: -8px; } .lw-right { right: -8px; }
+.l-whiskers span { display: block; width: 22px; height: 1.5px; margin-bottom: 4px; border-radius: 50px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15)); }
 .cat-left .l-whiskers span { background: #55555f !important; }
 .cat-right .l-whiskers span { background: #1c1c21 !important; }
-
-.lw-left span { transform: rotate(5deg); }
-.lw-right span { transform: rotate(-5deg); }
-
+.lw-left span { transform: rotate(5deg); } .lw-right span { transform: rotate(-5deg); }
 
 /* Остальные элементы лица котиков */
 .l-ear { position: absolute; top: -10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; transform-origin: bottom center; z-index: 2; }
@@ -110,3 +109,59 @@ h2 {
 }
 @keyframes leanLeftPremium { 0% { transform: rotate(0deg) translateX(0); } 100% { transform: rotate(5deg) translateX(3px); } }
 @keyframes leanRightPremium { 0% { transform: rotate(0deg) translateX(0); } 100% { transform: rotate(-5deg) translateX(-3px); } }
+
+
+/* ========================================================
+   📦 СТИЛИ ДЛЯ НАСТОЯЩЕЙ 3D-ОТКРЫТКИ (ЭКРАН 3)
+   ======================================================== */
+
+/* Контейнер-сцена с эффектом перспективы (глубины) */
+.scene-3d {
+    width: 100%;
+    height: 220px;
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Сам 3D объект открытки */
+.card-3d {
+    width: 150px;       /* Пропорции вертикальной открытки */
+    height: 210px;
+    position: relative;
+    transform-style: preserve-3d; /* Важнейшая строчка для создания 3D пространства */
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: grab;
+}
+.card-3d:active {
+    cursor: grabbing;
+}
+
+/* Настройки для обеих сторон открытки */
+.card-3d-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden; /* Скрывает "изнанку" картинки при перевороте */
+    -webkit-backface-visibility: hidden;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Лицевая сторона: подгружает card-front.png */
+.card-3d-front {
+    background-image: url('card-front.png');
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+/* Оборотная сторона: подгружает card-back.png и разворачивает её зеркально сзади */
+.card-3d-back {
+    background-image: url('card-back.png');
+    transform: rotateY(180deg); /* Склеиваем их "спина к спине" */
+}
