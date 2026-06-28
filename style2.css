@@ -112,13 +112,12 @@ h2 {
 
 
 /* ========================================================
-   📦 СТИЛИ ДЛЯ НАСТОЯЩЕЙ 3D-ОТКРЫТКИ (ЭКРАН 3)
+   📦 ИСПРАВЛЕННЫЕ 3D СТИЛИ: ШИРОКАЯ ГОРИЗОНТАЛЬНАЯ ОТКРЫТКА
    ======================================================== */
 
-/* Контейнер-сцена с эффектом перспективы (глубины) */
 .scene-3d {
     width: 100%;
-    height: 220px;
+    height: 200px; /* Скорректировали высоту зоны вращения под новые размеры */
     perspective: 1200px;
     display: flex;
     justify-content: center;
@@ -126,12 +125,11 @@ h2 {
     margin: 10px 0;
 }
 
-/* Сам 3D объект открытки */
 .card-3d {
-    width: 150px;       /* Пропорции вертикальной открытки */
-    height: 210px;
+    width: 260px;       /* 🔥 Сделали открытку широкой (было 150px) */
+    height: 180px;      /* 🔥 Скорректировали высоту для сохранения пропорций */
     position: relative;
-    transform-style: preserve-3d; /* Важнейшая строчка для создания 3D пространства */
+    transform-style: preserve-3d; 
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: grab;
 }
@@ -139,29 +137,26 @@ h2 {
     cursor: grabbing;
 }
 
-/* Настройки для обеих сторон открытки */
 .card-3d-face {
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 12px;
-    backface-visibility: hidden; /* Скрывает "изнанку" картинки при перевороте */
+    border-radius: 16px; /* Чуть увеличили скругление углов для красоты */
+    backface-visibility: hidden; 
     -webkit-backface-visibility: hidden;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.18);
 }
 
-/* Лицевая сторона: подгружает card-front.png */
 .card-3d-front {
     background-image: url('card-front.png');
     z-index: 2;
     transform: rotateY(0deg);
 }
 
-/* Оборотная сторона: подгружает card-back.png и разворачивает её зеркально сзади */
 .card-3d-back {
     background-image: url('card-back.png');
-    transform: rotateY(180deg); /* Склеиваем их "спина к спине" */
+    transform: rotateY(180deg); 
 }
