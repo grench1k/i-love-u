@@ -3,7 +3,7 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 🌈 АНИМАЦИЯ ФОНА: Плавный перелив цветов */
+/* 🌈 АНИМАЦИЯ ФОНА */
 body {
     margin: 0;
     padding: 0;
@@ -26,7 +26,6 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Контейнер для падающих элементов */
 .falling-hearts {
     position: fixed;
     top: 0;
@@ -44,7 +43,7 @@ body {
     z-index: 2;
 }
 
-/* ✨ СТЕКЛЯННЫЙ СТИЛЬ И АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧКИ */
+/* ✨ СТЕКЛЯННЫЙ СТИЛЬ КАРТОЧКИ */
 .love-card {
     background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(15px);
@@ -52,8 +51,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 30px;
     padding: 30px 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 
-                0 0 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 255, 255, 0.1);
     text-align: center;
     opacity: 0;
     transform: translateY(40px);
@@ -67,7 +65,7 @@ body {
     }
 }
 
-/* 💓 АНИМАЦИЯ СЕРДЦА: 3D пульсация */
+/* 💓 АНИМАЦИЯ СЕРДЦА */
 .main-heart {
     font-size: 60px;
     margin-bottom: 15px;
@@ -101,7 +99,7 @@ p {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 🖼️ АНИМАЦИЯ БЛОКА ФОТО: Мягкое неоновое дыхание */
+/* 🖼️ АНИМАЦИЯ БЛОКА ФОТО */
 .photo-box {
     width: 100%;
     height: 280px;
@@ -118,7 +116,6 @@ p {
     padding: 20px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.0);
     animation: photoGlow 3s ease-in-out infinite;
 }
 
@@ -127,7 +124,7 @@ p {
     50% { border-color: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
 }
 
-/* ⚡ АНИМАЦИЯ КНОПКИ: Блик и легкое покачивание */
+/* ⚡ АНИМАЦИЯ КНОПКИ */
 .action-button {
     width: 100%;
     background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
@@ -146,7 +143,6 @@ p {
     animation: wobble 4s ease-in-out infinite;
 }
 
-/* Эффект пробегающей белой вспышки (блика) */
 .action-button::after {
     content: '';
     position: absolute;
@@ -175,33 +171,49 @@ p {
 
 .action-button:active {
     transform: scale(0.94) !important;
-    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
 }
 
-/* 🎁 КРАСИВОЕ ПОЯВЛЕНИЕ СЮРПРИЗА */
-.surprise-box {
-    display: none;
-    margin-top: 25px;
-    padding: 22px 18px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #4a4a4a;
-    border-radius: 22px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+/* 🐱 СТИЛИ ДЛЯ ВЫПРЫГИВАЮЩЕГО КОТИКА */
+.cat-overlay {
+    display: none; /* Изначально спрятан */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* Затемнение фона */
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumping-cat {
+    font-size: 120px; /* Крупный размер котика */
+    transform: scale(0) rotate(-30deg);
     opacity: 0;
-    transform: scale(0.85);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2);
 }
 
-.surprise-box.show {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
+/* Анимация резкого выпрыгивания кота */
+.cat-overlay.active {
+    display: flex;
 }
 
-.surprise-box h3 {
-    color: #ff4d6d;
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 1.35rem;
-    font-weight: 700;
+.cat-overlay.active .jumping-cat {
+    animation: catJump 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.5) forwards;
+}
+
+@keyframes catJump {
+    0% {
+        transform: scale(0) translateY(100px) rotate(-30deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.4) translateY(-20px) rotate(10deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2) translateY(0) rotate(0deg);
+        opacity: 1;
+    }
 }

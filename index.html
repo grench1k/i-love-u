@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>С Днем Рождения, Любимая!</title>
-    <!-- Подключаем внешний файл стилей -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,42 +11,45 @@
     <!-- Эффект падающих сердечек -->
     <div class="falling-hearts" id="heartsContainer"></div>
 
+    <!-- 🐱 Окно с выпрыгивающим котиком (используем милое эмодзи кота) -->
+    <div class="cat-overlay" id="catOverlay">
+        <div class="jumping-cat">🐈 Representative Сat 🐱</div>
+    </div>
+
     <div class="mobile-container">
         <div class="love-card">
             <div class="main-heart">❤️</div>
             
-            <!-- Напишите имя вашей девушки ниже -->
             <h1>С Днем Рождения, Любимая!</h1>
             
-            <!-- Ваше поздравление -->
             <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день. Спасибо тебе за твою улыбку и за то, что ты есть!</p>
             
             <p>Этот сайт я создал специально для тебя, чтобы ты улыбнулась. Пусть этот день принесет тебе столько же радости, сколько ты даришь мне каждый день! ✨</p>
 
-            <!-- Окно для фотографии -->
             <div class="photo-box">
                 Здесь будет ваше красивое совместное фото или её портрет
             </div>
 
-            <button class="action-button" onclick="openSurprise()">Нажми для сюрприза ✨</button>
-
-            <!-- Блок подарка -->
-            <div id="surpriseBlock" class="surprise-box">
-                <h3>🎁 Твой подарок:</h3>
-                <p>Сегодня вечером тебя ждет самый романтичный сюрприз! Будь готова к 19:00, я заеду за тобой. Люблю тебя сильнее всех! 😘</p>
-            </div>
+            <!-- Кнопка теперь вызывает функцию прыжка кота -->
+            <button class="action-button" onclick="catSurprise()">Нажми для сюрприза ✨</button>
         </div>
     </div>
 
     <script>
-        function openSurprise() {
-            const surprise = document.getElementById("surpriseBlock");
-            surprise.classList.add("show");
+        // Функция для выпрыгивания кота и перехода на новую страницу
+        function catSurprise() {
+            const overlay = document.getElementById("catOverlay");
+            
+            // Включаем анимацию кота
+            overlay.classList.add("active");
+            
+            // Через 1200 миллисекунд (1.2 секунды) перенаправляем на пустую страницу
             setTimeout(() => {
-                surprise.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }, 150);
+                window.location.href = "page2.html";
+            }, 1200);
         }
 
+        // Падающие сердечки на фоне
         function createHeart() {
             const container = document.getElementById('heartsContainer');
             const heart = document.createElement('div');
@@ -57,7 +59,6 @@
             heart.style.top = '-20px';
             heart.style.fontSize = (Math.random() * 18 + 12) + 'px';
             heart.style.opacity = Math.random() * 0.4 + 0.3;
-            heart.style.filter = 'drop-shadow(0 2px 5px rgba(0,0,0,0.1))';
             
             const duration = Math.random() * 4 + 4;
             heart.style.transition = `transform ${duration}s linear, opacity ${duration}s ease-out`;
