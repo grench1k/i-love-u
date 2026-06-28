@@ -1,8 +1,11 @@
+/* ==========================================================
+   ОБЩИЕ НАСТРОЙКИ СТИЛЕЙ И СЕТКА СТРАНИЦ
+   ========================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку при тапе на телефоне */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body, html {
@@ -31,6 +34,7 @@ body, html {
 #page2 { background: linear-gradient(135deg, #ffb3c6 0%, #ff8fa3 100%); transform: translateY(100%); }
 #page3 { background: linear-gradient(135deg, #ff8fa3 0%, #ff4d6d 100%); transform: translateY(100%); }
 
+/* Анимированный фон из падающих сердечек */
 .bg-heart {
     position: absolute;
     color: rgba(255, 77, 109, 0.25);
@@ -45,17 +49,19 @@ body, html {
     100% { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
 }
 
-/* АНАТОМИЯ КОТА (МОБИЛЬНЫЕ РАЗМЕРЫ) */
+/* ==========================================================
+   АНАТОМИЧЕСКАЯ ФОРМА ТЕМНО-КОРИЧНЕВОГО КОТА
+   ========================================================== */
 .cat-container {
     position: absolute;
-    width: 140px; /* Чуть уменьшили для экранов телефонов */
-    height: 140px;
+    width: 140px;
+    height: 160px;
     cursor: pointer;
     z-index: 10;
 }
 
 #cat1 {
-    top: 45%; /* Сдвинули пониже под текст */
+    top: 45%;
     left: calc(50% - 110px);
     animation: catWalkMobile 2.5s ease-in-out infinite alternate;
 }
@@ -66,167 +72,206 @@ body, html {
     height: 100%;
 }
 
+/* Реалистичные треугольные ушки кошки */
 .ear {
     position: absolute;
-    width: 36px;
-    height: 46px;
-    background: #8b5a2b;
-    border-radius: 65% 35% 0% 0% / 100% 100% 0% 0%;
+    width: 38px;
+    height: 52px;
+    background: #361f12;
+    border-radius: 80% 20% 10% 0% / 100% 100% 0% 0%;
 }
-.ear.left { left: 14px; transform: rotate(-18deg); }
-.ear.right { right: 14px; transform: rotate(18deg); }
+
+.ear.left { left: 12px; transform: rotate(-16deg); }
+.ear.right { right: 12px; transform: scaleX(-1) rotate(-16deg); }
+
 .ear::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 32px;
+    width: 22px;
+    height: 38px;
     background: #ffa6c9;
     left: 6px;
-    top: 8px;
-    border-radius: 65% 35% 0% 0% / 100% 100% 0% 0%;
+    top: 10px;
+    border-radius: 80% 20% 10% 0% / 100% 100% 0% 0%;
+    box-shadow: inset 3px -3px 0px rgba(74, 44, 27, 0.4);
 }
 
+/* Аккуратная овальная форма головы */
 .head {
     position: absolute;
-    top: 28px;
+    top: 25px;
     left: 10px;
     width: 120px;
-    height: 90px;
-    background: #a06a42;
-    border-radius: 50% 50% 45% 45%;
-    box-shadow: inset -12px -8px 0 #7c4f2f, 0 6px 12px rgba(124, 79, 47, 0.2);
+    height: 85px;
+    background: #4a2c1b;
+    border-radius: 50% 50% 48% 48% / 60% 60% 40% 40%;
+    box-shadow: inset -10px -6px 0 #2a180e, 0 6px 12px rgba(0,0,0,0.15);
     z-index: 5;
 }
 
+/* Объёмные кошачьи подусники (щёчки) */
 .cheeks {
     position: absolute;
     top: 48px;
-    left: 10px;
-    width: 100px;
-    height: 35px;
+    left: calc(50% - 35px);
+    width: 70px;
+    height: 28px;
     display: flex;
     justify-content: space-between;
-}
-.cheeks::before, .cheeks::after {
-    content: '';
-    width: 42px;
-    height: 35px;
-    background: #b67d53;
-    border-radius: 50%;
+    z-index: 6;
 }
 
+.cheeks::before, .cheeks::after {
+    content: '';
+    width: 36px;
+    height: 28px;
+    background: #543320;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 0 #3a2012;
+}
+
+/* Глубокие карие глаза с двойными бликами */
 .eyes {
     position: absolute;
-    top: 30px;
+    top: 26px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 24px;
     z-index: 6;
 }
+
 .eye {
-    width: 24px;
-    height: 24px;
-    background: #1e293b;
-    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    background: radial-gradient(circle, #a66c46 30%, #704020 90%);
+    border-radius: 50% 50% 45% 45%;
     position: relative;
     display: flex;
-    border: 2px solid #5a381e;
-    animation: blinkEye 4s infinite;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #23140b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 2px 3px rgba(0,0,0,0.5);
+    animation: blinkEye 4.5s infinite;
 }
+
+/* Вертикальный зрачок кошачьего глаза */
+.pupil {
+    width: 8px;
+    height: 18px;
+    background: #0d0d0d;
+    border-radius: 50%;
+    position: relative;
+}
+
 .pupil::before {
     content: '';
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: #fff;
     border-radius: 50%;
     top: 2px;
-    left: 3px;
+    left: 1px;
 }
+
 .pupil::after {
     content: '';
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     background: #fff;
     border-radius: 50%;
-    bottom: 4px;
-    right: 4px;
-    opacity: 0.8;
-}
-@keyframes blinkEye {
-    0%, 92%, 100% { transform: scaleY(1); }
-    96% { transform: scaleY(0.05); }
+    bottom: 3px;
+    right: 1px;
+    opacity: 0.6;
 }
 
+@keyframes blinkEye {
+    0%, 93%, 100% { transform: scaleY(1); }
+    96% { transform: scaleY(0.03); }
+}
+
+/* Носик треугольной формы */
 .nose {
     position: absolute;
-    top: 54px;
+    top: 52px;
     left: calc(50% - 6px);
     width: 12px;
-    height: 8px;
+    height: 7px;
     background: #ff8fa3;
-    border-radius: 40% 40% 60% 60%;
+    border-radius: 30% 30% 70% 70%;
     z-index: 7;
 }
 
+/* Тонкие усы */
 .whiskers-left, .whiskers-right {
     position: absolute;
-    top: 56px;
-    width: 40px;
+    top: 55px;
+    width: 42px;
     height: 15px;
     z-index: 6;
 }
-.whiskers-left { left: -18px; }
-.whiskers-right { right: -18px; }
+
+.whiskers-left { left: -20px; }
+.whiskers-right { right: -20px; }
+
 .whiskers-left div, .whiskers-right div {
     width: 100%;
     height: 1px;
-    background: rgba(255,255,255,0.85);
-    margin-bottom: 4px;
+    background: rgba(255,255,255,0.75);
+    margin-bottom: 5px;
 }
-.whiskers-left div:first-child { transform: rotate(12deg); }
-.whiskers-left div:last-child { transform: rotate(-5deg); }
-.whiskers-right div:first-child { transform: rotate(-12deg); }
-.whiskers-right div:last-child { transform: rotate(5deg); }
 
+.whiskers-left div:first-child { transform: rotate(12deg); }
+.whiskers-left div:last-child { transform: rotate(-6deg); }
+.whiskers-right div:first-child { transform: rotate(-12deg); }
+.whiskers-right div:last-child { transform: rotate(6deg); }
+
+/* Изгиб спины и сужение тела к шее */
 .body {
     position: absolute;
     bottom: 0px;
-    left: 20px;
-    width: 100px;
-    height: 68px;
-    background: #a06a42;
-    border-radius: 40px 40px 15px 15px;
-    box-shadow: inset -12px -6px 0 #7c4f2f;
+    left: 22px;
+    width: 96px;
+    height: 85px;
+    background: #4a2c1b;
+    border-radius: 60% 60% 40% 40% / 80% 80% 30% 30%;
+    box-shadow: inset -12px -8px 0 #2a180e, 0 5px 10px rgba(0,0,0,0.1);
     z-index: 3;
 }
+
+/* Пушистый воротничок на груди */
 .body::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 15px;
-    width: 55px;
-    height: 30px;
-    background: #f4f1de;
-    border-radius: 0 0 30px 30px;
+    top: -2px;
+    left: 18px;
+    width: 60px;
+    height: 35px;
+    background: #e6ccb2;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
 }
 
+/* Кошачьи лапки */
 .paws {
     position: absolute;
-    bottom: -4px;
+    bottom: -2px;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 0 18px;
+    padding: 0 12px;
 }
+
 .paw {
-    width: 22px;
-    height: 16px;
-    background: #7c4f2f;
-    border-radius: 45% 45% 35% 35%;
+    width: 20px;
+    height: 22px;
+    background: #2a180e;
+    border-radius: 30% 30% 45% 45%;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    position: relative;
 }
+
 .paw::after {
     content: '';
     position: absolute;
@@ -234,30 +279,36 @@ body, html {
     height: 8px;
     background: #ffb3c6;
     bottom: 2px;
-    left: 6px;
+    left: 5px;
     border-radius: 50%;
     opacity: 0;
 }
 
+/* Плавный закругленный хвост */
 .tail {
     position: absolute;
-    width: 60px;
-    height: 20px;
-    background: #7c4f2f;
-    border-radius: 20px;
-    left: -35px;
-    bottom: 20px;
+    width: 70px;
+    height: 18px;
+    background: #2a180e;
+    border-radius: 10px 20px 20px 10px;
+    left: -40px;
+    bottom: 25px;
     transform-origin: right center;
-    animation: tailWag 1s ease-in-out infinite alternate;
-}
-@keyframes tailWag {
-    0% { transform: rotate(-30deg); }
-    100% { transform: rotate(15deg); }
+    animation: tailWag 1.1s ease-in-out infinite alternate;
 }
 
-/* ЭКРАН 1 (АНИМАЦИИ ДЛЯ МОБИЛЬНОГО) */
+@keyframes tailWag {
+    0% { transform: rotate(-35deg) skewX(-10deg); }
+    100% { transform: rotate(12deg) skewX(5deg); }
+}
+
+/* ==========================================================
+   МЕХАНИКА И АНИМАЦИИ ЭКРАНОВ
+   ========================================================== */
+
+/* Экран 1: Движение надписи и ходьба */
 .love-text {
-    font-size: 3.5rem; /* Сделали шрифт компактнее для узких экранов */
+    font-size: 3.5rem;
     color: #ff4d6d;
     position: absolute;
     top: 25%;
@@ -273,30 +324,34 @@ body, html {
     0% { transform: translateX(-20px); }
     100% { transform: translateX(40px); }
 }
+
 @keyframes textMoveMobile {
     0% { transform: translateX(-30px); }
     100% { transform: translateX(20px); }
 }
 
+/* Гравитационное падение первого экрана вниз */
 .gravitational-fall {
     animation: fallPhysics 1.2s cubic-bezier(0.5, 0.05, 0.75, 0.35) forwards !important;
 }
+
 @keyframes fallPhysics {
     0% { transform: translateY(0) rotate(0deg); }
     100% { transform: translateY(115vh) rotate(30deg); opacity: 0; }
 }
 
-/* ЭКРАН 2 (ЗАСАДА В КУСТАХ НА ТЕЛЕФОНЕ) */
+/* Экран 2: Кот затаился в кустах */
 .bush {
     position: absolute;
     bottom: -30px;
-    width: 120%; /* Куст теперь растягивается на всю ширину любого смартфона */
+    width: 120%;
     height: 180px;
     background: #2d6a4f;
     border-radius: 120px 120px 0 0;
     box-shadow: inset -15px 0 0 #1b4332, 0 -10px 25px rgba(0,0,0,0.15);
     z-index: 12;
 }
+
 #cat2 {
     bottom: 50px;
     left: calc(50% - 70px);
@@ -305,6 +360,12 @@ body, html {
     animation: buttWiggle 0.45s ease-in-out infinite alternate;
 }
 
+@keyframes buttWiggle {
+    0% { transform: scale(0.85) translateY(18px) rotate(-5deg); }
+    100% { transform: scale(0.85) translateY(0px) rotate(5deg); }
+}
+
+/* Парящее сердце для охоты */
 .target-heart {
     position: absolute;
     font-size: 55px;
@@ -314,16 +375,21 @@ body, html {
     z-index: 15;
     animation: heartFloat 2.3s ease-in-out infinite alternate;
 }
+
 @keyframes heartFloat {
     0% { transform: translateY(0) scale(1); }
     100% { transform: translateY(-35px) scale(1.15); }
 }
 
-/* АНИМАЦИЯ ПРЫЖКА С УЧЕТОМ ЭКРАНА ТЕЛОФОНА */
+/* Прыжок и захват сердца */
 .cat-pounce {
     animation: pounceEffect 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
 }
-.cat-pounce .paw::after { opacity: 1 !important; }
+
+.cat-pounce .paw::after { 
+    opacity: 1 !important; 
+}
+
 .heart-stolen {
     animation: heartStolenEffect 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
 }
@@ -333,7 +399,7 @@ body, html {
     25% { bottom: 50%; left: calc(50% - 65px); z-index: 16; transform: scale(1.1) rotate(-22deg); }
     42% { bottom: 80px; left: calc(50% - 50px); z-index: 16; transform: scale(1) rotate(0); }
     58% { transform: scaleX(-1); bottom: 80px; left: calc(50% - 50px); }
-    100% { left: -200px; bottom: 80px; transform: scaleX(-1); } /* Убегает влево за рамки экрана телефона */
+    100% { left: -200px; bottom: 80px; transform: scaleX(-1); }
 }
 
 @keyframes heartStolenEffect {
@@ -344,37 +410,52 @@ body, html {
     100% { left: -140px; top: 72%; transform: scale(0.5); }
 }
 
-/* ЭКРАН 3 (МОБИЛЬНАЯ ОТКРЫТКА) */
+/* Экран 3: Финальная романтическая открытка */
 .final-card {
     background: white;
     padding: 35px 25px;
     border-radius: 25px;
     text-align: center;
+
     box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
-    width: 85%; /* Открытка аккуратно сожмется под ширину экрана */
+    width: 85%;
     max-width: 400px;
     opacity: 0;
     transform: scale(0.6);
     transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
     border: 2px dashed #ffb3c6;
 }
+
 .final-card.reveal {
     opacity: 1;
     transform: scale(1);
 }
-.final-card h2 { color: #ff4d6d; font-size: 1.8rem; margin-bottom: 12px; }
-.final-card p { color: #4a5568; font-size: 1rem; line-height: 1.5; }
+
+.final-card h2 {
+    color: #ff4d6d;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.final-card p {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 .heart-beating {
     font-size: 60px;
     color: #ff4d6d;
     margin-top: 15px;
     animation: beat 0.7s infinite alternate;
 }
+
 @keyframes beat {
     0% { transform: scale(1); }
     100% { transform: scale(1.2); }
 }
 
+/* Текстовые подсказки на экранах */
 .hint {
     position: absolute;
     bottom: 30px;
@@ -386,4 +467,9 @@ body, html {
     pointer-events: none;
     text-align: center;
 }
-.hint.dark { color: white; background: rgba(0,0,0,0.3); }
+
+.hint.dark {
+    color: white;
+    background: rgba(0,0,0,0.3);
+}
+   
