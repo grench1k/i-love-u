@@ -2,22 +2,22 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Эта строка обязательна, чтобы сайт правильно масштабировался на смартфонах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Романтическое приключение</title>
-    <!-- Подключаем внешние стили -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Наш музыкальный плеер -->
-    <audio id="bgMusic" src="music.mp3" loop></audio>
+    <audio id="bgMusic" src="music.mp3" loop playsinline></audio>
 
-    <!-- ЭКРАН 1: Кот толкает надпись -->
+    <!-- ЭКРАН 1 -->
     <div class="page" id="page1">
         <h1 class="love-text">i love you</h1>
         
-        <!-- Наш детализированный котик -->
-        <div class="cat-container" id="cat1" onclick="triggerFall()">
+        <!-- Добавлен ontouchstart для моментального отклика на смартфонах -->
+        <div class="cat-container" id="cat1" onclick="triggerFall()" ontouchstart="triggerFall()">
             <div class="cat-body-wrapper">
                 <div class="ear left"></div><div class="ear right"></div>
                 <div class="head">
@@ -36,16 +36,14 @@
                 </div>
             </div>
         </div>
-        <div class="hint">Нажми на котика, чтобы запустить магию...</div>
+        <div class="hint">Нажми на котика...</div>
     </div>
 
-    <!-- ЭКРАН 2: Охота в кустах -->
+    <!-- ЭКРАН 2 -->
     <div class="page" id="page2">
-        <!-- Сердечко, на которое кот будет охотиться -->
         <div class="target-heart" id="huntingHeart">❤</div>
         
-        <div class="cat-container" id="cat2" onclick="triggerPounce()">
-            <!-- Тот же котик, но теперь он выжидает в засаде -->
+        <div class="cat-container" id="cat2" onclick="triggerPounce()" ontouchstart="triggerPounce()">
             <div class="cat-body-wrapper">
                 <div class="ear left"></div><div class="ear right"></div>
                 <div class="head">
@@ -60,12 +58,11 @@
                 </div>
             </div>
         </div>
-        <!-- Большой куст, за которым прячется кот -->
         <div class="bush"></div>
-        <div class="hint dark">Кот затаился... Нажми на него для прыжка!</div>
+        <div class="hint dark">Кот затаился... Тапни для прыжка!</div>
     </div>
 
-    <!-- ЭКРАН 3: Финал -->
+    <!-- ЭКРАН 3 -->
     <div class="page" id="page3">
         <div class="final-card" id="finalCard">
             <h2>Поймал и утащил! 🐾</h2>
@@ -74,7 +71,6 @@
         </div>
     </div>
 
-    <!-- Подключаем скрипты -->
     <script src="script.js"></script>
 </body>
 </html>

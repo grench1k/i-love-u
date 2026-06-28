@@ -1,12 +1,11 @@
-// Функция автоматической генерации красивого фона с сердечками
 function generateBackgroundHearts() {
     const heart = document.createElement('div');
     heart.classList.add('bg-heart');
     heart.innerHTML = '❤';
     
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-    heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+    heart.style.fontSize = Math.random() * 12 + 12 + 'px'; // Чуть уменьшили для мобильных
+    heart.style.animationDuration = Math.random() * 2 + 4 + 's';
     
     document.body.appendChild(heart);
 
@@ -14,11 +13,10 @@ function generateBackgroundHearts() {
         heart.remove();
     }, 5500);
 }
-setInterval(generateBackgroundHearts, 350);
+setInterval(generateBackgroundHearts, 400);
 
 let animationLocked = false;
 
-// ЛОГИКА ЭКРАНА 1: Кот и надпись падают вниз + запускается трек CUPSIZE
 function triggerFall() {
     if (animationLocked) return;
     animationLocked = true;
@@ -27,10 +25,10 @@ function triggerFall() {
     const loveText = document.querySelector('.love-text');
     const music = document.getElementById('bgMusic');
 
-    // Безопасный запуск музыки при первом взаимодействии
     if (music) {
-        music.volume = 0.4; // Ставим комфортную громкость (40%)
-        music.play().catch(err => console.log("Браузер заблокировал автозвук: ", err));
+        music.volume = 0.4;
+        // На мобилках play() вызывается строго по тапу пользователя
+        music.play().catch(err => console.log("Ошибка звука на мобильном: ", err));
     }
 
     cat1.style.animation = 'none';
@@ -46,7 +44,6 @@ function triggerFall() {
     }, 900);
 }
 
-// ЛОГИКА ЭКРАНА 2: Охота, прыжок и побег
 function triggerPounce() {
     if (animationLocked) return;
     animationLocked = true;
