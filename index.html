@@ -8,9 +8,10 @@
 </head>
 <body>
 
+    <!-- Эффект падающих сердечек -->
     <div class="falling-hearts" id="heartsContainer"></div>
 
-    <!-- 🐱 ОКНО С CSS КОТИКОМ -->
+    <!-- 🐱 Окно с CSS котиком -->
     <div class="cat-overlay" id="catOverlay">
         <div class="css-cat">
             <div class="ear left"></div>
@@ -47,17 +48,37 @@
                 Здесь будет ваше красивое совместное фото или её портрет
             </div>
 
-            <!-- Кнопка вызывает функцию из script.js -->
+            <!-- Кнопка вызывает встроенную функцию -->
             <button class="action-button" onclick="catSurprise()">Нажми для сюрприза ✨</button>
         </div>
     </div>
 
-    <!-- Подключаем наш скрипт автоматических сердечек и логику кота -->
-    <script src="script.js"></script>
+    <!-- ВСЕ СКРИПТЫ ВНУТРИ ОДНОГО ФАЙЛА ДЛЯ НАДЕЖНОСТИ -->
     <script>
-        // Код падающих сердечек оставляем на главной странице для надежности
+        // Функция для выпрыгивания кота и перехода
+        function catSurprise() {
+            const overlay = document.getElementById("catOverlay");
+            const cat = document.querySelector(".css-cat");
+            
+            // Показываем окно
+            overlay.classList.add("active");
+            
+            // Включаем радостную анимацию кота
+            setTimeout(() => {
+                cat.classList.add("happy-cat");
+            }, 50);
+            
+            // Через 2.5 секунды переходим на вторую страницу
+            setTimeout(() => {
+                window.location.href = "page2.html";
+            }, 2500);
+        }
+
+        // Функция падающих сердечек
         function createHeart() {
             const container = document.getElementById('heartsContainer');
+            if(!container) return;
+            
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
             heart.style.position = 'absolute';
@@ -65,6 +86,7 @@
             heart.style.top = '-20px';
             heart.style.fontSize = (Math.random() * 18 + 12) + 'px';
             heart.style.opacity = Math.random() * 0.4 + 0.3;
+            heart.style.pointerEvents = 'none';
             
             const duration = Math.random() * 4 + 4;
             heart.style.transition = `transform ${duration}s linear, opacity ${duration}s ease-out`;
@@ -78,6 +100,8 @@
 
             setTimeout(() => { heart.remove(); }, duration * 1000);
         }
+        
+        // Запуск сердечек
         setInterval(createHeart, 450);
     </script>
 
