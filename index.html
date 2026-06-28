@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>С Днем Рождения!</title>
+    <title>С Днем Рождения, Любимая!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="falling-hearts" id="heartsContainer"></div>
+    <!-- Задний неоновый свет для создания глубины сцены -->
+    <div class="blur-glow glow-1"></div>
+    <div class="blur-glow glow-2"></div>
+
+    <!-- Контейнер для плавно парящих сердец -->
+    <div class="floating-ambient-hearts" id="heartsContainer"></div>
 
     <div class="mobile-container">
-        <div class="love-card">
-            <div class="main-heart">❤️</div>
+        <div class="premium-card">
+            <div class="card-glow-border"></div>
             
-            <h1>Заголовок-пример</h1>
+            <div class="badge-container">
+                <span class="heart-badge">❤️ For You</span>
+            </div>
             
-            <p>Короткий текст поздравления для вашей девушки.</p>
+            <h1>С Днем Рождения!</h1>
+            
+            <p class="subtitle">Этот интерактивный подарок создан специально для тебя. Прикоснись к хранителю тайн внизу...</p>
 
-            <div class="photo-box">
-                Фото пример
+            <!-- Глянцевый интерактивный блок под будущее фото -->
+            <div class="glass-photo-frame">
+                <div class="frame-content">
+                    <span class="photo-icon">✨</span>
+                    <span class="photo-text">Твое лучшее фото</span>
+                </div>
             </div>
 
-            <div class="click-hint">Нажми на котика ✨</div>
+            <div class="interaction-hint">Оживи котика касанием</div>
             
-            <div class="cat-wrapper" onclick="catJumpAndRedirect()">
-                <div class="css-cat" id="myCat">
-                    <div class="ear left"></div>
-                    <div class="ear right"></div>
-                    <div class="cat-head">
-                        <div class="eye left"></div>
-                        <div class="eye right"></div>
-                        <div class="blush left"></div>
-                        <div class="blush right"></div>
-                        <div class="nose"></div>
-                        <div class="mustache left"></div>
-                        <div class="mustache right"></div>
+            <!-- Интерактивная зона кота с эффектом обратной связи -->
+            <div class="cat-touch-zone" onclick="triggerCatMagic()">
+                <div class="css-luxury-cat" id="luxuryCat">
+                    <div class="cat-ear left"></div>
+                    <div class="cat-ear right"></div>
+                    <div class="cat-head-base">
+                        <div class="cat-eye left"><div class="pupil"></div></div>
+                        <div class="cat-eye right"><div class="pupil"></div></div>
+                        <div class="cat-blush left"></div>
+                        <div class="cat-blush right"></div>
+                        <div class="cat-nose"></div>
+                        <div class="cat-whiskers left"><span></span><span></span></div>
+                        <div class="cat-whiskers right"><span></span><span></span></div>
                     </div>
                 </div>
             </div>
@@ -44,40 +58,38 @@
     </div>
 
     <script>
-        function catJumpAndRedirect() {
-            const cat = document.getElementById("myCat");
-            cat.classList.add("jump-active");
+        function triggerCatMagic() {
+            const cat = document.getElementById("luxuryCat");
+            if (cat.classList.contains("jump-premium")) return;
+            
+            // Запуск продвинутой 3D анимации прыжка
+            cat.classList.add("jump-premium");
+            
+            // Переход на вторую страницу ровно в пик прыжка
             setTimeout(() => {
                 window.location.href = "page2.html";
-            }, 600);
+            }, 650);
         }
 
-        function createHeart() {
+        // Создание мягко парящих, реалистичных сердец на фоне
+        function createAmbientHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
             
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
-            heart.style.position = 'absolute';
+            heart.className = 'ambient-heart';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '-20px';
-            heart.style.fontSize = (Math.random() * 14 + 10) + 'px';
-            heart.style.opacity = Math.random() * 0.4 + 0.3;
-            heart.style.pointerEvents = 'none';
+            heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+            heart.style.opacity = Math.random() * 0.3 + 0.2;
             
-            const duration = Math.random() * 4 + 4;
-            heart.style.transition = `transform ${duration}s linear, opacity ${duration}s ease-out`;
+            const duration = Math.random() * 5 + 5;
+            heart.style.animation = `floatUpAndFade ${duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
             
             container.appendChild(heart);
-
-            setTimeout(() => {
-                const drift = Math.random() * 40 - 20; 
-                heart.style.transform = `translate(${drift}px, 105vh) rotate(${Math.random() * 180 - 90}deg)`;
-            }, 50);
-
             setTimeout(() => { heart.remove(); }, duration * 1000);
         }
-        setInterval(createHeart, 500);
+        setInterval(createAmbientHeart, 600);
     </script>
 
 </body>
