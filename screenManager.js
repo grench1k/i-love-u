@@ -9,50 +9,39 @@ function triggerCatMagic(event) {
     cat.classList.add("jump-premium");
     
     setTimeout(() => {
-        const container = document.getElementById("dynamicContent");
+        // Прячем первый стартовый экран
+        document.getElementById("screen1").style.display = "none";
         
-        // Вставляем структуру ВТОРОГО ЭКРАНА (Котики + Текст поцелуя + Кнопка)
-        container.innerHTML = `
-            <!-- 🐱❤️🐱 ФИКСИРОВАННЫЙ БЛОК КОТИКОВ -->
-            <div class="cats-love-scene" style="display: flex !important; visibility: visible !important; opacity: 1 !important;">
-                <div class="cats-heart">❤️</div>
-                <div class="cats-couple">
-                    <div class="love-cat cat-left">
-                        <div class="l-ear left"></div><div class="l-ear right"></div>
-                        <div class="l-head"><div class="l-eye"></div><div class="l-blush"></div></div>
-                    </div>
-                    <div class="love-cat cat-right">
-                        <div class="l-ear left"></div><div class="l-ear right"></div>
-                        <div class="l-head"><div class="l-eye"></div><div class="l-blush"></div></div>
-                    </div>
-                </div>
-            </div>
+        // Показываем второй экран (Где уже сидят влюбленные котики!)
+        const screen2 = document.getElementById("screen2");
+        screen2.style.display = "block";
+        
+        // Вставляем текст поцелуя строго ПОД котиков
+        const stepsZone = document.getElementById("storyStepsZone");
+        stepsZone.innerHTML = `
+            <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
             
-            <!-- Интерактивная зона для динамического изменения только нижней части -->
-            <div id="storyStepsZone">
-                <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
-                
-                <p class="surprise-text fade-in-row">
-                    Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!
-                </p>
-                
-                <p class="surprise-text fade-in-row">
-                    И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD
-                </p>
-                
-                <p class="surprise-text fade-in-row">
-                    Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.
-                </p>
-                
-                <button class="next-scene-btn fade-in-row" onclick="showLoveMap(event)">Посмотреть нашу историю ✨</button>
-            </div>
+            <p class="surprise-text fade-in-row">
+                Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!
+            </p>
+            
+            <p class="surprise-text fade-in-row">
+                И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD
+            </p>
+            
+            <p class="surprise-text fade-in-row">
+                Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.
+            </p>
+            
+            <button class="next-scene-btn fade-in-row" onclick="showLoveMap(event)">Посмотреть нашу историю ✨</button>
         `;
 
         if (music) {
-            music.play().catch(err => console.log("Поддержка фонового трека:", err));
+            music.play().catch(err => console.log("Поддержка трека:", err));
         }
 
-        const rows = container.querySelectorAll('.fade-in-row');
+        // Запуск плавного появления строчек
+        const rows = stepsZone.querySelectorAll('.fade-in-row');
         rows.forEach((row, index) => {
             setTimeout(() => {
                 row.classList.add('visible');
@@ -61,11 +50,10 @@ function triggerCatMagic(event) {
     }, 650);
 }
 
-// 🔥 ФУНКЦИЯ ДЛЯ ОТРИСОВКИ КАРТЫ (ЭКРАН 3: Котики остаются на месте!)
+// 🔥 ЭКРАН 3: КАРТА ИСТОРИИ (КОТИКИ ОСТАЮТСЯ СВЕРХУ!)
 function showLoveMap(event) {
     if (event) event.stopPropagation();
     
-    // Меняем контент ТОЛЬКО внутри зоны текста, котиков сверху не трогаем
     const stepsZone = document.getElementById("storyStepsZone");
     if (!stepsZone) return;
     
@@ -75,7 +63,7 @@ function showLoveMap(event) {
     stepsZone.style.transition = "all 0.4s ease";
     
     setTimeout(() => {
-        // Вставляем вертикальную дорожку прямо под котиков
+        // Заменяем текст под котиками на интерактивную карту дат
         stepsZone.innerHTML = `
             <div class="badge-container" style="margin-top: 5px;">
                 <span class="heart-badge">✨ Наша история</span>
@@ -124,7 +112,6 @@ function showLoveMap(event) {
             </div>
         `;
         
-        // Возвращаем видимость и запускаем анимацию выплывания дат
         stepsZone.style.opacity = "1";
         stepsZone.style.transform = "scale(1)";
         
@@ -132,7 +119,7 @@ function showLoveMap(event) {
         items.forEach((item, index) => {
             setTimeout(() => {
                 item.classList.add('visible');
-            }, index * 250); // Интервал выплывания точек карты
+            }, index * 250);
         });
         
     }, 400);
