@@ -8,12 +8,29 @@
 </head>
 <body>
 
-    <!-- Эффект падающих сердечек -->
     <div class="falling-hearts" id="heartsContainer"></div>
 
-    <!-- 🐱 Окно с выпрыгивающим котиком (используем милое эмодзи кота) -->
+    <!-- 🐱 ОКНО С CSS КОТИКОМ -->
     <div class="cat-overlay" id="catOverlay">
-        <div class="jumping-cat">🐈 Representative Сat 🐱</div>
+        <div class="css-cat">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="cat-head">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+                <div class="nose"></div>
+                <div class="mustache-container left">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+                <div class="mustache-container right">
+                    <div class="whisker"></div>
+                    <div class="whisker"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="mobile-container">
@@ -30,26 +47,15 @@
                 Здесь будет ваше красивое совместное фото или её портрет
             </div>
 
-            <!-- Кнопка теперь вызывает функцию прыжка кота -->
+            <!-- Кнопка вызывает функцию из script.js -->
             <button class="action-button" onclick="catSurprise()">Нажми для сюрприза ✨</button>
         </div>
     </div>
 
+    <!-- Подключаем наш скрипт автоматических сердечек и логику кота -->
+    <script src="script.js"></script>
     <script>
-        // Функция для выпрыгивания кота и перехода на новую страницу
-        function catSurprise() {
-            const overlay = document.getElementById("catOverlay");
-            
-            // Включаем анимацию кота
-            overlay.classList.add("active");
-            
-            // Через 1200 миллисекунд (1.2 секунды) перенаправляем на пустую страницу
-            setTimeout(() => {
-                window.location.href = "page2.html";
-            }, 1200);
-        }
-
-        // Падающие сердечки на фоне
+        // Код падающих сердечек оставляем на главной странице для надежности
         function createHeart() {
             const container = document.getElementById('heartsContainer');
             const heart = document.createElement('div');
@@ -72,7 +78,6 @@
 
             setTimeout(() => { heart.remove(); }, duration * 1000);
         }
-
         setInterval(createHeart, 450);
     </script>
 

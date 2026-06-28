@@ -59,27 +59,20 @@ body {
 }
 
 @keyframes cardAppear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* 💓 АНИМАЦИЯ СЕРДЦА */
 .main-heart {
     font-size: 60px;
     margin-bottom: 15px;
     display: inline-block;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
     animation: pulse3d 1.2s infinite ease-in-out;
 }
 
 @keyframes pulse3d {
-    0% { transform: scale(1) rotate(0deg); }
-    30% { transform: scale(1.2) rotate(-5deg); }
-    50% { transform: scale(1.1) rotate(5deg); }
-    70% { transform: scale(1.2) rotate(0deg); }
-    100% { transform: scale(1) rotate(0deg); }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
 }
 
 h1 {
@@ -87,19 +80,14 @@ h1 {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     font-size: 1.9rem;
     margin: 0 0 20px 0;
-    line-height: 1.3;
-    font-weight: 800;
 }
 
 p {
     font-size: 1.05rem;
     line-height: 1.6;
     margin: 0 0 20px 0;
-    color: rgba(255, 255, 255, 0.95);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 🖼️ АНИМАЦИЯ БЛОКА ФОТО */
 .photo-box {
     width: 100%;
     height: 280px;
@@ -110,21 +98,9 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
     font-style: italic;
-    font-size: 0.95rem;
-    padding: 20px;
-    background-size: cover;
-    background-position: center;
-    animation: photoGlow 3s ease-in-out infinite;
 }
 
-@keyframes photoGlow {
-    0%, 100% { border-color: rgba(255,255,255,0.4); box-shadow: 0 0 5px rgba(255,255,255,0.0); }
-    50% { border-color: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
-}
-
-/* ⚡ АНИМАЦИЯ КНОПКИ */
 .action-button {
     width: 100%;
     background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
@@ -136,84 +112,212 @@ p {
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.2s ease;
-    margin-top: 10px;
-    animation: wobble 4s ease-in-out infinite;
 }
 
-.action-button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 30%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: rotate(30deg);
-    animation: sheen 3.5s infinite ease-in-out;
-}
+/* ==========================================
+   🐱 РИСУЕМ КОТА НА НАСТОЯЩЕМ CSS 
+   ========================================== */
 
-@keyframes sheen {
-    0% { left: -60%; }
-    15% { left: 140%; }
-    100% { left: 140%; }
-}
-
-@keyframes wobble {
-    0%, 100% { transform: scale(1); }
-    90% { transform: scale(1); }
-    93% { transform: scale(1.03) cubic-bezier(0.25, 1, 0.5, 1); }
-    96% { transform: scale(0.98); }
-    98% { transform: scale(1.01); }
-}
-
-.action-button:active {
-    transform: scale(0.94) !important;
-}
-
-/* 🐱 СТИЛИ ДЛЯ ВЫПРЫГИВАЮЩЕГО КОТИКА */
 .cat-overlay {
-    display: none; /* Изначально спрятан */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4); /* Затемнение фона */
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
     z-index: 10;
     justify-content: center;
     align-items: center;
 }
 
-.jumping-cat {
-    font-size: 120px; /* Крупный размер котика */
-    transform: scale(0) rotate(-30deg);
-    opacity: 0;
-}
-
-/* Анимация резкого выпрыгивания кота */
 .cat-overlay.active {
     display: flex;
 }
 
-.cat-overlay.active .jumping-cat {
-    animation: catJump 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.5) forwards;
+/* Главный контейнер кота */
+.css-cat {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes catJump {
-    0% {
-        transform: scale(0) translateY(100px) rotate(-30deg);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.4) translateY(-20px) rotate(10deg);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1.2) translateY(0) rotate(0deg);
-        opacity: 1;
-    }
+.cat-overlay.active .css-cat {
+    transform: scale(1.3);
 }
+
+/* Голова кота */
+.cat-head {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    width: 150px;
+    height: 120px;
+    background: #ffffff;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Ушки */
+.ear {
+    position: absolute;
+    top: -15px;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid #ffffff;
+    transform-origin: bottom center;
+}
+
+.ear.left { left: 15px; transform: rotate(-15deg); }
+.ear.right { right: 15px; transform: rotate(15deg); }
+
+/* Розовая внутренняя часть ушек */
+.ear::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #ffb3c6;
+}
+
+/* Глаза */
+.eye {
+    position: absolute;
+    top: 40px;
+    width: 22px;
+    height: 22px;
+    background: #4a4a4a;
+    border-radius: 50%;
+}
+.eye.left { left: 35px; }
+.eye.right { right: 35px; }
+
+/* Зрачки (блики в глазах) */
+.eye::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* Носик */
+.nose {
+    position: absolute;
+    top: 65px;
+    left: 68px;
+    width: 14px;
+    height: 10px;
+    background: #ff758f;
+    border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+}
+
+/* Усы */
+.mustache-container {
+    position: absolute;
+    top: 70px;
+    width: 40px;
+    height: 20px;
+}
+.mustache-container.left { left: -10px; }
+.mustache-container.right { right: -10px; }
+
+.whisker {
+    width: 35px;
+    height: 2px;
+    background: #dcdcdc;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transform-origin: center;
+}
+.mustache-container.left .whisker { transform: rotate(5deg); }
+.mustache-container.right .whisker { transform: rotate(-5deg); }
+
+/* Щёчки */
+.blush {
+    position: absolute;
+    top: 65px;
+    width: 25px;
+    height: 15px;
+    background: rgba(255, 182, 193, 0.6);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+.blush.left { left: 20px; }
+.blush.right { right: 20px; }
+
+
+/* ==========================================
+   🎬 АНИМАЦИИ ДЛЯ КОТА (Запускаются из JS)
+   ========================================== */
+
+/* Обычное ленивое шевеление ушками */
+@keyframes twitchLeft {
+    0%, 90%, 100% { transform: rotate(-15deg); }
+    93% { transform: rotate(-25deg); }
+    96% { transform: rotate(-10deg); }
+}
+@keyframes twitchRight {
+    0%, 85%, 100% { transform: rotate(15deg); }
+    88% { transform: scaleY(0.9) rotate(25deg); }
+    92% { transform: rotate(10deg); }
+}
+
+.ear.left { animation: twitchLeft 4s infinite; }
+.ear.right { animation: twitchRight 4.5s infinite; }
+
+/* Когда сработал клик (happy-cat), кот начинает радоваться */
+.happy-cat .ear.left {
+    animation: happyEarLeft 0.3s infinite alternate;
+}
+.happy-cat .ear.right {
+    animation: happyEarRight 0.3s infinite alternate;
+}
+
+@keyframes happyEarLeft {
+    from { transform: rotate(-15deg); }
+    to { transform: rotate(-30deg); }
+}
+@keyframes happyEarRight {
+    from { transform: rotate(15deg); }
+    to { transform: rotate(30deg); }
+}
+
+/* Радостное подергивание усами при клике */
+.happy-cat .mustache-container.left .whisker {
+    animation: wiggleWhiskersLeft 0.2s infinite alternate;
+}
+.happy-cat .mustache-container.right .whisker {
+    animation: wiggleWhiskersRight 0.2s infinite alternate;
+}
+
+@keyframes wiggleWhiskersLeft {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(15deg); }
+}
+@keyframes wiggleWhiskersRight {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-15deg); }
+}
+
+/* Эффект зажмуривания глаз при клике */
+.happy-cat .eye {
+    height: 5px;
+    top: 50px;
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 4px solid #4a4a4a;
+}
+.happy-cat .eye::after { display: none; }
