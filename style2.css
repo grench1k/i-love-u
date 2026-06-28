@@ -43,7 +43,7 @@ h2 {
 .cat-left { margin-right: -10px; z-index: 2; animation: leanLeftPremium 3s infinite ease-in-out alternate; }
 .cat-right { margin-left: -10px; z-index: 1; animation: leanRightPremium 3s infinite ease-in-out alternate-reverse; }
 
-.l-head { position: absolute; bottom: 0; width: 75px; height: 60px; border-radius: 50% 50% 44% 44%; box-shadow: 0 6px 15px rgba(0,0,0,0.25); overflow: hidden; }
+.l-head { position: absolute; bottom: 0; width: 75px; height: 60px; border-radius: 50% 50% 44% 44%; box-shadow: 0 6px 15px rgba(0,0,0,0.25); overflow: hidden; z-index: 3; }
 .cat-left .l-head { background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 75%, #e1e1e8 100%); border: 1px solid rgba(255, 255, 255, 0.5); }
 .cat-right .l-head { background: radial-gradient(circle at 60% 30%, #e1e1e8 0%, #c8c8d3 75%, #b5b5c3 100%); border: 1px solid rgba(200, 200, 210, 0.3); }
 
@@ -56,30 +56,38 @@ h2 {
 .s-left { top: 25px; left: -4px; transform: rotate(15deg); box-shadow: 0 10px 0 rgba(0,0,0,0.1), 0 20px 0 rgba(0,0,0,0.08); }
 .s-right { top: 25px; right: -4px; transform: rotate(-15deg); box-shadow: 0 10px 0 rgba(0,0,0,0.15), 0 20px 0 rgba(0,0,0,0.12); }
 
-/* 🌟 НОВИНКА: АККУРАТНЫЕ ТОНКИЕ УСИКИ ДЛЯ ПАРОЧКИ КОТИКОВ */
+/* 🌟 ИСПРАВЛЕННЫЕ УСИКИ: Вынесены поверх маски и имеют чёткую видимость */
 .l-whiskers {
     position: absolute;
-    top: 36px;
-    width: 15px;
-    height: 10px;
+    top: 35px;
+    width: 22px;
+    height: 12px;
+    z-index: 99; /* Выталкиваем усы на самый передний план */
+    pointer-events: none;
 }
-/* Усы направлены наружу от места поцелуя */
-.lw-left { left: -2px; } 
-.lw-right { right: -2px; }
+/* Раздвигаем их по бокам от соприкасающихся мордашек */
+.lw-left { left: -8px; } 
+.lw-right { right: -8px; }
+
 .l-whiskers span {
     display: block;
-    width: 15px;
-    height: 1px;
-    background: rgba(0, 0, 0, 0.12); /* Мягкие усы */
-    margin-bottom: 3px;
+    width: 22px;
+    height: 1.5px;
+    background: #4a4a4a !important; /* Четкий темный цвет усов */
+    margin-bottom: 4px;
+    border-radius: 50px;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
 }
-.cat-right .l-whiskers span { background: rgba(0, 0, 0, 0.18); } /* Чуть темнее на серой шерсти */
-.lw-left span { transform: rotate(4deg); }
-.lw-right span { transform: rotate(-4deg); }
+/* Для белого котика делаем усы чуть мягче, для серого — потемнее */
+.cat-left .l-whiskers span { background: #55555f !important; }
+.cat-right .l-whiskers span { background: #1c1c21 !important; }
+
+.lw-left span { transform: rotate(5deg); }
+.lw-right span { transform: rotate(-5deg); }
 
 
 /* Остальные элементы лица котиков */
-.l-ear { position: absolute; top: -10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; transform-origin: bottom center; }
+.l-ear { position: absolute; top: -10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; transform-origin: bottom center; z-index: 2; }
 .cat-left .l-ear { border-bottom: 22px solid #ffffff; } .cat-right .l-ear { border-bottom: 22px solid #e1e1e8; }
 .l-ear.left { left: 8px; transform: rotate(-12deg); } .l-ear.right { right: 8px; transform: rotate(12deg); }
 .l-ear::after { content: ''; position: absolute; top: 6px; left: -7px; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 13px solid #ffccd5; }
