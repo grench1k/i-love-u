@@ -241,3 +241,60 @@ h1 {
         opacity: 0;
     }
 }
+/* ========================================================
+   🎀 БАНТИК ДЛЯ ДЕВОЧКИ-КОШЕЧКИ (ЭКРАН 1)
+   ======================================================== */
+
+/* Создаем бантик на правом ушке стартового котика */
+.css-luxury-cat::after {
+    content: '';
+    position: absolute;
+    top: -12px; /* Позиционируем на правое ушко */
+    right: 6px;
+    width: 0;
+    height: 0;
+    /* Левое крыло бантика */
+    border-top: 8px solid #ff4d6d;
+    border-bottom: 8px solid #ff4d6d;
+    border-left: 12px solid transparent;
+    border-right: 12px solid #ff4d6d;
+    border-radius: 4px;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    transform: rotate(15deg);
+    animation: bowWobble 1.2s infinite ease-in-out alternate;
+}
+
+/* Добавляем второе крылышко и узелок бантика */
+.css-luxury-cat::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: -2px;
+    width: 4px;
+    height: 4px;
+    background: #ff758f; /* Центр бантика (узелок) */
+    border-radius: 50%;
+    z-index: 11;
+    box-shadow: 4px 0 0 #ff4d6d, 5px -4px 0 transparent, 5px 4px 0 transparent;
+    /* Рисуем правое крылышко бантика через тень */
+    filter: drop-shadow(2px 0px 0px #ff4d6d);
+    transform: rotate(15deg);
+}
+
+/* Компактное правое крыло бантика через дополнительные стили */
+.cat-ear.right::before {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    right: -16px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid #ff4d6d;
+    border-bottom: 8px solid #ff4d6d;
+    border-right: 12px solid transparent;
+    border-left: 12px solid #ff4d6d;
+    border-radius: 4px;
+    z-index: 9;
+    transform: rotate(15deg);
+}
