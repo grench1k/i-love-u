@@ -14,7 +14,7 @@ function triggerCatMagic(event) {
         // Вставляем структуру ВТОРОГО ЭКРАНА (Котики + Текст поцелуя + Кнопка)
         container.innerHTML = `
             <!-- 🐱❤️🐱 ФИКСИРОВАННЫЙ БЛОК КОТИКОВ -->
-            <div class="cats-love-scene">
+            <div class="cats-love-scene" style="display: flex !important; visibility: visible !important; opacity: 1 !important;">
                 <div class="cats-heart">❤️</div>
                 <div class="cats-couple">
                     <div class="love-cat cat-left">
