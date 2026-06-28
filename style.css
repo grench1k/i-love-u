@@ -1,0 +1,452 @@
+/* Общие настройки для плавности */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    background-color: #ffe5ec;
+}
+
+/* Настройка экранов */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 2;
+}
+
+/* Нежные романтические градиенты */
+#page1 { background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%); }
+#page2 { background: linear-gradient(135deg, #ffb3c6 0%, #ff8fa3 100%); transform: translateY(100%); }
+#page3 { background: linear-gradient(135deg, #ff8fa3 0%, #ff4d6d 100%); transform: translateY(100%); }
+
+/* Падающие фоновые сердечки */
+.bg-heart {
+    position: absolute;
+    color: rgba(255, 77, 109, 0.25);
+    font-size: 20px;
+    pointer-events: none;
+    animation: floatUp 5s linear infinite;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(105vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
+}
+
+/* ==========================================================
+   НОВАЯ АНАТОМИЯ МАКСИМАЛЬНО МИЛОГО И РЕАЛИСТИЧНОГО КОТА (CSS)
+   ========================================================== */
+.cat-container {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#cat1 {
+    top: 30%;
+    left: calc(50% - 250px);
+    animation: catWalk 3.5s ease-in-out infinite alternate;
+}
+
+.cat-body-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Пушистые ушки с шерсткой */
+.ear {
+    position: absolute;
+    width: 44px;
+    height: 55px;
+    background: #8b5a2b; /* Основной теплый коричневый */
+    border-radius: 65% 35% 0% 0% / 100% 100% 0% 0%;
+}
+.ear.left { left: 18px; transform: rotate(-18deg); }
+.ear.right { right: 18px; transform: rotate(18deg); }
+.ear::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 38px;
+    background: #ffa6c9; /* Милый розовый контур ушка */
+    left: 8px;
+    top: 10px;
+    border-radius: 65% 35% 0% 0% / 100% 100% 0% 0%;
+    box-shadow: -2px 2px 0 rgba(255,255,255,0.4); /* Ворсинки внутри */
+}
+
+/* Большая круглая голова с пухлыми щечками */
+.head {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    width: 160px;
+    height: 115px;
+    background: #a06a42;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset -15px -10px 0 #7c4f2f, 0 8px 16px rgba(124, 79, 47, 0.2);
+    z-index: 5;
+}
+
+/* Пушистые круглые щечки (кавайный объем) */
+.cheeks {
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    width: 130px;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+.cheeks::before, .cheeks::after {
+    content: '';
+    width: 55px;
+    height: 45px;
+    background: #b67d53; /* Более светлый пушистый оттенок */
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Живые, невероятно милые аниме-глаза с двойным бликом */
+.eyes {
+    position: absolute;
+    top: 38px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px;
+    z-index: 6;
+}
+.eye {
+    width: 32px;
+    height: 32px;
+    background: #1e293b; /* Глубокий темный цвет глаз */
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    border: 2px solid #5a381e;
+    animation: blinkEye 4s infinite;
+    overflow: hidden;
+}
+/* Двойные сияющие блики для эффекта "милых глазок" */
+.pupil {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.pupil::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff; /* Главный большой блик */
+    border-radius: 50%;
+    top: 4px;
+    left: 5px;
+}
+.pupil::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #fff; /* Второй маленький нижний блик */
+    border-radius: 50%;
+    bottom: 5px;
+    right: 6px;
+    opacity: 0.8;
+}
+@keyframes blinkEye {
+    0%, 92%, 100% { transform: scaleY(1); }
+    96% { transform: scaleY(0.05); }
+}
+
+/* Маленький аккуратный носик и ротик */
+.nose {
+    position: absolute;
+    top: 68px;
+    left: calc(50% - 8px);
+    width: 16px;
+    height: 10px;
+    background: #ff8fa3;
+    border-radius: 40% 40% 60% 60%;
+    z-index: 7;
+}
+
+/* Настоящие тонкие длинные усы */
+.whiskers-left, .whiskers-right {
+    position: absolute;
+    top: 72px;
+    width: 50px;
+    height: 20px;
+    z-index: 6;
+}
+.whiskers-left { left: -22px; }
+.whiskers-right { right: -22px; }
+.whiskers-left div, .whiskers-right div {
+    width: 100%;
+    height: 1.5px;
+    background: rgba(255,255,255,0.85);
+    margin-bottom: 5px;
+    border-radius: 50%;
+}
+.whiskers-left div:first-child { transform: rotate(12deg); }
+.whiskers-left div:last-child { transform: rotate(-5deg); }
+.whiskers-right div:first-child { transform: rotate(-12deg); }
+.whiskers-right div:last-child { transform: rotate(5deg); }
+
+/* Мягкое тельце с пушистым белым воротничком на грудке */
+.body {
+    position: absolute;
+    bottom: 0px;
+    left: 25px;
+    width: 130px;
+    height: 85px;
+    background: #a06a42;
+    border-radius: 50px 50px 15px 15px;
+    box-shadow: inset -15px -8px 0 #7c4f2f;
+    z-index: 3;
+}
+/* Пушистая белая грудка */
+.body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 70px;
+    height: 40px;
+    background: #f4f1de; /* Кремово-белая шерстка */
+    border-radius: 0 0 40px 40px;
+    box-shadow: inset 0 -3px 5px rgba(0,0,0,0.05);
+}
+
+/* Лапки с розовыми подушечками (подушечки проявятся при прыжке) */
+.paws {
+    position: absolute;
+    bottom: -6px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 25px;
+}
+.paw {
+    width: 28px;
+    height: 20px;
+    background: #7c4f2f;
+    border-radius: 45% 45% 35% 35%;
+    position: relative;
+}
+/* Скрытые розовые пяточки, которые переворачиваются при прыжке */
+.paw::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 10px;
+    background: #ffb3c6;
+    bottom: 3px;
+    left: 7px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Реалистичный очень пушистый хвост */
+.tail {
+    position: absolute;
+    width: 75px;
+    height: 26px;
+    background: #7c4f2f;
+    border-radius: 20px;
+    left: -45px;
+    bottom: 25px;
+    transform-origin: right center;
+    box-shadow: inset -2px -4px 0 #5a381e;
+    animation: tailWag 1s ease-in-out infinite alternate;
+}
+@keyframes tailWag {
+    0% { transform: rotate(-30deg) translateY(0); }
+    100% { transform: rotate(15deg) translateY(-5px); }
+}
+
+/* =======================================
+   АНИМАЦИИ И МЕХАНИКА ЭКРАНОВ
+   ======================================= */
+
+/* Экран 1: Текст плавно качается */
+.love-text {
+    font-size: 5.5rem;
+    color: #ff4d6d;
+    position: absolute;
+    top: 25%;
+    font-weight: 900;
+    text-shadow: 4px 6px 20px rgba(255, 77, 109, 0.2);
+    animation: textMove 3.5s ease-in-out infinite alternate;
+    user-select: none;
+}
+
+@keyframes catWalk {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(60px); }
+}
+@keyframes textMove {
+    0% { transform: translateX(-40px); }
+    100% { transform: translateX(30px); }
+}
+
+/* Реалистичное падение вниз */
+.gravitational-fall {
+    animation: fallPhysics 1.4s cubic-bezier(0.5, 0.05, 0.75, 0.35) forwards !important;
+}
+@keyframes fallPhysics {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(60px) rotate(12deg) scale(0.95); }
+    100% { transform: translateY(115vh) rotate(40deg) scale(0.9); opacity: 0; }
+}
+
+/* Экран 2: Засада в кустах */
+.bush {
+    position: absolute;
+    bottom: -30px;
+    width: 440px;
+    height: 240px;
+    background: #2d6a4f;
+    border-radius: 120px 120px 0 0;
+    box-shadow: inset -25px 0 0 #1b4332, 0 -10px 25px rgba(0,0,0,0.15);
+    z-index: 12;
+}
+#cat2 {
+    bottom: 75px;
+    left: calc(50% - 90px);
+    z-index: 9;
+    transform: scale(0.85);
+    animation: buttWiggle 0.45s ease-in-out infinite alternate; /* Кошачья засада */
+}
+@keyframes buttWiggle {
+    0% { transform: scale(0.85) translateY(18px) rotate(-5deg); }
+    100% { transform: scale(0.85) translateY(0px) rotate(5deg); }
+}
+
+/* Парящее сердце-цель */
+.target-heart {
+    position: absolute;
+    font-size: 65px;
+    color: #ff4d6d;
+    top: 25%;
+    left: calc(50% - 32px);
+    z-index: 15;
+    animation: heartFloat 2.3s ease-in-out infinite alternate;
+    text-shadow: 0 0 25px rgba(255,77,109,0.7);
+}
+@keyframes heartFloat {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-45px) scale(1.18); }
+}
+
+/* Эпичный прыжок "Кусь и Побег" */
+.cat-pounce {
+    animation: pounceEffect 1.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+}
+/* В полете у кота переворачиваются лапки и видны розовые подушечки */
+.cat-pounce .paw::after {
+    opacity: 1 !important;
+}
+
+.heart-stolen {
+    animation: heartStolenEffect 1.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+}
+
+@keyframes pounceEffect {
+    0% { bottom: 75px; left: calc(50% - 90px); z-index: 16; }
+    25% { bottom: 55%; left: calc(50% - 80px); z-index: 16; transform: scale(1.15) rotate(-22deg); } /* Поймал! */
+    42% { bottom: 100px; left: calc(50% - 50px); z-index: 16; transform: scale(1) rotate(0); } /* Приземление */
+    58% { transform: scaleX(-1); bottom: 100px; left: calc(50% - 50px); } /* Разворот */
+    100% { left: -280px; bottom: 100px; transform: scaleX(-1); } /* Побег! */
+}
+
+@keyframes heartStolenEffect {
+    0% { top: 25%; left: calc(50% - 32px); }
+    25% { top: 38%; left: calc(50% - 20px); transform: scale(0.55); } /* Зажали в зубах */
+    42% { top: 70%; left: calc(50% - 15px); transform: scale(0.5); } 
+    58% { top: 70%; left: calc(50% - 55px); transform: scale(0.5); } 
+    100% { left: -180px; top: 70%; transform: scale(0.5); }
+}
+
+/* Экран 3: Нежная финальная открытка */
+.final-card {
+    background: white;
+    padding: 45px 35px;
+    border-radius: 35px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(255, 77, 109, 0.15);
+    max-width: 460px;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+    border: 2px dashed #ffb3c6;
+}
+
+.final-card.reveal {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.final-card h2 { 
+    color: #ff4d6d; 
+    font-size: 2.3rem; 
+    margin-bottom: 15px; 
+}
+
+.final-card p { 
+    color: #4a5568; 
+    font-size: 1.15rem; 
+    line-height: 1.6; 
+}
+
+.heart-beating {
+    font-size: 75px;
+    color: #ff4d6d;
+    margin-top: 20px;
+    animation: beat 0.7s infinite alternate;
+}
+
+@keyframes beat {
+    0% { transform: scale(1); text-shadow: 0 0 10px rgba(255,77,109,0.3); }
+    100% { transform: scale(1.25); text-shadow: 0 0 25px rgba(255,77,109,0.7); }
+}
+
+/* Подсказки */
+.hint {
+    position: absolute;
+    bottom: 40px;
+    color: #b76e79;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    background: rgba(255,255,255,0.5);
+    padding: 8px 20px;
+    border-radius: 25px;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.hint.dark { 
+    color: white; 
+    background: rgba(0,0,0,0.2); 
+}
