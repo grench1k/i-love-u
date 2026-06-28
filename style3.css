@@ -1,0 +1,135 @@
+/* ========================================================
+   🐱❤️🐱 ОТРИСОВКА ПАРОЧКИ КОТИКОВ С ОБЩИМ СЕРДЦЕМ (ЭКРАН 3)
+   ======================================================== */
+
+.cats-gift-scene {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 15px;
+    z-index: 10;
+}
+
+.cats-gift-couple {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    width: 150px;
+    height: 70px;
+}
+
+.gift-cat {
+    position: relative;
+    width: 70px;
+    height: 60px;
+}
+
+/* Расположение и слои */
+.g-cat-left {
+    margin-right: -10px;
+    z-index: 2;
+}
+.g-cat-right {
+    margin-left: -10px;
+    z-index: 1;
+}
+
+/* Тело-голова котиков */
+.g-head {
+    position: absolute;
+    bottom: 0;
+    width: 70px;
+    height: 55px;
+    border-radius: 50% 50% 42% 42%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.g-cat-left .g-head {
+    background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 75%, #e1e1e8 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.g-cat-right .g-head {
+    background: radial-gradient(circle at 60% 30%, #e1e1e8 0%, #c8c8d3 75%, #b5b5c3 100%);
+    border: 1px solid rgba(200, 200, 210, 0.2);
+}
+
+/* Ушки */
+.g-ear {
+    position: absolute;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+}
+.g-cat-left .g-ear { border-bottom: 20px solid #ffffff; }
+.g-cat-right .g-ear { border-bottom: 20px solid #e1e1e8; }
+.g-ear.left { left: 8px; transform: rotate(-10deg); }
+.g-ear.right { right: 8px; transform: rotate(10deg); }
+.g-ear::after {
+    content: ''; position: absolute; top: 5px; left: -6px; width: 0; height: 0;
+    border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 11px solid #ffccd5;
+}
+
+/* Влюбленные глазки-дуги */
+.g-eye {
+    position: absolute;
+    top: 22px;
+    width: 10px;
+    height: 5px;
+    border-bottom: 2px solid #232329;
+    border-radius: 0 0 5px 5px;
+}
+.g-cat-left .g-eye { right: 15px; }
+.g-cat-right .g-eye { left: 15px; }
+
+/* Крохотные носики */
+.g-head::before {
+    content: ''; position: absolute; top: 30px; width: 5px; height: 3px; background: #ff5d8f; border-radius: 50%;
+}
+.g-cat-left .g-head::before { right: 8px; }
+.g-cat-right .g-head::before { left: 8px; }
+
+/* Румянец */
+.g-blush {
+    position: absolute;
+    top: 26px;
+    width: 10px;
+    height: 5px;
+    background: rgba(255, 77, 109, 0.25);
+    border-radius: 50%;
+    filter: blur(0.5px);
+}
+.g-cat-left .g-blush { left: 12px; }
+.g-cat-right .g-blush { right: 12px; }
+
+/* 🐾 МИЛЫЕ ЛАПКИ, КОТОРЫЕ ДЕРЖАТ СЕРДЦЕ */
+.g-paw {
+    position: absolute;
+    bottom: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    z-index: 5;
+}
+.g-cat-left .g-paw { right: 18px; background: #ffffff; box-shadow: -2px 2px 5px rgba(0,0,0,0.1); }
+.g-cat-right .g-paw { left: 18px; background: #e1e1e8; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); }
+
+/* ❤️ БОЛЬШОЕ ОБЩЕЕ ПУЛЬСИРУЮЩЕЕ СЕРДЦЕ В ЛАПАХ */
+.shared-gift-heart {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6rem;
+    z-index: 6;
+    filter: drop-shadow(0 2px 5px rgba(255, 0, 85, 0.4));
+    animation: sharedHeartBeat 1s infinite ease-in-out alternate;
+}
+
+@keyframes sharedHeartBeat {
+    0% { transform: translateX(-50%) scale(0.95); }
+    100% { transform: translateX(-50%) scale(1.15); filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.7)); }
+}

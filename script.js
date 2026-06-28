@@ -25,7 +25,7 @@ function triggerCatMagic(event) {
     }, 650);
 }
 
-// ПЕРЕХОД НА ЭКРАН 3 (3D-открытка)
+// ПЕРЕХОД НА ЭКРАН 3 (3D-открытка + Котики с общим сердцем)
 function triggerScreen3(event) {
     if (event) event.stopPropagation();
     
@@ -36,17 +36,16 @@ function triggerScreen3(event) {
     container.style.transition = "all 0.5s ease";
     
     setTimeout(() => {
-        // Вставляем структуру ЭКРАНА 3 с отредактированной красивой подписью
+        // Вставляем структуру ЭКРАНА 3
         container.innerHTML = `
             <div class="badge-container">
                 <span class="heart-badge">✨ Твой 3D Подарок</span>
             </div>
             
             <h2 style="margin-bottom: 5px; font-size: 1.3rem;">Покрути её пальчиком...</h2>
-            
-            <!-- 👇 КРАСИВЫЙ И ПРАВИЛЬНЫЙ ВАРИАНТ ТЕКСТА -->
-            <p class="subtitle" style="margin-bottom: 25px; font-size: 0.88rem; line-height: 1.4; padding: 0 10px;">Я оживил её здесь, в интернете, чтобы мы никогда её не потеряли и она всегда была с нами...</p>
+            <p class="subtitle" style="margin-bottom: 15px; font-size: 0.88rem; line-height: 1.4; padding: 0 10px;">Я оживил её здесь, в интернете, чтобы мы никогда её не потеряли и она всегда была с нами...</p>
 
+            <!-- Высокая 3D Сцена -->
             <div class="scene-3d">
                 <div class="card-3d" id="postcard3d">
                     <div class="card-3d-face card-3d-front"></div>
@@ -54,7 +53,20 @@ function triggerScreen3(event) {
                 </div>
             </div>
             
-            <p class="subtitle" style="margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.5);">Вращай влево и вправо</p>
+            <!-- 🐱❤️🐱 КОТИКИ С ОБЩИМ СЕРДЦЕМ ИЗ style3.css -->
+            <div class="cats-gift-scene">
+                <div class="shared-gift-heart">❤️</div>
+                <div class="cats-gift-couple">
+                    <div class="gift-cat g-cat-left">
+                        <div class="g-ear left"></div><div class="g-ear right"></div>
+                        <div class="g-head"><div class="g-eye"></div><div class="g-blush"></div><div class="g-paw"></div></div>
+                    </div>
+                    <div class="gift-cat g-cat-right">
+                        <div class="g-ear left"></div><div class="g-ear right"></div>
+                        <div class="g-head"><div class="g-eye"></div><div class="g-blush"></div><div class="g-paw"></div></div>
+                    </div>
+                </div>
+            </div>
         `;
         
         container.style.opacity = "1";
@@ -73,7 +85,6 @@ function init3DCardRotation() {
     let startX = 0;
     let currentRotation = 0;
 
-    // Смартфоны (Touch)
     card.addEventListener('touchstart', (e) => {
         isDragging = true;
         startX = e.touches.clientX;
@@ -94,19 +105,14 @@ function init3DCardRotation() {
         card.style.transition = 'transform 0.3s ease-out';
     });
 
-    // Компьютер (Мышь)
     card.addEventListener('mousedown', (e) => {
-        isDragging = true; 
-        startX = e.clientX; 
-        card.style.transition = 'none';
+        isDragging = true; startX = e.clientX; card.style.transition = 'none';
     });
-    
     document.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         const deltaX = e.clientX - startX;
         card.style.transform = `rotateY(${currentRotation + (deltaX * 0.8)}deg)`;
     });
-    
     document.addEventListener('mouseup', (e) => {
         if (isDragging) {
             isDragging = false;

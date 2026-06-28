@@ -6,6 +6,7 @@
     <title>Для моей любимой ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
     <style>
         #screen1 { display: block; }
         #screen2 {
@@ -107,7 +108,7 @@
                     <p class="surprise-text fade-in-row">Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.</p>
                     <span class="highlight-text fade-in-row">С днем рождения, моя любимая! 😘</span>
                     
-                    <!-- Кнопка перехода на 3D-открытку -->
+                    <!-- Кнопка перехода к главе 3 (3D-открытке) -->
                     <button class="next-scene-btn fade-in-row" onclick="triggerScreen3(event)" style="margin-top: 20px;">Открыть подарок 🎁</button>
                 </div>
 
@@ -115,23 +116,23 @@
         </div>
     </div>
 
-    <!-- ПОДКЛЮЧАЕМ ВНЕШНИЙ СКРИПТ -->
+    <!-- ПОДКЛЮЧЕНИЕ ВНЕШНЕГО СКРИПТА С СИСТЕМОЙ 3D ВРАЩЕНИЯ И УПРАВЛЕНИЯ -->
     <script src="script.js"></script>
     <script>
-        // Код запуска музыки (его важно держать в html, чтобы браузер не блокировал поток)
+        // Код инициализации музыки от самого первого взаимодействия с экраном телефона
         function initAudioOnFirstTouch() {
             const music = document.getElementById("bgMusic");
             if (music) {
                 music.play().then(() => {
                     document.body.removeEventListener('click', initAudioOnFirstTouch);
                     document.body.removeEventListener('touchstart', initAudioOnFirstTouch);
-                }).catch(err => console.log("Блокировка автозвука:", err));
+                }).catch(err => console.log("Блокировка автозвука браузером:", err));
             }
         }
         document.body.addEventListener('click', initAudioOnFirstTouch);
         document.body.addEventListener('touchstart', initAudioOnFirstTouch);
 
-        // Парящие фоновые сердца
+        // Постоянная генерация фоновых парящих сердечек
         function createAmbientHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
@@ -149,7 +150,7 @@
         }
         setInterval(createAmbientHeart, 700);
 
-        // Взрыв эмодзи
+        // Безопасный спавн праздничных частиц при клике строго внутри стеклянной карточки
         function spawnParticles(e) {
             if (e.target.closest('.cat-touch-zone') || e.target.closest('.next-scene-btn')) return;
             const count = 10; const shapes = ['❤️', '💖', '✨', '💕'];
@@ -165,15 +166,33 @@
             }
         }
 
-        // Параллакс карточки
+        // 🖥️ 3D-эффект для компьютера (движение мышки)
         document.addEventListener('mousemove', function(e) {
-            const moveX = (window.innerWidth / 2 - e.clientX) * 0.03;
-            const moveY = (window.innerHeight / 2 - e.clientY) * 0.03;
-            document.getElementById('glow1').style.transform = `translate(${moveX}px, ${moveY}px)`;
-            document.getElementById('glow2').style.transform = `translate(${-moveX}px, ${-moveY}px)`;
-            const card = document.getElementById('mainCard');
-            if(card) { card.style.transform = `rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`; }
+            calculate3DCardRotation(e.clientX, e.clientY);
         });
+
+        // 📱 3D-эффект для мобильных телефонов (движение пальца по экрану)
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches && e.touches.length > 0) {
+                calculate3DCardRotation(e.touches.clientX, e.touches.clientY);
+            }
+        }, { passive: true });
+
+        // Функция, которая рассчитывает физику наклона карточки и фона
+        function calculate3DCardRotation(currentX, currentY) {
+            const moveX = (window.innerWidth / 2 - currentX) * 0.03;
+            const moveY = (window.innerHeight / 2 - currentY) * 0.03;
+            
+            const glow1 = document.getElementById('glow1');
+            const glow2 = document.getElementById('glow2');
+            if (glow1) glow1.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            if (glow2) glow2.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+            
+            const card = document.getElementById('mainCard');
+            if (card) { 
+                card.style.transform = `rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg)`; 
+            }
+        }
     </script>
 </body>
 </html>
