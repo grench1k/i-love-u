@@ -133,3 +133,39 @@
     0% { transform: translateX(-50%) scale(0.95); }
     100% { transform: translateX(-50%) scale(1.15); filter: drop-shadow(0 0 8px rgba(255, 0, 85, 0.7)); }
 }
+
+/* ========================================================
+   🎀 КЛАССИЧЕСКИЙ КРУГЛЫЙ БАНТИК ДЛЯ КОШЕЧКИ (ЭКРАН 3)
+   ======================================================== */
+.g-cat-right::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    width: 6px;
+    height: 6px;
+    background: #ff4d6d; /* Узелок */
+    border-radius: 50%;
+    z-index: 20;
+    box-shadow: 
+        -6px -1px 0 1px #ff4d6d, /* Левое ушко */
+        6px 1px 0 1px #ff4d6d;   /* Правое ушко */
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+    transform: rotate(20deg);
+}
+
+/* Ленточки бантика на третьем экране */
+.g-cat-right .g-ear.right::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -16px !important;
+    right: -6px !important;
+    width: 2px !important;
+    height: 7px !important;
+    background: #ff4d6d !important;
+    border-radius: 1px !important;
+    box-shadow: 4px 1px 0 #ff4d6d !important;
+    transform: rotate(35deg) !important;
+    border: none !important;
+    z-index: 19 !important;
+}
