@@ -7,31 +7,20 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
     <style>
-        /* Управление видимостью экранов */
-        #screen1 {
-            display: block;
-        }
+        #screen1 { display: block; }
         #screen2 {
             display: none;
             opacity: 0;
             transform: scale(0.95);
             transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        #screen2.active {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-        /* Плавное появление строчек текста */
+        #screen2.active { display: block; opacity: 1; transform: scale(1); }
         .fade-in-row {
             opacity: 0;
             transform: translateY(10px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        .fade-in-row.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in-row.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -45,13 +34,11 @@
     <div class="floating-ambient-hearts" id="heartsContainer"></div>
 
     <div class="mobile-container">
-        <!-- Главная карточка-стекло (клики теперь ловятся строго на ней) -->
+        <!-- Главная карточка -->
         <div class="premium-card" id="mainCard" onclick="spawnParticles(event)">
             <div class="card-glow-border"></div>
             
-            <!-- ==========================================
-                 📱 ЭКРАН 1: СТАРТОВЫЙ
-                 ========================================== -->
+            <!-- ЭКРАН 1: СТАРТОВЫЙ -->
             <div id="screen1">
                 <div class="badge-container">
                     <span class="heart-badge">❤️ Only for You</span>
@@ -60,13 +47,9 @@
                 <h1>Моей любимой</h1>
                 <p class="subtitle">Ты — лучшее, что случилось со мной. Каждое мгновение с тобой наполнено счастьем. Прикоснись к котику... ✨</p>
 
-                <!-- Рамка, куда подгружается photo.jpg -->
                 <div class="glass-photo-frame"></div>
-
-                <!-- Сияющая надпись -->
                 <div class="love-neon-text">I love you</div>
                 
-                <!-- Интерактивный котик -->
                 <div class="cat-touch-zone" onclick="triggerCatMagic(event)">
                     <div class="css-luxury-cat" id="luxuryCat">
                         <div class="cat-ear left"></div><div class="cat-ear right"></div>
@@ -83,39 +66,40 @@
                 </div>
             </div>
 
-            <!-- ==========================================
-                 📱 ЭКРАН 2: ПРИЗНАНИЕ
-                 ========================================== -->
+            <!-- ЭКРАН 2: ПРИЗНАНИЕ -->
             <div id="screen2">
-                <!-- 🐱❤️🐱 ВЛЮБЛЕННЫЕ КОТИКИ -->
+                <!-- 🐱❤️🐱 ВЛЮБЛЕННЫЕ ПОЛОСАТЫЕ КОТИКИ -->
                 <div class="cats-love-scene">
                     <div class="cats-heart">❤️</div>
                     <div class="cats-couple">
+                        <!-- Левый котик -->
                         <div class="love-cat cat-left">
                             <div class="l-ear left"></div><div class="l-ear right"></div>
-                            <div class="l-head"><div class="l-eye"></div><div class="l-blush"></div></div>
+                            <div class="l-head">
+                                <!-- Полоски на лбу и щечках -->
+                                <div class="stripes top-stripe"></div>
+                                <div class="stripes side-stripe s-left"></div>
+                                <div class="l-eye"></div>
+                                <div class="l-blush"></div>
+                            </div>
                         </div>
+                        <!-- Правый котик -->
                         <div class="love-cat cat-right">
                             <div class="l-ear left"></div><div class="l-ear right"></div>
-                            <div class="l-head"><div class="l-eye"></div><div class="l-blush"></div></div>
+                            <div class="l-head">
+                                <div class="stripes top-stripe"></div>
+                                <div class="stripes side-stripe s-right"></div>
+                                <div class="l-eye"></div>
+                                <div class="l-blush"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <h2 class="fade-in-row">А ты помнишь наш первый поцелуй?</h2>
-                
-                <p class="surprise-text fade-in-row">
-                    Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!
-                </p>
-                
-                <p class="surprise-text fade-in-row">
-                    И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD
-                </p>
-                
-                <p class="surprise-text fade-in-row">
-                    Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.
-                </p>
-                
+                <p class="surprise-text fade-in-row">Я никогда не забуду, как сильно я тогда <span class="romantic-accent">колотился от страха</span>. Мне казалось, что я прямо сейчас провалюсь под землю и просто умру от стыда!</p>
+                <p class="surprise-text fade-in-row">И, конечно, я всегда буду помнить, что всё это происходило <span class="romantic-accent-alt">в кинотеатре</span>, пока на фоне крутили какой-то максимально упоротый боевик xD</p>
+                <p class="surprise-text fade-in-row">Но сразу после этого поцелуя я почувствовал себя самым счастливым человеком на планете — счастливым до безумия.</p>
                 <span class="highlight-text fade-in-row">С днем рождения, моя любимая! 😘</span>
             </div>
 
@@ -123,7 +107,7 @@
     </div>
 
     <script>
-        // Старт музыки по первому касанию
+        // Старт музыки при первом тапе
         function initAudioOnFirstTouch() {
             const music = document.getElementById("bgMusic");
             if (music) {
@@ -136,14 +120,20 @@
         document.body.addEventListener('click', initAudioOnFirstTouch);
         document.body.addEventListener('touchstart', initAudioOnFirstTouch);
 
-        // Переключение экранов при клике на кота
+        // Переключение экранов + НАДЁЖНЫЙ форсированный пуск музыки
         function triggerCatMagic(event) {
-            if (event) event.stopPropagation(); // Не даем сработать спавну частиц из-под лапки кота
+            if (event) event.stopPropagation();
 
             const cat = document.getElementById("luxuryCat");
+            const music = document.getElementById("bgMusic");
             if (cat.classList.contains("jump-premium")) return;
             
             cat.classList.add("jump-premium");
+            
+            // Заставляем плеер принудительно играть при прыжке котика
+            if (music) {
+                music.play().catch(err => console.log("Принудительный старт трека:", err));
+            }
             
             setTimeout(() => {
                 const s1 = document.getElementById('screen1');
@@ -151,6 +141,9 @@
 
                 s1.style.display = 'none';
                 s2.classList.add('active');
+
+                // Ещё раз толкаем аудиопоток на втором экране для Safari/Chrome
+                if (music) { music.play().catch(err => {}); }
 
                 const rows = document.querySelectorAll('.fade-in-row');
                 rows.forEach((row, index) => {
@@ -161,7 +154,7 @@
             }, 650);
         }
 
-        // Парящие фоновые сердца
+        // Фоновые сердца
         function createAmbientHeart() {
             const container = document.getElementById('heartsContainer');
             if(!container) return;
@@ -179,35 +172,23 @@
         }
         setInterval(createAmbientHeart, 700);
 
-        // 🔥 ИСПРАВЛЕННЫЙ ВЗРЫВ ЭМОДЗИ: Работает СТРОГО внутри стеклянного окна
+        // Взрыв эмодзи
         function spawnParticles(e) {
-            // Если кликнули по котику на первом экране, взрыв не дублируем
             if (e.target.closest('.cat-touch-zone')) return;
-
-            const count = 10; 
-            const shapes = ['❤️', '💖', '✨', '💕'];
+            const count = 10; const shapes = ['❤️', '💖', '✨', '💕'];
             for(let i = 0; i < count; i++) {
-                const p = document.createElement('div'); 
-                p.className = 'click-particle';
+                const p = document.createElement('div'); p.className = 'click-particle';
                 p.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
-                
-                // Центрируем ровно по пальцу
-                p.style.left = e.clientX + 'px'; 
-                p.style.top = e.clientY + 'px';
-                
-                const angle = Math.random() * Math.PI * 2; 
-                const velocity = Math.random() * 60 + 30; // Чуть уменьшили радиус разлета, чтобы не выходить за рамки карточки
-                
+                p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+                const angle = Math.random() * Math.PI * 2; const velocity = Math.random() * 60 + 30;
                 p.style.setProperty('--x', `${Math.cos(angle) * velocity}px`);
                 p.style.setProperty('--y', `${Math.sin(angle) * velocity}px`);
                 p.style.fontSize = (Math.random() * 12 + 10) + 'px';
-                
-                document.body.appendChild(p); 
-                setTimeout(() => { p.remove(); }, 800);
+                document.body.appendChild(p); setTimeout(() => { p.remove(); }, 800);
             }
         }
 
-        // 3D Параллакс
+        // Параллакс
         document.addEventListener('mousemove', function(e) {
             const moveX = (window.innerWidth / 2 - e.clientX) * 0.03;
             const moveY = (window.innerHeight / 2 - e.clientY) * 0.03;

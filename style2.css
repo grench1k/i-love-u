@@ -2,7 +2,6 @@
    ✨ ПРЕМИАЛЬНЫЙ СТИЛЬ ДЛЯ ВТОРОГО ЭКРАНА (ТЕКСТ И КОТИКИ)
    ======================================================== */
 
-/* Компактная стеклянная карточка для второго экрана */
 .premium-surprise-card {
     background: rgba(255, 20, 100, 0.05);
     backdrop-filter: blur(25px);
@@ -14,216 +13,87 @@
     transition: transform 0.1s ease-out;
 }
 
-/* Эффект поочередного проявления строчек текста */
 .fade-in-row {
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.fade-in-row.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.fade-in-row.visible { opacity: 1; transform: translateY(0); }
 
-/* Красивый заголовок истории */
 h2 {
-    font-size: 1.35rem;
-    font-weight: 800;
-    margin: 15px 0 12px 0;
-    background: linear-gradient(90deg, #ff0055, #ff758f);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.2;
+    font-size: 1.35rem; font-weight: 800; margin: 15px 0 12px 0;
+    background: linear-gradient(90deg, #ff0055, #ff758f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.2;
 }
 
-/* Настройка абзацев воспоминания */
-.surprise-text {
-    font-size: 0.88rem;
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0 0 10px 0;
-    text-align: center;
-}
-
-/* Подсветка ключевых слов */
-.romantic-accent {
-    color: #ff4d6d;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(255, 77, 109, 0.4);
-}
-.romantic-accent-alt {
-    color: #b57cff;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(181, 124, 255, 0.4);
-}
-
-/* Финальное милое поздравление */
-.highlight-text {
-    font-weight: 700;
-    color: #ff758f;
-    display: block;
-    margin-top: 14px;
-    font-size: 0.95rem;
-    text-shadow: 0 0 12px rgba(255, 117, 143, 0.5);
-}
-
+.surprise-text { font-size: 0.88rem; line-height: 1.55; color: rgba(255, 255, 255, 0.9); margin: 0 0 10px 0; text-align: center; }
+.romantic-accent { color: #ff4d6d; font-weight: 600; text-shadow: 0 0 8px rgba(255, 77, 109, 0.4); }
+.romantic-accent-alt { color: #b57cff; font-weight: 600; text-shadow: 0 0 8px rgba(181, 124, 255, 0.4); }
+.highlight-text { font-weight: 700; color: #ff758f; display: block; margin-top: 14px; font-size: 0.95rem; text-shadow: 0 0 12px rgba(255, 117, 143, 0.5); }
 
 /* ========================================================
-   🐱❤️🐱 ОТРИСОВКА ВЛЮБЛЕННОЙ ПАРОЧКИ КОТИКОВ С НОСИКАМИ
+   🐱❤️🐱 КОТИКИ С ТИГРОВЫМИ ПОЛОСКАМИ И НОСИКАМИ
    ======================================================== */
 
-/* Главная сцена для котиков */
 .cats-love-scene {
-    position: relative;
-    width: 100%;
-    height: 100px; 
-    display: flex !important;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    z-index: 999;
+    position: relative; width: 100%; height: 100px; display: flex !important; justify-content: center; align-items: flex-end; margin-top: 10px; margin-bottom: 20px; z-index: 999;
 }
+.cats-couple { display: flex !important; align-items: flex-end; position: relative; width: 140px; height: 80px; }
+.love-cat { position: relative; width: 75px; height: 65px; }
 
-/* Контейнер пары котиков */
-.cats-couple {
-    display: flex !important;
-    align-items: flex-end;
-    position: relative;
-    width: 140px; 
-    height: 80px;
-}
+.cat-left { margin-right: -10px; z-index: 2; animation: leanLeftPremium 3s infinite ease-in-out alternate; }
+.cat-right { margin-left: -10px; z-index: 1; animation: leanRightPremium 3s infinite ease-in-out alternate-reverse; }
 
-/* Базовые настройки для каждого котика */
-.love-cat {
-    position: relative;
-    width: 75px;  
-    height: 65px;
-}
+.l-head { position: absolute; bottom: 0; width: 75px; height: 60px; border-radius: 50% 50% 44% 44%; box-shadow: 0 6px 15px rgba(0,0,0,0.25); overflow: hidden; /* Срезаем вылезающие полоски */ }
+.cat-left .l-head { background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 75%, #e1e1e8 100%); border: 1px solid rgba(255, 255, 255, 0.5); }
+.cat-right .l-head { background: radial-gradient(circle at 60% 30%, #e1e1e8 0%, #c8c8d3 75%, #b5b5c3 100%); border: 1px solid rgba(200, 200, 210, 0.3); }
 
-/* Левый котик (Белоснежный) */
-.cat-left {
-    margin-right: -10px; 
-    z-index: 2;
-    animation: leanLeftPremium 3s infinite ease-in-out alternate;
-}
-
-/* Правый котик (Нежно-серый) */
-.cat-right {
-    margin-left: -10px;
-    z-index: 1;
-    animation: leanRightPremium 3s infinite ease-in-out alternate-reverse;
-}
-
-/* Голова котиков с объемными тенями */
-.l-head {
+/* 🐾 РИСУЕМ ПОЛОСКИ С ПОМОЩЬЮ CSS */
+.stripes {
     position: absolute;
-    bottom: 0;
-    width: 75px;
-    height: 60px;
-    border-radius: 50% 50% 44% 44%;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    background: rgba(0, 0, 0, 0.12); /* Мягкие тёмные полоски */
+    border-radius: 50px;
 }
-.cat-left .l-head {
-    background: radial-gradient(circle at 40% 30%, #ffffff 0%, #f4f4f9 75%, #e1e1e8 100%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+/* Полоски на лбу */
+.top-stripe {
+    top: 0; left: 34px; width: 6px; height: 14px;
+    box-shadow: -10px 0 0 rgba(0,0,0,0.08), 10px 0 0 rgba(0,0,0,0.08); /* Тройная полоска */
 }
-.cat-right .l-head {
-    background: radial-gradient(circle at 60% 30%, #e1e1e8 0%, #c8c8d3 75%, #b5b5c3 100%);
-    border: 1px solid rgba(200, 200, 210, 0.3);
+/* Меняем цвет полосок у серого кота на более заметный */
+.cat-right .stripes { background: rgba(0, 0, 0, 0.2); }
+.cat-right .top-stripe { box-shadow: -10px 0 0 rgba(0,0,0,0.15), 10px 0 0 rgba(0,0,0,0.15); }
+
+/* Боковые полоски на шерсти (на щечках сзади) */
+.side-stripe { width: 18px; height: 4px; }
+.s-left {
+    top: 25px; left: -4px; transform: rotate(15deg);
+    box-shadow: 0 10px 0 rgba(0,0,0,0.1), 0 20px 0 rgba(0,0,0,0.08);
+}
+.s-right {
+    top: 25px; right: -4px; transform: rotate(-15deg);
+    box-shadow: 0 10px 0 rgba(0,0,0,0.15), 0 20px 0 rgba(0,0,0,0.12);
 }
 
-/* Ушки котиков */
-.l-ear {
-    position: absolute;
-    top: -10px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    transform-origin: bottom center;
-}
-.cat-left .l-ear { border-bottom: 22px solid #ffffff; }
-.cat-right .l-ear { border-bottom: 22px solid #e1e1e8; }
+/* Остальные детали мордочки */
+.l-ear { position: absolute; top: -10px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; transform-origin: bottom center; }
+.cat-left .l-ear { border-bottom: 22px solid #ffffff; } .cat-right .l-ear { border-bottom: 22px solid #e1e1e8; }
+.l-ear.left { left: 8px; transform: rotate(-12deg); } .l-ear.right { right: 8px; transform: rotate(12deg); }
+.l-ear::after { content: ''; position: absolute; top: 6px; left: -7px; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 13px solid #ffccd5; }
 
-.l-ear.left { left: 8px; transform: rotate(-12deg); }
-.l-ear.right { right: 8px; transform: rotate(12deg); }
+.l-eye { position: absolute; top: 24px; width: 12px; height: 6px; border-bottom: 3px solid #232329; border-radius: 0 0 6px 6px; }
+.cat-left .l-eye { right: 14px; } .cat-right .l-eye { left: 14px; }  
 
-/* Розовое наполнение ушек */
-.l-ear::after {
-    content: ''; 
-    position: absolute; 
-    top: 6px; 
-    left: -7px;
-    width: 0; 
-    height: 0;
-    border-left: 7px solid transparent; 
-    border-right: 7px solid transparent;
-    border-bottom: 13px solid #ffccd5;
-}
+/* Носики */
+.l-head::before { content: ''; position: absolute; top: 33px; width: 6px; height: 4px; background: #ff5d8f; border-radius: 50%; z-index: 5; }
+.cat-left .l-head::before { right: 11px; } .cat-right .l-head::before { left: 11px; }  
 
-/* Зажмуренные от любви глазки (милые дуги) */
-.l-eye {
-    position: absolute;
-    top: 24px;
-    width: 12px;
-    height: 6px;
-    border-bottom: 3px solid #232329;
-    border-radius: 0 0 6px 6px;
-}
-.cat-left .l-eye { right: 14px; } 
-.cat-right .l-eye { left: 14px; }  
+.l-blush { position: absolute; top: 30px; width: 12px; height: 6px; background: rgba(255, 77, 109, 0.35); border-radius: 50%; filter: blur(0.5px); }
+.cat-left .l-blush { right: 18px; } .cat-right .l-blush { left: 18px; }
 
-/* 👃🏼 НОВИНКА: МАЛЕНЬКИЕ АККУРАТНЫЕ РОЗОВЫЕ НОСИКИ */
-.l-head::before {
-    content: '';
-    position: absolute;
-    top: 33px;
-    width: 6px;
-    height: 4px;
-    background: #ff5d8f;
-    border-radius: 50%;
-    z-index: 5;
-}
-.cat-left .l-head::before { right: 11px; } /* Носик левого котика на краю мордашки */
-.cat-right .l-head::before { left: 11px; }  /* Носик правого котика на краю мордашки */
-
-/* Нежный стеснительный румянец на щечках */
-.l-blush {
-    position: absolute;
-    top: 30px;
-    width: 12px;
-    height: 6px;
-    background: rgba(255, 77, 109, 0.35);
-    border-radius: 50%;
-    filter: blur(0.5px);
-}
-.cat-left .l-blush { right: 18px; }
-.cat-right .l-blush { left: 18px; }
-
-/* Парящее неоновое сердце строго над ними */
-.cats-heart {
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.4rem;
-    z-index: 5;
-    animation: heartGlowFloat 1.4s infinite ease-in-out alternate;
-}
+.cats-heart { position: absolute; top: -5px; left: 50%; transform: translateX(-50%); font-size: 1.4rem; z-index: 5; animation: heartGlowFloat 1.4s infinite ease-in-out alternate; }
 
 @keyframes heartGlowFloat {
     0% { transform: translateX(-50%) translateY(0) scale(0.95); filter: drop-shadow(0 0 2px rgba(255,0,85,0.5)); }
     100% { transform: translateX(-50%) translateY(-8px) scale(1.2); filter: drop-shadow(0 0 10px rgba(255,0,85,0.9)); }
 }
-
-/* Анимация ласкового трения мордочками */
-@keyframes leanLeftPremium {
-    0% { transform: rotate(0deg) translateX(0) translateY(0); }
-    100% { transform: rotate(5deg) translateX(3px) translateY(1px); }
-}
-@keyframes leanRightPremium {
-    0% { transform: rotate(0deg) translateX(0) translateY(0); }
-    100% { transform: rotate(-5deg) translateX(-3px) translateY(1px); }
-}
+@keyframes leanLeftPremium { 0% { transform: rotate(0deg) translateX(0); } 100% { transform: rotate(5deg) translateX(3px); } }
+@keyframes leanRightPremium { 0% { transform: rotate(0deg) translateX(0); } 100% { transform: rotate(-5deg) translateX(-3px); } }
