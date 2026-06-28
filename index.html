@@ -1,60 +1,154 @@
-<!-- ЭКРАН 1 -->
-<div class="page" id="page1">
-    <h1 class="love-text">I Love You</h1>
-    
-    <div class="cat-container" id="cat1">
-        <div class="cat-body-wrapper">
-            <div class="ear left"></div>
-            <div class="ear right"></div>
-            <div class="head">
-                <div class="eyes">
-                    <div class="eye"><div class="pupil"></div></div>
-                    <div class="eye"><div class="pupil"></div></div>
-                </div>
-                <div class="nose"></div>
-                <div class="cheeks"></div>
-                <div class="whiskers-left"><div></div><div></div></div>
-                <div class="whiskers-right"><div></div><div></div></div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения, Любимая!</title>
+    <style>
+        /* Общие настройки страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffb3c6 100%);
+            color: #4a4a4a;
+            text-align: center;
+        }
+
+        /* Главный контейнер */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Главная открытка */
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* Анимация пульсирующего сердечка */
+        .heart {
+            font-size: 50px;
+            color: #ff4d6d;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Стили для ваших фотографий */
+        .photo-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            margin: 20px 0;
+            border: 2px dashed #ffb3c6;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Интерактивная кнопка-сюрприз */
+        .btn-surprise {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-surprise:hover {
+            background-color: #ff758f;
+            transform: translateY(-3px);
+        }
+
+        /* Скрытый блок с главным подарком */
+        #secret-gift {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff0f3;
+            border-radius: 15px;
+            border: 2px solid #ff4d6d;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="heart">❤️</div>
+            <!-- ЗАГОЛОВОК: Напишите здесь имя девушки -->
+            <h1>С Днем Рождения, Любимая!</h1>
+            
+            <!-- ТЕКСТ ПОЗДРАВЛЕНИЯ: Напишите тут свои слова -->
+            <p>В этот особенный день я хочу сказать, как сильно я тебя люблю. Ты делаешь мою жизнь ярче, теплее и счастливее каждый день. Спасибо тебе за твою улыбку, твою доброту и за то, что ты есть!</p>
+            
+            <p>Этот скромный сайт я создал своими руками специально для тебя, чтобы напомнить: ты — мое самое главное сокровище. Пусть все твои мечты сбываются!</p>
+
+            <!-- ФОТОГРАФИЯ: Сюда можно будет вставить ваше общее фото -->
+            <div class="photo-placeholder">
+                Твоя любимая фотография (или ваше общее фото)
             </div>
-            <div class="body"></div>
-            <div class="paws">
-                <div class="paw"></div>
-                <div class="paw"></div>
+
+            <!-- КНОПКА СЮРПРИЗА -->
+            <button class="btn-surprise" onclick="showGift()">Нажми, чтобы открыть сюрприз ✨</button>
+
+            <!-- СКРЫТЫЙ ПОДАРОК -->
+            <div id="secret-gift">
+                <h3>🎁 Твой главный подарок:</h3>
+                <!-- Напишите здесь, какой подарок её ждет (например, поход в ресторан, билеты или признание) -->
+                <p>Сегодня вечером я заберу тебя, и мы отправимся на наше самое романтичное свидание! Готовься к 19:00, люблю тебя! 😘</p>
             </div>
-            <div class="tail"></div>
         </div>
     </div>
-</div>
 
-<!-- ЭКРАН 2 -->
-<div class="page" id="page2">
-    <div class="target-heart">❤️</div>
-    <div class="bush"></div>
-    
-    <div class="cat-container" id="cat2">
-        <div class="cat-body-wrapper">
-            <div class="ear left"></div>
-            <div class="ear right"></div>
-            <div class="head">
-                <div class="eyes">
-                    <div class="eye"><div class="pupil"></div></div>
-                    <div class="eye"><div class="pupil"></div></div>
-                </div>
-                <div class="nose"></div>
-                <div class="cheeks"></div>
-                <div class="whiskers-left"><div></div><div></div></div>
-                <div class="whiskers-right"><div></div><div></div></div>
-            </div>
-            <div class="body"></div>
-            <div class="paws">
-                <div class="paw"></div>
-                <div class="paw"></div>
-            </div>
-            <div class="tail"></div>
-        </div>
-    </div>
-</div>
+    <!-- Логика работы кнопки -->
+    <script>
+        function showGift() {
+            var giftBlock = document.getElementById("secret-gift");
+            giftBlock.style.display = "block";
+            giftBlock.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
-<!-- ЭКРАН 3 -->
-<div class="page" id="page3">
-</div>
+</body>
+</html>
