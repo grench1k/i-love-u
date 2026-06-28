@@ -15,7 +15,6 @@ body {
     justify-content: center;
     overflow: hidden;
     position: relative;
-    /* Ультра-романтичный глубокий фон страсти */
     background: #14050d;
 }
 
@@ -127,37 +126,20 @@ h1 {
     padding: 0 5px;
 }
 
+/* 🖼️ ОБНОВЛЕННАЯ РАМКА: Подгружает ваше фото, центрирует его и красиво скругляет */
 .glass-photo-frame {
     width: 100%;
     height: 165px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    background-image: url('photo.jpg'); 
+    background-size: cover;
+    background-position: center;
     border-radius: 20px;
     margin-bottom: 12px;
-    border: 1px dashed rgba(255, 117, 143, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.frame-content {
-    display: flex;
-    flex-direction: column;
-}
-.photo-icon {
-    font-size: 1.8rem;
-    margin-bottom: 4px;
-    animation: floatIcon 3s ease-in-out infinite;
-}
-@keyframes floatIcon {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-.photo-text {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
-    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
 }
 
-/* 💕 КРАСИВАЯ СИЯЮЩАЯ НЕОНОВАЯ НАДПИСЬ «I LOVE YOU» */
+/* Красивая сияющая неоновая надпись «I LOVE YOU» */
 .love-neon-text {
     font-family: 'Caveat', 'Segoe UI', cursive, sans-serif;
     font-size: 1.5rem;
@@ -174,7 +156,6 @@ h1 {
     from { transform: scale(0.98); opacity: 0.9; text-shadow: 0 0 4px #ff0055, 0 0 10px #ff0055; }
     to { transform: scale(1.03); opacity: 1; text-shadow: 0 0 6px #ff0055, 0 0 16px #ff0055, 0 0 25px #ff0055; }
 }
-
 
 /* ==========================================
    🐱 ОБЪЕМНЫЙ КОТ С ИГРАЮЩЕЙ ЛАПКОЙ
@@ -199,7 +180,6 @@ h1 {
     height: 70px;
 }
 
-/* База головы котика */
 .cat-head-base {
     position: absolute;
     bottom: 0;
@@ -212,7 +192,6 @@ h1 {
     z-index: 3;
 }
 
-/* Ушки */
 .cat-ear {
     position: absolute;
     top: -8px;
@@ -237,7 +216,6 @@ h1 {
 @keyframes gentleTwitchL { 0%, 92%, 100% { transform: rotate(-10deg); } 95% { transform: rotate(-18deg); } }
 @keyframes gentleTwitchR { 0%, 88%, 100% { transform: rotate(10deg); } 91% { transform: rotate(18deg); } }
 
-/* 🐾 АНИМАЦИЯ ИГРАЮЩЕЙ ЛАПКИ КОТА */
 .cat-paw {
     position: absolute;
     top: 15px;
@@ -247,31 +225,23 @@ h1 {
     background: #ffffff;
     border-radius: 8px 8px 4px 4px;
     box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
-    z-index: 4; /* Лапка впереди мордочки */
+    z-index: 4;
     transform-origin: bottom center;
     transform: rotate(20deg);
     animation: catPawPlay 2.8s infinite ease-in-out;
 }
 
-/* Маленькие розовые подушечки на лапке */
 .cat-paw::after {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 8px;
-    height: 8px;
-    background: #ffb3c6;
-    border-radius: 50%;
+    content: ''; position: absolute; top: 4px; left: 4px;
+    width: 8px; height: 8px; background: #ffb3c6; border-radius: 50%;
 }
 
 @keyframes catPawPlay {
     0%, 30%, 70%, 100% { transform: scaleY(1) rotate(20deg) translateY(0); }
-    40%, 60% { transform: scaleY(1.1) rotate(-35deg) translateY(-14px); } /* Тянется вверх махать лапкой */
-    50% { transform: scaleY(1.1) rotate(-15deg) translateY(-16px); }      /* Игривый взмах */
+    40%, 60% { transform: scaleY(1.1) rotate(-35deg) translateY(-14px); } 
+    50% { transform: scaleY(1.1) rotate(-15deg) translateY(-16px); }      
 }
 
-/* Глазки кота */
 .cat-eye {
     position: absolute;
     top: 22px;
@@ -323,12 +293,10 @@ h1 {
 .cat-blush.left { left: 14px; }
 .cat-blush.right { right: 14px; }
 
-/* 🎬 3D АНИМАЦИЯ ПРЫЖКА КОТА */
 .css-luxury-cat.jump-premium {
     animation: premiumJump 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* При прыжке прячем играющую лапку и зажмуриваем глазки */
 .css-luxury-cat.jump-premium .cat-paw { display: none; }
 .css-luxury-cat.jump-premium .cat-eye {
     height: 2px; top: 28px; background: transparent;

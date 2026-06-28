@@ -27,13 +27,8 @@
             
             <p class="subtitle">Ты — лучшее, что случилось со мной. Каждое мгновение с тобой наполнено счастьем. Прикоснись к котику... ✨</p>
 
-            <!-- Глянцевая романтичная рамка под фото -->
-            <div class="glass-photo-frame">
-                <div class="frame-content">
-                    <span class="photo-icon">💖</span>
-                    <span class="photo-text">Наше любимое фото</span>
-                </div>
-            </div>
+            <!-- Чистая стеклянная рамка, в которой теперь будет отображаться только ваше фото -->
+            <div class="glass-photo-frame"></div>
 
             <!-- Красивая интерактивная неоновая надпись, с которой играет кот -->
             <div class="love-neon-text">I love you</div>
@@ -82,7 +77,6 @@
             if(!container) return;
             
             const heart = document.createElement('div');
-            // Чередуем разные оттенки сердечек для красоты
             const heartIcons = ['❤️', '💖', '💝', '💕'];
             heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
             heart.className = 'ambient-heart';
