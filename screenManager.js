@@ -1,10 +1,13 @@
 // МЕНЕДЖЕР СМЕНЫ ЭКРАНОВ
 function triggerCatMagic(event) {
-    // Останавливаем передачу клика на задний фон, чтобы не плодить лишние эмодзи под котиком
+    // Блокируем лишние эмодзи под котиком
     if (event) event.stopPropagation();
 
     const cat = document.getElementById("luxuryCat");
     if (cat.classList.contains("jump-premium")) return;
+    
+    // Подхватываем наш плеер с главной страницы
+    const music = document.getElementById("bgMusic");
     
     // Запускаем 3D-прыжок котика
     cat.classList.add("jump-premium");
@@ -48,12 +51,17 @@ function triggerCatMagic(event) {
             <span class="highlight-text fade-in-row">С днем рождения, моя любимая! 😘</span>
         `;
 
+        // 🔥 ЖЕСТКИЙ ПРИКАЗ ДЛЯ ПЛЕЕРА: Продолжать играть без паузы!
+        if (music) {
+            music.play().catch(err => console.log("Поддержка фонового трека:", err));
+        }
+
         // Запускаем эффект поэтапного появления строчек текста
         const rows = container.querySelectorAll('.fade-in-row');
         rows.forEach((row, index) => {
             setTimeout(() => {
                 row.classList.add('visible');
-            }, index * 400); // Интервал появления строк (0.4 секунды)
+            }, index * 400);
         });
     }, 650);
 }
